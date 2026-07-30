@@ -1,15 +1,40 @@
 #include "PacketFactory.h"
 #include "NodeManager.h"
+#include "Version.h"
+#include <cstdio>
+
 namespace jalari::protocol
 {
     PacketFactory::PacketFactory(const node::NodeManager &node, const config::NetworkConfig &networkConfig)
         : node_(node), networkConfig_(networkConfig) {}
 
-    bool PacketFactory::createHeartbeat(Packet &outPacket)
+    bool PacketFactory::createHeartbeat(std::uint32_t uptimeMs, std::uint8_t batteryPct, std::uint8_t status, Packet &outPacket)
     {
-        constexpr std::uint8_t kHeartbeatPayload[] = {'B', 'O', 'A', 'T', 'N', 'O', 'D', 'E'};
+        std::uint8_t fwMajor = 0;
+        std::uint8_t fwMinor = 0;
+        std::uint8_t fwPatch = 0;
+
+        unsigned int maj = 0, min = 0, pat = 0;
+        if (std::sscanf(version::kFirmwareVersion, "%u.%u.%u", &maj, &min, &pat) == 3)
+        {
+            fwMajor = static_cast<std::uint8_t>(maj);
+            fwMinor = static_cast<std::uint8_t>(min);
+            fwPatch = static_cast<std::uint8_t>(pat);
+        }
+
+        std::uint8_t payload[9];
+        payload[0] = static_cast<std::uint8_t>(uptimeMs & 0xFFU);
+        payload[1] = static_cast<std::uint8_t>((uptimeMs >> 8U) & 0xFFU);
+        payload[2] = static_cast<std::uint8_t>((uptimeMs >> 16U) & 0xFFU);
+        payload[3] = static_cast<std::uint8_t>((uptimeMs >> 24U) & 0xFFU);
+        payload[4] = fwMajor;
+        payload[5] = fwMinor;
+        payload[6] = fwPatch;
+        payload[7] = batteryPct;
+        payload[8] = status;
+
         initializePacket_(PacketType::Heartbeat, 0xFFU, outPacket);
-        return outPacket.setPayload(kHeartbeatPayload, sizeof(kHeartbeatPayload));
+        return outPacket.setPayload(payload, sizeof(payload));
     }
 
     bool PacketFactory::createData(std::uint8_t destinationId, const std::uint8_t *payload,

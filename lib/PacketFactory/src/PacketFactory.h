@@ -13,7 +13,7 @@ namespace jalari::protocol
     {
     public:
         PacketFactory(const node::NodeManager &node, const config::NetworkConfig &networkConfig);
-        bool createHeartbeat(Packet &outPacket);
+        bool createHeartbeat(std::uint32_t uptimeMs, std::uint8_t batteryPct, std::uint8_t status, Packet &outPacket);
         bool createData(std::uint8_t destinationId, const std::uint8_t *payload, std::size_t payloadSize,
                         Packet &outPacket);
         bool createAcknowledgement(const Packet &receivedPacket, Packet &outPacket);

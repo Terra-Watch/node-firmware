@@ -64,13 +64,53 @@ namespace jalari
     {
         const protocol::Packet *packet = packetQueue_.peek();
         if (packet == nullptr) return;
+
+        bool isHeartbeat = (packet->type == protocol::PacketType::Heartbeat);
         std::array<std::uint8_t, constants::kMaxPacketSize> buffer{};
         std::size_t bufferSize = 0;
-        if (!protocol::Validator::isValid(*packet) || !protocol::Serializer::serialize(*packet, buffer, bufferSize) || !radio_.send(buffer.data(), bufferSize))
+
+        bool serialized = protocol::Validator::isValid(*packet) &&
+                          protocol::Serializer::serialize(*packet, buffer, bufferSize);
+        bool success = serialized && radio_.send(buffer.data(), bufferSize);
+
+        if (isHeartbeat)
+        {
+            LOG_INFO(logger_, "--------------------------------");
+            LOG_INFO(logger_, "[Heartbeat TX]");
+
+            char msg[64];
+            snprintf(msg, sizeof(msg), "Node ID: %u", packet->sourceId);
+            LOG_INFO(logger_, msg);
+
+            snprintf(msg, sizeof(msg), "Sequence: %u", packet->sequenceNumber);
+            LOG_INFO(logger_, msg);
+
+            snprintf(msg, sizeof(msg), "Packet Size: %u", static_cast<unsigned int>(bufferSize));
+            LOG_INFO(logger_, msg);
+
+            std::uint32_t uptimeMs = 0;
+            if (packet->payloadSize >= 4)
+            {
+                uptimeMs = static_cast<std::uint32_t>(packet->payload[0]) |
+                           (static_cast<std::uint32_t>(packet->payload[1]) << 8U) |
+                           (static_cast<std::uint32_t>(packet->payload[2]) << 16U) |
+                           (static_cast<std::uint32_t>(packet->payload[3]) << 24U);
+            }
+            snprintf(msg, sizeof(msg), "Timestamp: %u ms", uptimeMs);
+            LOG_INFO(logger_, msg);
+
+            snprintf(msg, sizeof(msg), "Transmission Result: %s", success ? "success" : "failure");
+            LOG_INFO(logger_, msg);
+
+            LOG_INFO(logger_, "--------------------------------");
+        }
+
+        if (!success)
         {
             LOG_WARN(logger_, "Packet transmission failed");
             return;
         }
+
         protocol::Packet sentPacket;
         (void)packetQueue_.dequeue(sentPacket);
         eventBus_.publish({event::Type::PacketSent, sentPacket});

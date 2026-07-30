@@ -17,9 +17,23 @@ namespace jalari::services
     void HeartbeatService::update()
     {
         const std::uint32_t now = clock_.millis();
-        if ((now - lastHeartbeatMs_) < config_.heartbeatIntervalMs) return;
+
+#ifdef SIMULATION_MODE
+        constexpr std::uint32_t intervalMs = 5000U;
+        constexpr std::uint8_t batteryPct = 95U;
+        constexpr std::uint8_t status = 0U; // NORMAL
+#else
+        const std::uint32_t intervalMs = config_.heartbeatIntervalMs;
+        const std::uint8_t batteryPct = 0xFFU; // placeholder when unavailable
+        const std::uint8_t status = 0U; // NORMAL
+#endif
+
+        if ((now - lastHeartbeatMs_) < intervalMs) return;
         protocol::Packet packet;
-        if (packetFactory_.createHeartbeat(packet) && packetQueue_.enqueue(packet)) lastHeartbeatMs_ = now;
+        if (packetFactory_.createHeartbeat(now, batteryPct, status, packet) && packetQueue_.enqueue(packet))
+        {
+            lastHeartbeatMs_ = now;
+        }
     }
 
     void HeartbeatService::onEvent(const event::Event &event)
