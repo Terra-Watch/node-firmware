@@ -1,4 +1,5 @@
 #include "App.h"
+#include <Arduino.h>
 
 #include <array>
 
@@ -15,15 +16,17 @@
 #include "Validator.h"
 #include "Version.h"
 
+#include "HeartbeatAckManager.h"
+
 namespace jalari
 {
     App::App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
-             services::HeartbeatService &heartbeatService, services::NeighborService &neighborService,
-             services::ReliableLinkService &reliableLinkService, services::ForwardingService &forwardingService,
-             utils::Logger &logger)
+             services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
+             services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
+             services::ForwardingService &forwardingService, utils::Logger &logger)
         : radio_(radio), node_(node), packetQueue_(packetQueue), eventBus_(eventBus), heartbeatService_(heartbeatService),
-          neighborService_(neighborService), reliableLinkService_(reliableLinkService),
-          forwardingService_(forwardingService), logger_(logger) {}
+          heartbeatAckManager_(heartbeatAckManager), neighborService_(neighborService),
+          reliableLinkService_(reliableLinkService), forwardingService_(forwardingService), logger_(logger) {}
 
     bool App::begin()
     {
@@ -56,6 +59,7 @@ namespace jalari
         processIncoming_();
         reliableLinkService_.update();
         heartbeatService_.update();
+        heartbeatAckManager_.update();
         neighborService_.update();
         transmitQueued_();
     }
@@ -108,11 +112,21 @@ namespace jalari
         if (!success)
         {
             LOG_WARN(logger_, "Packet transmission failed");
+            protocol::Packet failedPacket;
+            (void)packetQueue_.dequeue(failedPacket);
             return;
         }
 
         protocol::Packet sentPacket;
         (void)packetQueue_.dequeue(sentPacket);
+        if (sentPacket.type == protocol::PacketType::Heartbeat && sentPacket.payloadSize >= 4)
+        {
+            std::uint32_t pktId = static_cast<std::uint32_t>(sentPacket.payload[0]) |
+                                  (static_cast<std::uint32_t>(sentPacket.payload[1]) << 8U) |
+                                  (static_cast<std::uint32_t>(sentPacket.payload[2]) << 16U) |
+                                  (static_cast<std::uint32_t>(sentPacket.payload[3]) << 24U);
+            heartbeatAckManager_.onHeartbeatTransmitted(pktId, sentPacket);
+        }
         eventBus_.publish({event::Type::PacketSent, sentPacket});
     }
 
@@ -120,12 +134,34 @@ namespace jalari
     {
         radio::ReceivedFrame frame;
         if (!radio_.receive(frame)) return;
+
         protocol::Packet packet;
         if (!protocol::Parser::parse(frame.bytes.data(), frame.length, packet) || !protocol::Validator::isValid(packet))
         {
             LOG_WARN(logger_, "Received invalid packet");
             return;
         }
+
+        if (packet.sourceId == node_.id())
+        {
+            return; // Ignore self-echo from radio
+        }
+
+        if (packet.type == protocol::PacketType::HeartbeatAck && packet.payloadSize >= 9)
+        {
+            std::uint32_t ackPktId = static_cast<std::uint32_t>(packet.payload[0]) |
+                                     (static_cast<std::uint32_t>(packet.payload[1]) << 8U) |
+                                     (static_cast<std::uint32_t>(packet.payload[2]) << 16U) |
+                                     (static_cast<std::uint32_t>(packet.payload[3]) << 24U);
+            std::uint8_t nodeId = packet.payload[4];
+            std::uint32_t rxTimestamp = static_cast<std::uint32_t>(packet.payload[5]) |
+                                        (static_cast<std::uint32_t>(packet.payload[6]) << 8U) |
+                                        (static_cast<std::uint32_t>(packet.payload[7]) << 16U) |
+                                        (static_cast<std::uint32_t>(packet.payload[8]) << 24U);
+            heartbeatAckManager_.onAckReceived(ackPktId, nodeId, rxTimestamp);
+            return;
+        }
+
         if (forwardingService_.processReceived(packet)) eventBus_.publish({event::Type::PacketReceived, packet, frame.rssi, frame.snr});
     }
 

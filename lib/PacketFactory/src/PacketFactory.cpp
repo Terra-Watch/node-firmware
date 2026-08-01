@@ -8,7 +8,7 @@ namespace jalari::protocol
     PacketFactory::PacketFactory(const node::NodeManager &node, const config::NetworkConfig &networkConfig)
         : node_(node), networkConfig_(networkConfig) {}
 
-    bool PacketFactory::createHeartbeat(std::uint32_t uptimeMs, std::uint8_t batteryPct, std::uint8_t status, Packet &outPacket)
+    bool PacketFactory::createHeartbeat(std::uint32_t uptimeMs, std::uint8_t batteryPct, std::uint8_t status, Packet &outPacket, std::uint32_t &outPacketId)
     {
         std::uint8_t fwMajor = 0;
         std::uint8_t fwMinor = 0;
@@ -22,16 +22,24 @@ namespace jalari::protocol
             fwPatch = static_cast<std::uint8_t>(pat);
         }
 
-        std::uint8_t payload[9];
-        payload[0] = static_cast<std::uint8_t>(uptimeMs & 0xFFU);
-        payload[1] = static_cast<std::uint8_t>((uptimeMs >> 8U) & 0xFFU);
-        payload[2] = static_cast<std::uint8_t>((uptimeMs >> 16U) & 0xFFU);
-        payload[3] = static_cast<std::uint8_t>((uptimeMs >> 24U) & 0xFFU);
-        payload[4] = fwMajor;
-        payload[5] = fwMinor;
-        payload[6] = fwPatch;
-        payload[7] = batteryPct;
-        payload[8] = status;
+        outPacketId = nextPacketId_++;
+
+        std::uint8_t payload[13];
+        payload[0] = static_cast<std::uint8_t>(outPacketId & 0xFFU);
+        payload[1] = static_cast<std::uint8_t>((outPacketId >> 8U) & 0xFFU);
+        payload[2] = static_cast<std::uint8_t>((outPacketId >> 16U) & 0xFFU);
+        payload[3] = static_cast<std::uint8_t>((outPacketId >> 24U) & 0xFFU);
+
+        payload[4] = static_cast<std::uint8_t>(uptimeMs & 0xFFU);
+        payload[5] = static_cast<std::uint8_t>((uptimeMs >> 8U) & 0xFFU);
+        payload[6] = static_cast<std::uint8_t>((uptimeMs >> 16U) & 0xFFU);
+        payload[7] = static_cast<std::uint8_t>((uptimeMs >> 24U) & 0xFFU);
+
+        payload[8] = fwMajor;
+        payload[9] = fwMinor;
+        payload[10] = fwPatch;
+        payload[11] = batteryPct;
+        payload[12] = status;
 
         initializePacket_(PacketType::Heartbeat, 0xFFU, outPacket);
         return outPacket.setPayload(payload, sizeof(payload));
@@ -52,6 +60,23 @@ namespace jalari::protocol
             static_cast<std::uint8_t>((receivedPacket.sequenceNumber >> 8U) & 0xFFU),
         };
         initializePacket_(PacketType::Acknowledgement, receivedPacket.sourceId, outPacket);
+        return outPacket.setPayload(payload, sizeof(payload));
+    }
+
+    bool PacketFactory::createHeartbeatAck(std::uint32_t packetId, std::uint8_t targetNodeId, std::uint32_t timestamp, Packet &outPacket)
+    {
+        std::uint8_t payload[9];
+        payload[0] = static_cast<std::uint8_t>(packetId & 0xFFU);
+        payload[1] = static_cast<std::uint8_t>((packetId >> 8U) & 0xFFU);
+        payload[2] = static_cast<std::uint8_t>((packetId >> 16U) & 0xFFU);
+        payload[3] = static_cast<std::uint8_t>((packetId >> 24U) & 0xFFU);
+        payload[4] = targetNodeId;
+        payload[5] = static_cast<std::uint8_t>(timestamp & 0xFFU);
+        payload[6] = static_cast<std::uint8_t>((timestamp >> 8U) & 0xFFU);
+        payload[7] = static_cast<std::uint8_t>((timestamp >> 16U) & 0xFFU);
+        payload[8] = static_cast<std::uint8_t>((timestamp >> 24U) & 0xFFU);
+
+        initializePacket_(PacketType::HeartbeatAck, targetNodeId, outPacket);
         return outPacket.setPayload(payload, sizeof(payload));
     }
 

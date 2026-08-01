@@ -30,7 +30,8 @@ namespace jalari::services
 
         if ((now - lastHeartbeatMs_) < intervalMs) return;
         protocol::Packet packet;
-        if (packetFactory_.createHeartbeat(now, batteryPct, status, packet) && packetQueue_.enqueue(packet))
+        std::uint32_t packetId = 0;
+        if (packetFactory_.createHeartbeat(now, batteryPct, status, packet, packetId) && packetQueue_.enqueue(packet))
         {
             lastHeartbeatMs_ = now;
         }

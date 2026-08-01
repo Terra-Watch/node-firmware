@@ -16,6 +16,7 @@ namespace jalari::protocol
         Test = Data,
         Heartbeat = 2,
         Acknowledgement = 3,
+        HeartbeatAck = 4,
     };
 
     struct Packet

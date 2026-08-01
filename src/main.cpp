@@ -12,6 +12,7 @@
 #include "NeighborManager.h"
 #include "PacketFactory.h"
 #include "PacketQueue.h"
+#include "HeartbeatAckManager.h"
 #include "HeartbeatService.h"
 #include "AckManager.h"
 #include "NeighborService.h"
@@ -36,10 +37,11 @@ namespace
         jalari::neighbor::NeighborManager neighborManager;
         jalari::reliable::AckManager ackManager{jalari::config::kDefaultFirmwareConfig.reliability, node, packetFactory, packetQueue, clock};
         jalari::services::HeartbeatService heartbeatService{jalari::config::kDefaultFirmwareConfig.power, packetFactory, packetQueue, clock};
+        jalari::services::HeartbeatAckManager heartbeatAckManager{clock, logger, packetQueue};
         jalari::services::NeighborService neighborService{jalari::config::kDefaultFirmwareConfig.network, neighborManager, clock};
         jalari::services::ReliableLinkService reliableLinkService{ackManager};
         jalari::services::ForwardingService forwardingService{jalari::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
-        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, neighborService, reliableLinkService, forwardingService, logger};
+        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager, neighborService, reliableLinkService, forwardingService, logger};
     };
     FirmwareComposition &firmware() { static FirmwareComposition composition; return composition; }
 }

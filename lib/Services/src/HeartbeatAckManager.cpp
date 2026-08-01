@@ -1,0 +1,90 @@
+#include "HeartbeatAckManager.h"
+#include <cstdio>
+
+namespace jalari::services
+{
+    HeartbeatAckManager::HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue)
+        : clock_(clock), logger_(logger), packetQueue_(packetQueue) {}
+
+    void HeartbeatAckManager::onHeartbeatTransmitted(std::uint32_t packetId, const protocol::Packet &packet)
+    {
+        activePacketId_ = packetId;
+        activePacket_ = packet;
+        txTimestampMs_ = clock_.millis();
+        retryCount_ = 0;
+        state_ = State::WaitingAck;
+
+        stats_.sent++;
+
+        char msg[128];
+        snprintf(msg, sizeof(msg), "[Heartbeat #%lu]", static_cast<unsigned long>(activePacketId_));
+        LOG_INFO(logger_, msg);
+        LOG_INFO(logger_, "Sent");
+        LOG_INFO(logger_, "Waiting ACK...");
+    }
+
+    void HeartbeatAckManager::onAckReceived(std::uint32_t ackPacketId, std::uint8_t nodeId, std::uint32_t rxTimestamp)
+    {
+        if (state_ != State::WaitingAck || ackPacketId != activePacketId_)
+        {
+            return;
+        }
+
+        const std::uint32_t rtt = clock_.millis() - txTimestampMs_;
+        stats_.ackReceived++;
+        state_ = State::Idle;
+
+        char msg[128];
+        snprintf(msg, sizeof(msg), "ACK received (Node: 0x%02X)", nodeId);
+        LOG_INFO(logger_, msg);
+        snprintf(msg, sizeof(msg), "RTT = %lu ms", static_cast<unsigned long>(rtt));
+        LOG_INFO(logger_, msg);
+        snprintf(msg, sizeof(msg), "Stats: Sent=%lu | ACK=%lu | Retries=%lu | Timeouts=%lu | Success=%.1f%%",
+                 static_cast<unsigned long>(stats_.sent),
+                 static_cast<unsigned long>(stats_.ackReceived),
+                 static_cast<unsigned long>(stats_.retries),
+                 static_cast<unsigned long>(stats_.timeouts),
+                 stats_.successRatePct());
+        LOG_INFO(logger_, msg);
+    }
+
+    void HeartbeatAckManager::update()
+    {
+        if (state_ != State::WaitingAck)
+        {
+            return;
+        }
+
+        const std::uint32_t now = clock_.millis();
+        if ((now - txTimestampMs_) >= kAckTimeoutMs)
+        {
+            if (retryCount_ < kMaxRetries)
+            {
+                retryCount_++;
+                stats_.retries++;
+                txTimestampMs_ = now;
+
+                char msg[64];
+                snprintf(msg, sizeof(msg), "Retry %u", retryCount_);
+                LOG_WARN(logger_, msg);
+
+                (void)packetQueue_.enqueue(activePacket_);
+            }
+            else
+            {
+                stats_.timeouts++;
+                state_ = State::Idle;
+
+                LOG_ERROR(logger_, "FAILED (No ACK after 3 retries)");
+                char msg[128];
+                snprintf(msg, sizeof(msg), "Stats: Sent=%lu | ACK=%lu | Retries=%lu | Timeouts=%lu | Success=%.1f%%",
+                         static_cast<unsigned long>(stats_.sent),
+                         static_cast<unsigned long>(stats_.ackReceived),
+                         static_cast<unsigned long>(stats_.retries),
+                         static_cast<unsigned long>(stats_.timeouts),
+                         stats_.successRatePct());
+                LOG_INFO(logger_, msg);
+            }
+        }
+    }
+} // namespace jalari::services

@@ -14,6 +14,7 @@ namespace jalari::protocol
         {
         case PacketType::Data:
         case PacketType::Heartbeat:
+        case PacketType::HeartbeatAck:
             return true;
         case PacketType::Acknowledgement:
             return packet.payloadSize == constants::kAcknowledgementPayloadSize;
