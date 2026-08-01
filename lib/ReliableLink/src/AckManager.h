@@ -18,10 +18,15 @@ namespace jalari::reliable
     class DuplicatePacketCache
     {
     public:
-        bool isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber);
+        bool isDuplicateAndRemember(std::uint8_t sourceId, protocol::PacketType type, std::uint16_t sequenceNumber);
 
     private:
-        struct Entry { std::uint8_t sourceId = 0; std::uint16_t sequenceNumber = 0; bool active = false; };
+        struct Entry {
+            std::uint8_t sourceId = 0;
+            protocol::PacketType type = protocol::PacketType::Unknown;
+            std::uint16_t sequenceNumber = 0;
+            bool active = false;
+        };
         std::array<Entry, constants::kDuplicatePacketCapacity> entries_{};
         std::size_t nextEntry_ = 0;
     };
@@ -36,7 +41,7 @@ namespace jalari::reliable
         bool begin(event::EventBus &eventBus);
         void update();
         void onEvent(const event::Event &event) override;
-        bool isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber);
+        bool isDuplicateAndRemember(std::uint8_t sourceId, protocol::PacketType type, std::uint16_t sequenceNumber);
         std::size_t pendingCount() const;
 
     private:
