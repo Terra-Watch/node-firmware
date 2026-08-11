@@ -64,7 +64,7 @@ namespace jalari::config
         {1},
         {0xA5U, 3U, 48U, 255U},
         {2000U},
-        {2000U, 2U},
+        {1000U, 3U},
         {8U, 16U, 30000U, 8U},
     };
 

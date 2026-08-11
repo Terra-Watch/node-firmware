@@ -4,15 +4,14 @@
 
 namespace jalari::reliable
 {
-    bool DuplicatePacketCache::isDuplicateAndRemember(std::uint8_t sourceId, protocol::PacketType type, std::uint16_t sequenceNumber)
+    bool DuplicatePacketCache::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber)
     {
         for (const Entry &entry : entries_)
         {
-            if (entry.active && entry.sourceId == sourceId && entry.type == type && entry.sequenceNumber == sequenceNumber) return true;
+            if (entry.active && entry.sourceId == sourceId && entry.sequenceNumber == sequenceNumber) return true;
         }
         Entry &entry = entries_[nextEntry_];
         entry.sourceId = sourceId;
-        entry.type = type;
         entry.sequenceNumber = sequenceNumber;
         entry.active = true;
         nextEntry_ = (nextEntry_ + 1U) % entries_.size();
@@ -57,9 +56,9 @@ namespace jalari::reliable
         if (event.type == event::Type::PacketSent) handleTransmitted_(event.packet);
     }
 
-    bool AckManager::isDuplicateAndRemember(std::uint8_t sourceId, protocol::PacketType type, std::uint16_t sequenceNumber)
+    bool AckManager::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber)
     {
-        return duplicates_.isDuplicateAndRemember(sourceId, type, sequenceNumber);
+        return duplicates_.isDuplicateAndRemember(sourceId, sequenceNumber);
     }
 
     std::size_t AckManager::pendingCount() const
@@ -74,7 +73,7 @@ namespace jalari::reliable
         if (packet.destinationId != node_.id()) return;
         if (packet.type == protocol::PacketType::Acknowledgement) { acknowledge_(packet); return; }
         if (packet.type != protocol::PacketType::Data) return;
-        (void)duplicates_.isDuplicateAndRemember(packet.sourceId, packet.type, packet.sequenceNumber);
+        (void)duplicates_.isDuplicateAndRemember(packet.sourceId, packet.sequenceNumber);
         protocol::Packet acknowledgement;
         if (packetFactory_.createAcknowledgement(packet, acknowledgement)) (void)packetQueue_.enqueue(acknowledgement);
     }

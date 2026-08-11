@@ -36,8 +36,5 @@ namespace jalari
         services::ForwardingService &forwardingService_;
         utils::Logger &logger_;
         bool initialized_ = false;
-        std::uint32_t lastDataMs_ = 0;
-        std::uint16_t dataSeq_ = 1;
-        std::uint32_t lastHeartbeatTxMs_ = 0;
     };
 } // namespace jalari

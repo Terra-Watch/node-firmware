@@ -56,24 +56,6 @@ namespace jalari
     void App::update()
     {
         if (!initialized_) return;
-        const std::uint32_t currentMs = millis();
-        if ((currentMs - lastDataMs_) >= 30000U && packetQueue_.empty())
-        {
-            lastDataMs_ = currentMs;
-            protocol::Packet dataPacket;
-            dataPacket.type = protocol::PacketType::Data;
-            dataPacket.sourceId = node_.id();
-            dataPacket.destinationId = 0xFE; // Gateway ID
-            dataPacket.sequenceNumber = dataSeq_++;
-            dataPacket.ttl = 8;
-            dataPacket.hopCount = 0;
-            const char* samplePayload = "RESQ-DATA";
-            dataPacket.setPayload(reinterpret_cast<const std::uint8_t*>(samplePayload), strlen(samplePayload));
-            if (packetQueue_.enqueue(dataPacket))
-            {
-                LOG_INFO(logger_, "[Data Packet Enqueued]");
-            }
-        }
         processIncoming_();
         reliableLinkService_.update();
         heartbeatService_.update();
@@ -88,20 +70,12 @@ namespace jalari
         if (packet == nullptr) return;
 
         bool isHeartbeat = (packet->type == protocol::PacketType::Heartbeat);
-        bool isData = (packet->type == protocol::PacketType::Data);
-
-        // Guard: do not transmit Data while within the HeartbeatACK receive window.
-        // Gateway ACK arrives ~85ms after HB TX. 250ms is a safe margin.
-        if (isData && (millis() - lastHeartbeatTxMs_) < 250U) return;
-
         std::array<std::uint8_t, constants::kMaxPacketSize> buffer{};
         std::size_t bufferSize = 0;
 
         bool serialized = protocol::Validator::isValid(*packet) &&
                           protocol::Serializer::serialize(*packet, buffer, bufferSize);
         bool success = serialized && radio_.send(buffer.data(), bufferSize);
-
-        if (isHeartbeat) lastHeartbeatTxMs_ = millis();
 
         if (isHeartbeat)
         {
@@ -132,15 +106,6 @@ namespace jalari
             snprintf(msg, sizeof(msg), "Transmission Result: %s", success ? "success" : "failure");
             LOG_INFO(logger_, msg);
 
-            LOG_INFO(logger_, "--------------------------------");
-        }
-        else if (isData)
-        {
-            LOG_INFO(logger_, "--------------------------------");
-            LOG_INFO(logger_, "[Data Packet TX]");
-            char msg[64];
-            snprintf(msg, sizeof(msg), "Seq: %u | Size: %u bytes", packet->sequenceNumber, static_cast<unsigned int>(bufferSize));
-            LOG_INFO(logger_, msg);
             LOG_INFO(logger_, "--------------------------------");
         }
 
@@ -197,19 +162,6 @@ namespace jalari
             return;
         }
 
-        if (packet.type == protocol::PacketType::Acknowledgement)
-        {
-            LOG_INFO(logger_, "--------------------------------");
-            LOG_INFO(logger_, "[Data ACK RX]");
-            char msg[64];
-            std::uint16_t ackSeq = (packet.payloadSize >= 2) ? (static_cast<std::uint16_t>(packet.payload[0]) | (static_cast<std::uint16_t>(packet.payload[1]) << 8U)) : 0;
-            snprintf(msg, sizeof(msg), "Data ACK confirmed for Seq #%u", ackSeq);
-            LOG_INFO(logger_, msg);
-            LOG_INFO(logger_, "--------------------------------");
-            eventBus_.publish({event::Type::PacketReceived, packet, frame.rssi, frame.snr});
-            return;
-        }
-
         if (forwardingService_.processReceived(packet)) eventBus_.publish({event::Type::PacketReceived, packet, frame.rssi, frame.snr});
     }
 
@@ -218,7 +170,6 @@ namespace jalari
         switch (event.type)
         {
         case event::Type::HeartbeatSent: LOG_INFO(logger_, "Heartbeat packet sent"); break;
-        case event::Type::AcknowledgementReceived: LOG_INFO(logger_, "[AckManager] Data ACK resolved successfully!"); break;
         case event::Type::RadioReady: LOG_INFO(logger_, "LoRa ready"); break;
         case event::Type::RadioError: LOG_ERROR(logger_, "LoRa initialization failed"); break;
         default: break;
