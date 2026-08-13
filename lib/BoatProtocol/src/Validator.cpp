@@ -13,9 +13,11 @@ namespace jalari::protocol
         switch (packet.type)
         {
         case PacketType::Data:
-        case PacketType::Heartbeat:
-        case PacketType::HeartbeatAck:
             return true;
+        case PacketType::Heartbeat:
+            return packet.payloadSize == 13U;
+        case PacketType::HeartbeatAck:
+            return packet.payloadSize == 9U;
         case PacketType::Acknowledgement:
             return packet.payloadSize == constants::kAcknowledgementPayloadSize;
         case PacketType::Unknown:

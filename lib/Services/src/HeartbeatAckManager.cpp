@@ -3,8 +3,9 @@
 
 namespace jalari::services
 {
-    HeartbeatAckManager::HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue)
-        : clock_(clock), logger_(logger), packetQueue_(packetQueue) {}
+    HeartbeatAckManager::HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue,
+                                             const node::NodeManager &node)
+        : clock_(clock), logger_(logger), packetQueue_(packetQueue), node_(node) {}
 
     void HeartbeatAckManager::onHeartbeatTransmitted(std::uint32_t packetId, const protocol::Packet &packet)
     {
@@ -27,6 +28,7 @@ namespace jalari::services
     {
         if (state_ != State::WaitingAck || packet.type != protocol::PacketType::HeartbeatAck ||
             packet.payloadSize != 9U || packet.sourceId != constants::kGatewayNodeId ||
+            packet.destinationId != node_.id() || packet.payload[4] != node_.id() ||
             packet.payload[4] != packet.destinationId)
         {
             LOG_WARN(logger_, "[HEARTBEAT ACK REJECTED] Invalid type/source/target/payload");

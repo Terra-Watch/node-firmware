@@ -5,6 +5,7 @@
 #include "IClock.h"
 #include "Logger.h"
 #include "PacketQueue.h"
+#include "NodeManager.h"
 
 namespace jalari::services
 {
@@ -30,7 +31,8 @@ namespace jalari::services
             WaitingAck,
         };
 
-        HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue);
+        HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue,
+                            const node::NodeManager &node);
 
         void onHeartbeatTransmitted(std::uint32_t packetId, const protocol::Packet &packet);
         void onAckReceived(const protocol::Packet &packet);
@@ -42,6 +44,7 @@ namespace jalari::services
         hal::IClock &clock_;
         utils::Logger &logger_;
         queue::PacketQueue &packetQueue_;
+        const node::NodeManager &node_;
 
         State state_ = State::Idle;
         std::uint32_t activePacketId_ = 0;

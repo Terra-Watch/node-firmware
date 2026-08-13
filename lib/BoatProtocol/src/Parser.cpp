@@ -9,6 +9,11 @@ namespace jalari::protocol
 
     bool Parser::parse(const std::uint8_t *data, std::size_t size, Packet &outPacket)
     {
+        if (data == nullptr)
+        {
+            return false;
+        }
+
         if (size < constants::kPacketHeaderSize + constants::kPacketCrcSize)
         {
             return false;
