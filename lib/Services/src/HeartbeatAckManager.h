@@ -33,7 +33,7 @@ namespace jalari::services
         HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue);
 
         void onHeartbeatTransmitted(std::uint32_t packetId, const protocol::Packet &packet);
-        void onAckReceived(std::uint32_t ackPacketId, std::uint8_t nodeId, std::uint32_t rxTimestamp);
+        void onAckReceived(const protocol::Packet &packet);
         void update();
 
         const HeartbeatStats &stats() const { return stats_; }

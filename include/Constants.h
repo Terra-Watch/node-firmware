@@ -16,6 +16,7 @@ namespace jalari::constants
     constexpr std::size_t kDuplicatePacketCapacity = 32;
     constexpr std::size_t kPendingTransmissionCapacity = 8;
     constexpr std::size_t kAcknowledgementPayloadSize = 2;
+    constexpr std::uint8_t kGatewayNodeId = 0xFEU;
     constexpr std::size_t kMaximumLinkMetricWindowSize = 8;
 
 } // namespace jalari::constants

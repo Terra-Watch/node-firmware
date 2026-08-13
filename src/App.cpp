@@ -80,13 +80,29 @@ namespace jalari
         if (isHeartbeat)
         {
             LOG_INFO(logger_, "--------------------------------");
-            LOG_INFO(logger_, "[Heartbeat TX]");
+            LOG_INFO(logger_, "[HEARTBEAT TX]");
 
             char msg[64];
             snprintf(msg, sizeof(msg), "Node ID: %u", packet->sourceId);
             LOG_INFO(logger_, msg);
 
+            snprintf(msg, sizeof(msg), "type: %u", static_cast<unsigned>(packet->type));
+            LOG_INFO(logger_, msg);
+            snprintf(msg, sizeof(msg), "Destination: 0x%02X", packet->destinationId);
+            LOG_INFO(logger_, msg);
+
             snprintf(msg, sizeof(msg), "Sequence: %u", packet->sequenceNumber);
+            LOG_INFO(logger_, msg);
+
+            std::uint32_t packetId = 0;
+            if (packet->payloadSize >= 4)
+            {
+                packetId = static_cast<std::uint32_t>(packet->payload[0]) |
+                           (static_cast<std::uint32_t>(packet->payload[1]) << 8U) |
+                           (static_cast<std::uint32_t>(packet->payload[2]) << 16U) |
+                           (static_cast<std::uint32_t>(packet->payload[3]) << 24U);
+            }
+            snprintf(msg, sizeof(msg), "Packet ID: %lu", static_cast<unsigned long>(packetId));
             LOG_INFO(logger_, msg);
 
             snprintf(msg, sizeof(msg), "Packet Size: %u", static_cast<unsigned int>(bufferSize));
@@ -126,6 +142,7 @@ namespace jalari
                                   (static_cast<std::uint32_t>(sentPacket.payload[2]) << 16U) |
                                   (static_cast<std::uint32_t>(sentPacket.payload[3]) << 24U);
             heartbeatAckManager_.onHeartbeatTransmitted(pktId, sentPacket);
+            LOG_INFO(logger_, "[WAITING ACK]");
         }
         eventBus_.publish({event::Type::PacketSent, sentPacket});
     }
@@ -147,18 +164,15 @@ namespace jalari
             return; // Ignore self-echo from radio
         }
 
-        if (packet.type == protocol::PacketType::HeartbeatAck && packet.payloadSize >= 9)
+        if (packet.type == protocol::PacketType::HeartbeatAck)
         {
-            std::uint32_t ackPktId = static_cast<std::uint32_t>(packet.payload[0]) |
-                                     (static_cast<std::uint32_t>(packet.payload[1]) << 8U) |
-                                     (static_cast<std::uint32_t>(packet.payload[2]) << 16U) |
-                                     (static_cast<std::uint32_t>(packet.payload[3]) << 24U);
-            std::uint8_t nodeId = packet.payload[4];
-            std::uint32_t rxTimestamp = static_cast<std::uint32_t>(packet.payload[5]) |
-                                        (static_cast<std::uint32_t>(packet.payload[6]) << 8U) |
-                                        (static_cast<std::uint32_t>(packet.payload[7]) << 16U) |
-                                        (static_cast<std::uint32_t>(packet.payload[8]) << 24U);
-            heartbeatAckManager_.onAckReceived(ackPktId, nodeId, rxTimestamp);
+            if (packet.payloadSize != 9 || packet.destinationId != node_.id() ||
+                packet.payload[4] != node_.id())
+            {
+                LOG_WARN(logger_, "[HEARTBEAT ACK REJECTED] Wrong target or payload");
+                return;
+            }
+            heartbeatAckManager_.onAckReceived(packet);
             return;
         }
 
