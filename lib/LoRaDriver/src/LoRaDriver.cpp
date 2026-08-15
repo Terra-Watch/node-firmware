@@ -6,6 +6,11 @@ namespace jalari::lora
     LoRaDriver::LoRaDriver(const config::RadioConfig &config, hal::ISpiBus &spiBus) : config_(config), spiBus_(spiBus) {}
     bool LoRaDriver::begin()
     {
+        pinMode(config_.chipSelectPin, OUTPUT);
+        digitalWrite(config_.chipSelectPin, HIGH);
+        pinMode(config_.resetPin, OUTPUT);
+        digitalWrite(config_.resetPin, HIGH);
+
         spiBus_.begin(config_);
         LoRa.setPins(config_.chipSelectPin, config_.resetPin, config_.dio0Pin);
 
