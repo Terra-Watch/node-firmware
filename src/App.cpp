@@ -22,18 +22,20 @@
 #include "DtnStoreForwardService.h"
 #include "PacketFactory.h"
 #include "TestCommandParser.h"
+#include "TelemetryService.h"
 
 namespace jalari
 {
     App::App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
              services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
              services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
+             services::TelemetryService &telemetryService,
              services::ForwardingService &forwardingService, routing::RouteAdvertisementService &routeAdvertisementService,
              routing::RouteFailureService &routeFailureService, services::DtnStoreForwardService &dtnService,
              utils::Logger &logger, protocol::PacketFactory &packetFactory, hal::IConsole &console)
         : radio_(radio), node_(node), packetQueue_(packetQueue), eventBus_(eventBus), heartbeatService_(heartbeatService),
           heartbeatAckManager_(heartbeatAckManager), neighborService_(neighborService),
-          reliableLinkService_(reliableLinkService), forwardingService_(forwardingService),
+          reliableLinkService_(reliableLinkService), telemetryService_(telemetryService), forwardingService_(forwardingService),
           routeAdvertisementService_(routeAdvertisementService), routeFailureService_(routeFailureService),
           dtnService_(dtnService), logger_(logger), packetFactory_(packetFactory), console_(console) {}
 
@@ -67,6 +69,11 @@ namespace jalari
             eventBus_.publish({event::Type::RadioError});
             return false;
         }
+        if (!telemetryService_.begin())
+        {
+            node_.setStatus(node::NodeStatus::Fault);
+            return false;
+        }
         node_.setStatus(node::NodeStatus::Ready);
         initialized_ = true;
         eventBus_.publish({event::Type::RadioReady});
@@ -80,6 +87,7 @@ namespace jalari
         processTestCommands_();
         reliableLinkService_.update();
         heartbeatService_.update();
+        telemetryService_.update();
         heartbeatAckManager_.update();
         neighborService_.update();
         routeAdvertisementService_.update();

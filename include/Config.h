@@ -41,6 +41,13 @@ namespace jalari::config
     struct PowerConfig
     {
         std::uint32_t heartbeatIntervalMs;
+        std::uint32_t telemetryIntervalMs;
+    };
+
+    struct SensorConfig
+    {
+        int i2cSdaPin;
+        int i2cSclPin;
     };
 
     struct ReliabilityConfig
@@ -80,6 +87,7 @@ namespace jalari::config
         const NodeConfig node;
         const ProtocolConfig protocol;
         const PowerConfig power;
+        const SensorConfig sensors;
         const ReliabilityConfig reliability;
         const NetworkConfig network;
     };
@@ -90,7 +98,8 @@ namespace jalari::config
         {433000000L, 12, 13, 11, 10, 9, 14},
         {static_cast<std::uint8_t>(JALARI_NODE_ID)},
         {0xA5U, 4U, 48U, 255U},
-        {2000U},
+        {2000U, 5000U},
+        {21, 18},
         {1000U, 3U},
         kDefaultNetworkConfig,
     };

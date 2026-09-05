@@ -9,7 +9,7 @@ namespace jalari
     namespace radio { class IRadio; }
     namespace queue { class PacketQueue; }
     namespace routing { class RouteAdvertisementService; class RouteFailureService; }
-    namespace services { class ForwardingService; class HeartbeatService; class HeartbeatAckManager; class NeighborService; class ReliableLinkService; class DtnStoreForwardService; }
+    namespace services { class ForwardingService; class HeartbeatService; class HeartbeatAckManager; class NeighborService; class ReliableLinkService; class DtnStoreForwardService; class TelemetryService; }
     namespace protocol { class PacketFactory; }
     namespace hal { class IConsole; }
     namespace utils { class Logger; }
@@ -20,6 +20,7 @@ namespace jalari
         App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
             services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
             services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
+            services::TelemetryService &telemetryService,
             services::ForwardingService &forwardingService, routing::RouteAdvertisementService &routeAdvertisementService,
             routing::RouteFailureService &routeFailureService, services::DtnStoreForwardService &dtnService,
             utils::Logger &logger, protocol::PacketFactory &packetFactory, hal::IConsole &console);
@@ -39,6 +40,7 @@ namespace jalari
         services::HeartbeatAckManager &heartbeatAckManager_;
         services::NeighborService &neighborService_;
         services::ReliableLinkService &reliableLinkService_;
+        services::TelemetryService &telemetryService_;
         services::ForwardingService &forwardingService_;
         routing::RouteAdvertisementService &routeAdvertisementService_;
         routing::RouteFailureService &routeFailureService_;

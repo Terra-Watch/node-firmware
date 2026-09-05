@@ -4,6 +4,7 @@
 #include "Esp32Delay.h"
 #include "Esp32SerialConsole.h"
 #include "Esp32SpiBus.h"
+#include "Esp32I2cBus.h"
 #include "EventBus.h"
 #include "ForwardingService.h"
 #include "LoRaDriver.h"
@@ -22,6 +23,8 @@
 #include "RouteAdvertisementService.h"
 #include "RouteFailureService.h"
 #include "DtnStoreForwardService.h"
+#include "TelemetryService.h"
+#include "Ds3231.h"
 
 namespace
 {
@@ -32,6 +35,8 @@ namespace
         jalari::hal::Esp32Clock clock;
         jalari::hal::Esp32Delay delay;
         jalari::hal::Esp32SpiBus spiBus;
+        jalari::hal::Esp32I2cBus i2cBus;
+        jalari::sensors::Ds3231 rtc{i2cBus};
         jalari::node::NodeManager node{jalari::config::kDefaultFirmwareConfig.node, jalari::node::DeviceRole::BoatNode};
         jalari::lora::LoRaDriver radio{jalari::config::kDefaultFirmwareConfig.radio, spiBus};
         jalari::protocol::PacketFactory packetFactory{node, jalari::config::kDefaultFirmwareConfig.network};
@@ -45,6 +50,9 @@ namespace
         jalari::services::HeartbeatAckManager heartbeatAckManager{clock, logger, packetQueue, node};
         jalari::services::NeighborService neighborService{jalari::config::kDefaultFirmwareConfig.network, neighborManager, clock};
         jalari::services::ReliableLinkService reliableLinkService{ackManager};
+        jalari::services::TelemetryService telemetryService{jalari::config::kDefaultFirmwareConfig.power,
+                                                            jalari::config::kDefaultFirmwareConfig.sensors, rtc,
+                                                            packetFactory, packetQueue, clock, logger};
         jalari::services::ForwardingService forwardingService{jalari::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
         jalari::routing::RouteAdvertisementService routeAdvertisementService{
             node.id(), routeTable, neighborManager, packetFactory, packetQueue, clock,
@@ -52,7 +60,7 @@ namespace
         jalari::routing::RouteFailureService routeFailureService{routeTable};
         jalari::services::DtnStoreForwardService dtnService{forwardingStrategy, forwardingService, clock, eventBus};
         jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager,
-                        neighborService, reliableLinkService, forwardingService, routeAdvertisementService,
+                        neighborService, reliableLinkService, telemetryService, forwardingService, routeAdvertisementService,
                         routeFailureService, dtnService, logger, packetFactory, console};
     };
     FirmwareComposition &firmware() { static FirmwareComposition composition; return composition; }
