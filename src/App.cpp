@@ -140,12 +140,12 @@ namespace jalari
             LOG_INFO(logger_, msg);
 
             std::uint32_t uptimeMs = 0;
-            if (packet->payloadSize >= 4)
+            if (packet->payloadSize >= 8)
             {
-                uptimeMs = static_cast<std::uint32_t>(packet->payload[0]) |
-                           (static_cast<std::uint32_t>(packet->payload[1]) << 8U) |
-                           (static_cast<std::uint32_t>(packet->payload[2]) << 16U) |
-                           (static_cast<std::uint32_t>(packet->payload[3]) << 24U);
+                uptimeMs = static_cast<std::uint32_t>(packet->payload[4]) |
+                           (static_cast<std::uint32_t>(packet->payload[5]) << 8U) |
+                           (static_cast<std::uint32_t>(packet->payload[6]) << 16U) |
+                           (static_cast<std::uint32_t>(packet->payload[7]) << 24U);
             }
             snprintf(msg, sizeof(msg), "Timestamp: %u ms", uptimeMs);
             LOG_INFO(logger_, msg);

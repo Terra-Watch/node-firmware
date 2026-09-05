@@ -42,6 +42,7 @@ namespace jalari::protocol
         payload[12] = status;
 
         initializePacket_(PacketType::Heartbeat, 0xFFU, outPacket);
+        outPacket.previousHopId = node_.id();
         return outPacket.setPayload(payload, sizeof(payload));
     }
 
@@ -85,6 +86,7 @@ namespace jalari::protocol
         payload[8] = static_cast<std::uint8_t>((timestamp >> 24U) & 0xFFU);
 
         initializePacket_(PacketType::HeartbeatAck, targetNodeId, outPacket);
+        outPacket.previousHopId = node_.id();
         return outPacket.setPayload(payload, sizeof(payload));
     }
 
