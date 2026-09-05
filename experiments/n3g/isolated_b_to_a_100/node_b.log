@@ -1,0 +1,2226 @@
+[2026-09-02T19:02:50.426+00:00][B] ESP-ROM:esp32s3-20210327
+[2026-09-02T19:02:50.435+00:00][B] Build:Mar 27 2021
+[2026-09-02T19:02:50.441+00:00][B] rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+[2026-09-02T19:02:50.441+00:00][B] SPIWP:0xee
+[2026-09-02T19:02:50.441+00:00][B] mode:DIO, clock div:1
+[2026-09-02T19:02:50.446+00:00][B] load:0x3fce3808,len:0x4bc
+[2026-09-02T19:02:50.446+00:00][B] load:0x403c9700,len:0xbd8
+[2026-09-02T19:02:50.446+00:00][B] load:0x403cc700,len:0x2a0c
+[2026-09-02T19:02:50.447+00:00][B] entry 0x403c98d0
+[2026-09-02T19:02:52.538+00:00][B] [INFO] ================================
+[2026-09-02T19:02:52.543+00:00][B] [INFO] Jalari BoatNode Firmware
+[2026-09-02T19:02:52.543+00:00][B] [INFO] 0.1.0
+[2026-09-02T19:02:52.543+00:00][B] [INFO] ================================
+[2026-09-02T19:02:52.555+00:00][B] [INFO] LoRa ready
+[2026-09-02T19:02:52.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:52.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:52.628+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:52.628+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:52.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:52.633+00:00][B] [INFO] Sequence: 0
+[2026-09-02T19:02:52.633+00:00][B] [INFO] Packet ID: 1
+[2026-09-02T19:02:52.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:52.638+00:00][B] [INFO] Timestamp: 1 ms
+[2026-09-02T19:02:52.639+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:52.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:52.644+00:00][B] [INFO] [Heartbeat #1]
+[2026-09-02T19:02:52.649+00:00][B] [INFO] Sent
+[2026-09-02T19:02:52.650+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:52.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:52.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=0 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:52.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:53.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:02:53.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:53.707+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:53.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:53.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:53.712+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:53.717+00:00][B] [INFO] Sequence: 0
+[2026-09-02T19:02:53.717+00:00][B] [INFO] Packet ID: 1
+[2026-09-02T19:02:53.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:53.722+00:00][B] [INFO] Timestamp: 1 ms
+[2026-09-02T19:02:53.723+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:53.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:53.728+00:00][B] [INFO] [Heartbeat #1]
+[2026-09-02T19:02:53.733+00:00][B] [INFO] Sent
+[2026-09-02T19:02:53.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:53.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:53.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=0 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:53.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:54.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:54.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:54.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:54.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:54.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:54.632+00:00][B] [INFO] Sequence: 1
+[2026-09-02T19:02:54.633+00:00][B] [INFO] Packet ID: 2
+[2026-09-02T19:02:54.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:54.638+00:00][B] [INFO] Timestamp: 2 ms
+[2026-09-02T19:02:54.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:54.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:54.644+00:00][B] [INFO] [Heartbeat #2]
+[2026-09-02T19:02:54.649+00:00][B] [INFO] Sent
+[2026-09-02T19:02:54.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:54.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:54.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=1 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:54.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:55.442+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=2 remaining=99
+[2026-09-02T19:02:55.501+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=2 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:55.567+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=2 ackSequence=2 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:02:55.567+00:00][B] [INFO] ACK_RX seq=2 source=0x01
+[2026-09-02T19:02:55.570+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=3 remaining=98
+[2026-09-02T19:02:55.625+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=3 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:55.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:02:55.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:55.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:55.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:55.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:55.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:55.716+00:00][B] [INFO] Sequence: 1
+[2026-09-02T19:02:55.717+00:00][B] [INFO] Packet ID: 2
+[2026-09-02T19:02:55.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:55.722+00:00][B] [INFO] Timestamp: 2 ms
+[2026-09-02T19:02:55.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:55.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:55.728+00:00][B] [INFO] [Heartbeat #2]
+[2026-09-02T19:02:55.733+00:00][B] [INFO] Sent
+[2026-09-02T19:02:55.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:55.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:55.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=1 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:55.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:56.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:56.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:56.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:56.629+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:56.630+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:56.633+00:00][B] [INFO] Sequence: 4
+[2026-09-02T19:02:56.633+00:00][B] [INFO] Packet ID: 3
+[2026-09-02T19:02:56.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:56.638+00:00][B] [INFO] Timestamp: 3 ms
+[2026-09-02T19:02:56.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:56.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:56.645+00:00][B] [INFO] [Heartbeat #3]
+[2026-09-02T19:02:56.649+00:00][B] [INFO] Sent
+[2026-09-02T19:02:56.650+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:56.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:56.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=4 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:56.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:56.665+00:00][B] [WARN] TX_RETRY seq=3
+[2026-09-02T19:02:56.723+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=3 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:57.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:02:57.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:57.707+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:57.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:57.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:57.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:57.716+00:00][B] [INFO] Sequence: 4
+[2026-09-02T19:02:57.717+00:00][B] [INFO] Packet ID: 3
+[2026-09-02T19:02:57.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:57.722+00:00][B] [INFO] Timestamp: 3 ms
+[2026-09-02T19:02:57.723+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:57.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:57.728+00:00][B] [INFO] [Heartbeat #3]
+[2026-09-02T19:02:57.733+00:00][B] [INFO] Sent
+[2026-09-02T19:02:57.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:57.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:57.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=4 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:57.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:57.749+00:00][B] [WARN] TX_RETRY seq=3
+[2026-09-02T19:02:57.807+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=3 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:58.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:58.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:58.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:58.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:58.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:58.633+00:00][B] [INFO] Sequence: 5
+[2026-09-02T19:02:58.633+00:00][B] [INFO] Packet ID: 4
+[2026-09-02T19:02:58.634+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:58.638+00:00][B] [INFO] Timestamp: 4 ms
+[2026-09-02T19:02:58.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:58.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:58.644+00:00][B] [INFO] [Heartbeat #4]
+[2026-09-02T19:02:58.649+00:00][B] [INFO] Sent
+[2026-09-02T19:02:58.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:58.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:58.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=5 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:58.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:58.806+00:00][B] [WARN] TX_RETRY seq=3
+[2026-09-02T19:02:58.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=3 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:59.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:02:59.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:59.707+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:02:59.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:02:59.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:02:59.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:02:59.716+00:00][B] [INFO] Sequence: 5
+[2026-09-02T19:02:59.717+00:00][B] [INFO] Packet ID: 4
+[2026-09-02T19:02:59.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:02:59.722+00:00][B] [INFO] Timestamp: 4 ms
+[2026-09-02T19:02:59.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:02:59.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:02:59.728+00:00][B] [INFO] [Heartbeat #4]
+[2026-09-02T19:02:59.733+00:00][B] [INFO] Sent
+[2026-09-02T19:02:59.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:02:59.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:02:59.744+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=5 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:02:59.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:02:59.872+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:02:59.872+00:00][B] [WARN] ACK_FAILED seq=3
+[2026-09-02T19:02:59.875+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=6 remaining=97
+[2026-09-02T19:02:59.931+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=6 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:02:59.996+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=9 ackSequence=6 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:02:59.997+00:00][B] [INFO] ACK_RX seq=6 source=0x01
+[2026-09-02T19:03:00.000+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=7 remaining=96
+[2026-09-02T19:03:00.055+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=7 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:00.120+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=10 ackSequence=7 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:00.121+00:00][B] [INFO] ACK_RX seq=7 source=0x01
+[2026-09-02T19:03:00.124+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=8 remaining=95
+[2026-09-02T19:03:00.178+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=8 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:00.244+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=11 ackSequence=8 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:00.244+00:00][B] [INFO] ACK_RX seq=8 source=0x01
+[2026-09-02T19:03:00.247+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=9 remaining=94
+[2026-09-02T19:03:00.302+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=9 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:00.368+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=12 ackSequence=9 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:00.368+00:00][B] [INFO] ACK_RX seq=9 source=0x01
+[2026-09-02T19:03:00.371+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=10 remaining=93
+[2026-09-02T19:03:00.426+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=10 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:00.491+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=13 ackSequence=10 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:00.491+00:00][B] [INFO] ACK_RX seq=10 source=0x01
+[2026-09-02T19:03:00.495+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=11 remaining=92
+[2026-09-02T19:03:00.550+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=11 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:00.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:00.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:00.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:00.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:00.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:00.632+00:00][B] [INFO] Sequence: 12
+[2026-09-02T19:03:00.633+00:00][B] [INFO] Packet ID: 5
+[2026-09-02T19:03:00.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:00.638+00:00][B] [INFO] Timestamp: 5 ms
+[2026-09-02T19:03:00.639+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:00.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:00.644+00:00][B] [INFO] [Heartbeat #5]
+[2026-09-02T19:03:00.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:00.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:00.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:00.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=12 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:00.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:01.550+00:00][B] [WARN] TX_RETRY seq=11
+[2026-09-02T19:03:01.612+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=11 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:01.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:01.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:01.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:01.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:01.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:01.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:01.716+00:00][B] [INFO] Sequence: 12
+[2026-09-02T19:03:01.717+00:00][B] [INFO] Packet ID: 5
+[2026-09-02T19:03:01.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:01.722+00:00][B] [INFO] Timestamp: 5 ms
+[2026-09-02T19:03:01.723+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:01.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:01.728+00:00][B] [INFO] [Heartbeat #5]
+[2026-09-02T19:03:01.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:01.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:01.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:01.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=12 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:01.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:02.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:02.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:02.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:02.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:02.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:02.632+00:00][B] [INFO] Sequence: 13
+[2026-09-02T19:03:02.632+00:00][B] [INFO] Packet ID: 6
+[2026-09-02T19:03:02.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:02.638+00:00][B] [INFO] Timestamp: 6 ms
+[2026-09-02T19:03:02.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:02.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:02.644+00:00][B] [INFO] [Heartbeat #6]
+[2026-09-02T19:03:02.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:02.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:02.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:02.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=13 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:02.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:02.665+00:00][B] [WARN] TX_RETRY seq=11
+[2026-09-02T19:03:02.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=11 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:03.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:03.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:03.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:03.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:03.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:03.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:03.716+00:00][B] [INFO] Sequence: 13
+[2026-09-02T19:03:03.717+00:00][B] [INFO] Packet ID: 6
+[2026-09-02T19:03:03.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:03.722+00:00][B] [INFO] Timestamp: 6 ms
+[2026-09-02T19:03:03.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:03.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:03.728+00:00][B] [INFO] [Heartbeat #6]
+[2026-09-02T19:03:03.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:03.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:03.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:03.749+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=13 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:03.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:03.749+00:00][B] [WARN] TX_RETRY seq=11
+[2026-09-02T19:03:03.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=11 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:04.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:04.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:04.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:04.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:04.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:04.632+00:00][B] [INFO] Sequence: 14
+[2026-09-02T19:03:04.633+00:00][B] [INFO] Packet ID: 7
+[2026-09-02T19:03:04.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:04.638+00:00][B] [INFO] Timestamp: 7 ms
+[2026-09-02T19:03:04.639+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:04.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:04.644+00:00][B] [INFO] [Heartbeat #7]
+[2026-09-02T19:03:04.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:04.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:04.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:04.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=14 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:04.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:04.809+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:04.810+00:00][B] [WARN] ACK_FAILED seq=11
+[2026-09-02T19:03:04.813+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=15 remaining=91
+[2026-09-02T19:03:04.869+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=15 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:04.934+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=19 ackSequence=15 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:04.935+00:00][B] [INFO] ACK_RX seq=15 source=0x01
+[2026-09-02T19:03:04.938+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=16 remaining=90
+[2026-09-02T19:03:04.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=16 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.058+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=20 ackSequence=16 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:05.058+00:00][B] [INFO] ACK_RX seq=16 source=0x01
+[2026-09-02T19:03:05.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=17 remaining=89
+[2026-09-02T19:03:05.116+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=17 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.182+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=21 ackSequence=17 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:05.182+00:00][B] [INFO] ACK_RX seq=17 source=0x01
+[2026-09-02T19:03:05.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=18 remaining=88
+[2026-09-02T19:03:05.240+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=18 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.306+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=22 ackSequence=18 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:05.306+00:00][B] [INFO] ACK_RX seq=18 source=0x01
+[2026-09-02T19:03:05.309+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=19 remaining=87
+[2026-09-02T19:03:05.364+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=19 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.429+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=23 ackSequence=19 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.25
+[2026-09-02T19:03:05.430+00:00][B] [INFO] ACK_RX seq=19 source=0x01
+[2026-09-02T19:03:05.433+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=20 remaining=86
+[2026-09-02T19:03:05.488+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=20 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.553+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=24 ackSequence=20 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:05.554+00:00][B] [INFO] ACK_RX seq=20 source=0x01
+[2026-09-02T19:03:05.557+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=21 remaining=85
+[2026-09-02T19:03:05.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=21 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:05.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:05.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:05.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:05.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:05.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:05.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:05.716+00:00][B] [INFO] Sequence: 14
+[2026-09-02T19:03:05.717+00:00][B] [INFO] Packet ID: 7
+[2026-09-02T19:03:05.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:05.722+00:00][B] [INFO] Timestamp: 7 ms
+[2026-09-02T19:03:05.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:05.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:05.728+00:00][B] [INFO] [Heartbeat #7]
+[2026-09-02T19:03:05.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:05.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:05.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:05.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=14 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:05.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:06.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:06.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:06.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:06.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:06.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:06.632+00:00][B] [INFO] Sequence: 22
+[2026-09-02T19:03:06.633+00:00][B] [INFO] Packet ID: 8
+[2026-09-02T19:03:06.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:06.638+00:00][B] [INFO] Timestamp: 8 ms
+[2026-09-02T19:03:06.639+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:06.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:06.644+00:00][B] [INFO] [Heartbeat #8]
+[2026-09-02T19:03:06.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:06.650+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:06.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:06.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=22 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:06.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:06.666+00:00][B] [WARN] TX_RETRY seq=21
+[2026-09-02T19:03:06.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=21 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:07.639+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:07.706+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:07.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:07.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:07.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:07.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:07.716+00:00][B] [INFO] Sequence: 22
+[2026-09-02T19:03:07.716+00:00][B] [INFO] Packet ID: 8
+[2026-09-02T19:03:07.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:07.722+00:00][B] [INFO] Timestamp: 8 ms
+[2026-09-02T19:03:07.723+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:07.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:07.728+00:00][B] [INFO] [Heartbeat #8]
+[2026-09-02T19:03:07.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:07.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:07.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:07.749+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=22 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:07.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:07.750+00:00][B] [WARN] TX_RETRY seq=21
+[2026-09-02T19:03:07.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=21 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:08.622+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:08.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:08.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:08.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:08.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:08.632+00:00][B] [INFO] Sequence: 23
+[2026-09-02T19:03:08.633+00:00][B] [INFO] Packet ID: 9
+[2026-09-02T19:03:08.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:08.638+00:00][B] [INFO] Timestamp: 9 ms
+[2026-09-02T19:03:08.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:08.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:08.644+00:00][B] [INFO] [Heartbeat #9]
+[2026-09-02T19:03:08.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:08.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:08.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:08.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=23 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:08.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:08.806+00:00][B] [WARN] TX_RETRY seq=21
+[2026-09-02T19:03:08.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=21 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:09.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:09.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:09.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:09.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:09.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:09.712+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:09.716+00:00][B] [INFO] Sequence: 23
+[2026-09-02T19:03:09.716+00:00][B] [INFO] Packet ID: 9
+[2026-09-02T19:03:09.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:09.722+00:00][B] [INFO] Timestamp: 9 ms
+[2026-09-02T19:03:09.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:09.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:09.728+00:00][B] [INFO] [Heartbeat #9]
+[2026-09-02T19:03:09.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:09.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:09.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:09.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=23 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:09.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:09.871+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:09.872+00:00][B] [WARN] ACK_FAILED seq=21
+[2026-09-02T19:03:09.875+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=24 remaining=84
+[2026-09-02T19:03:09.930+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=24 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:09.996+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=29 ackSequence=24 ttl=8 hops=0 payloadSize=2 rssi=-60 snr=9.75
+[2026-09-02T19:03:09.997+00:00][B] [INFO] ACK_RX seq=24 source=0x01
+[2026-09-02T19:03:10.000+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=25 remaining=83
+[2026-09-02T19:03:10.054+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=25 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:10.121+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=30 ackSequence=25 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.25
+[2026-09-02T19:03:10.121+00:00][B] [INFO] ACK_RX seq=25 source=0x01
+[2026-09-02T19:03:10.124+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=26 remaining=82
+[2026-09-02T19:03:10.178+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=26 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:10.244+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=31 ackSequence=26 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:10.244+00:00][B] [INFO] ACK_RX seq=26 source=0x01
+[2026-09-02T19:03:10.247+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=27 remaining=81
+[2026-09-02T19:03:10.302+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=27 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:10.368+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=32 ackSequence=27 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:10.368+00:00][B] [INFO] ACK_RX seq=27 source=0x01
+[2026-09-02T19:03:10.371+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=28 remaining=80
+[2026-09-02T19:03:10.426+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=28 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:10.492+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=33 ackSequence=28 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.50
+[2026-09-02T19:03:10.492+00:00][B] [INFO] ACK_RX seq=28 source=0x01
+[2026-09-02T19:03:10.495+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=29 remaining=79
+[2026-09-02T19:03:10.550+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=29 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:10.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:10.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:10.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:10.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:10.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:10.632+00:00][B] [INFO] Sequence: 30
+[2026-09-02T19:03:10.633+00:00][B] [INFO] Packet ID: 10
+[2026-09-02T19:03:10.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:10.638+00:00][B] [INFO] Timestamp: 10 ms
+[2026-09-02T19:03:10.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:10.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:10.644+00:00][B] [INFO] [Heartbeat #10]
+[2026-09-02T19:03:10.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:10.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:10.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:10.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=30 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:10.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:11.550+00:00][B] [WARN] TX_RETRY seq=29
+[2026-09-02T19:03:11.612+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=29 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:11.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:11.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:11.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:11.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:11.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:11.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:11.716+00:00][B] [INFO] Sequence: 30
+[2026-09-02T19:03:11.716+00:00][B] [INFO] Packet ID: 10
+[2026-09-02T19:03:11.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:11.722+00:00][B] [INFO] Timestamp: 10 ms
+[2026-09-02T19:03:11.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:11.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:11.728+00:00][B] [INFO] [Heartbeat #10]
+[2026-09-02T19:03:11.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:11.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:11.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:11.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=30 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:11.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:12.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:12.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:12.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:12.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:12.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:12.632+00:00][B] [INFO] Sequence: 31
+[2026-09-02T19:03:12.632+00:00][B] [INFO] Packet ID: 11
+[2026-09-02T19:03:12.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:12.638+00:00][B] [INFO] Timestamp: 11 ms
+[2026-09-02T19:03:12.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:12.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:12.644+00:00][B] [INFO] [Heartbeat #11]
+[2026-09-02T19:03:12.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:12.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:12.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:12.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=31 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:12.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:12.666+00:00][B] [WARN] TX_RETRY seq=29
+[2026-09-02T19:03:12.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=29 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:13.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:13.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:13.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:13.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:13.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:13.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:13.716+00:00][B] [INFO] Sequence: 31
+[2026-09-02T19:03:13.716+00:00][B] [INFO] Packet ID: 11
+[2026-09-02T19:03:13.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:13.722+00:00][B] [INFO] Timestamp: 11 ms
+[2026-09-02T19:03:13.723+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:13.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:13.728+00:00][B] [INFO] [Heartbeat #11]
+[2026-09-02T19:03:13.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:13.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:13.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:13.749+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=31 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:13.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:13.749+00:00][B] [WARN] TX_RETRY seq=29
+[2026-09-02T19:03:13.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=29 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:14.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:14.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:14.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:14.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:14.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:14.632+00:00][B] [INFO] Sequence: 32
+[2026-09-02T19:03:14.632+00:00][B] [INFO] Packet ID: 12
+[2026-09-02T19:03:14.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:14.638+00:00][B] [INFO] Timestamp: 12 ms
+[2026-09-02T19:03:14.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:14.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:14.644+00:00][B] [INFO] [Heartbeat #12]
+[2026-09-02T19:03:14.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:14.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:14.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:14.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=32 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:14.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:14.809+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:14.810+00:00][B] [WARN] ACK_FAILED seq=29
+[2026-09-02T19:03:14.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=33 remaining=78
+[2026-09-02T19:03:14.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=33 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:14.934+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=39 ackSequence=33 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.25
+[2026-09-02T19:03:14.935+00:00][B] [INFO] ACK_RX seq=33 source=0x01
+[2026-09-02T19:03:14.938+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=34 remaining=77
+[2026-09-02T19:03:14.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=34 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.058+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=40 ackSequence=34 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.25
+[2026-09-02T19:03:15.058+00:00][B] [INFO] ACK_RX seq=34 source=0x01
+[2026-09-02T19:03:15.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=35 remaining=76
+[2026-09-02T19:03:15.116+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=35 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.182+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=41 ackSequence=35 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:15.182+00:00][B] [INFO] ACK_RX seq=35 source=0x01
+[2026-09-02T19:03:15.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=36 remaining=75
+[2026-09-02T19:03:15.240+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=36 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.306+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=42 ackSequence=36 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:15.306+00:00][B] [INFO] ACK_RX seq=36 source=0x01
+[2026-09-02T19:03:15.309+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=37 remaining=74
+[2026-09-02T19:03:15.364+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=37 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.429+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=43 ackSequence=37 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:15.430+00:00][B] [INFO] ACK_RX seq=37 source=0x01
+[2026-09-02T19:03:15.433+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=38 remaining=73
+[2026-09-02T19:03:15.488+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=38 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.553+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=44 ackSequence=38 ttl=8 hops=0 payloadSize=2 rssi=-63 snr=9.50
+[2026-09-02T19:03:15.554+00:00][B] [INFO] ACK_RX seq=38 source=0x01
+[2026-09-02T19:03:15.557+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=39 remaining=72
+[2026-09-02T19:03:15.612+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=39 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:15.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:15.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:15.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:15.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:15.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:15.712+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:15.716+00:00][B] [INFO] Sequence: 32
+[2026-09-02T19:03:15.716+00:00][B] [INFO] Packet ID: 12
+[2026-09-02T19:03:15.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:15.722+00:00][B] [INFO] Timestamp: 12 ms
+[2026-09-02T19:03:15.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:15.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:15.728+00:00][B] [INFO] [Heartbeat #12]
+[2026-09-02T19:03:15.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:15.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:15.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:15.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=32 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:15.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:16.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:16.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:16.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:16.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:16.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:16.632+00:00][B] [INFO] Sequence: 40
+[2026-09-02T19:03:16.632+00:00][B] [INFO] Packet ID: 13
+[2026-09-02T19:03:16.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:16.638+00:00][B] [INFO] Timestamp: 13 ms
+[2026-09-02T19:03:16.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:16.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:16.644+00:00][B] [INFO] [Heartbeat #13]
+[2026-09-02T19:03:16.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:16.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:16.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:16.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=40 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:16.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:16.666+00:00][B] [WARN] TX_RETRY seq=39
+[2026-09-02T19:03:16.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=39 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:17.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:17.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:17.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:17.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:17.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:17.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:17.716+00:00][B] [INFO] Sequence: 40
+[2026-09-02T19:03:17.716+00:00][B] [INFO] Packet ID: 13
+[2026-09-02T19:03:17.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:17.722+00:00][B] [INFO] Timestamp: 13 ms
+[2026-09-02T19:03:17.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:17.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:17.728+00:00][B] [INFO] [Heartbeat #13]
+[2026-09-02T19:03:17.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:17.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:17.734+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:17.749+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=40 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:17.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:17.750+00:00][B] [WARN] TX_RETRY seq=39
+[2026-09-02T19:03:17.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=39 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:18.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:18.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:18.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:18.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:18.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:18.632+00:00][B] [INFO] Sequence: 41
+[2026-09-02T19:03:18.632+00:00][B] [INFO] Packet ID: 14
+[2026-09-02T19:03:18.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:18.638+00:00][B] [INFO] Timestamp: 14 ms
+[2026-09-02T19:03:18.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:18.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:18.644+00:00][B] [INFO] [Heartbeat #14]
+[2026-09-02T19:03:18.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:18.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:18.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:18.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=41 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:18.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:18.806+00:00][B] [WARN] TX_RETRY seq=39
+[2026-09-02T19:03:18.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=39 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:19.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:19.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:19.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:19.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:19.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:19.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:19.716+00:00][B] [INFO] Sequence: 41
+[2026-09-02T19:03:19.716+00:00][B] [INFO] Packet ID: 14
+[2026-09-02T19:03:19.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:19.721+00:00][B] [INFO] Timestamp: 14 ms
+[2026-09-02T19:03:19.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:19.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:19.727+00:00][B] [INFO] [Heartbeat #14]
+[2026-09-02T19:03:19.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:19.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:19.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:19.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=41 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:19.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:19.871+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:19.872+00:00][B] [WARN] ACK_FAILED seq=39
+[2026-09-02T19:03:19.875+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=42 remaining=71
+[2026-09-02T19:03:19.930+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=42 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:19.996+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=49 ackSequence=42 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.00
+[2026-09-02T19:03:19.996+00:00][B] [INFO] ACK_RX seq=42 source=0x01
+[2026-09-02T19:03:20.000+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=43 remaining=70
+[2026-09-02T19:03:20.054+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=43 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:20.120+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=50 ackSequence=43 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.50
+[2026-09-02T19:03:20.121+00:00][B] [INFO] ACK_RX seq=43 source=0x01
+[2026-09-02T19:03:20.124+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=44 remaining=69
+[2026-09-02T19:03:20.178+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=44 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:20.243+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=51 ackSequence=44 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:20.243+00:00][B] [INFO] ACK_RX seq=44 source=0x01
+[2026-09-02T19:03:20.247+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=45 remaining=68
+[2026-09-02T19:03:20.302+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=45 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:20.367+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=52 ackSequence=45 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:20.368+00:00][B] [INFO] ACK_RX seq=45 source=0x01
+[2026-09-02T19:03:20.371+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=46 remaining=67
+[2026-09-02T19:03:20.426+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=46 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:20.491+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=53 ackSequence=46 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.75
+[2026-09-02T19:03:20.492+00:00][B] [INFO] ACK_RX seq=46 source=0x01
+[2026-09-02T19:03:20.495+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=47 remaining=66
+[2026-09-02T19:03:20.550+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=47 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:20.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:20.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:20.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:20.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:20.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:20.632+00:00][B] [INFO] Sequence: 48
+[2026-09-02T19:03:20.632+00:00][B] [INFO] Packet ID: 15
+[2026-09-02T19:03:20.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:20.638+00:00][B] [INFO] Timestamp: 15 ms
+[2026-09-02T19:03:20.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:20.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:20.645+00:00][B] [INFO] [Heartbeat #15]
+[2026-09-02T19:03:20.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:20.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:20.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:20.663+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=48 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:20.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:21.550+00:00][B] [WARN] TX_RETRY seq=47
+[2026-09-02T19:03:21.612+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=47 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:21.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:21.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:21.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:21.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:21.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:21.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:21.716+00:00][B] [INFO] Sequence: 48
+[2026-09-02T19:03:21.716+00:00][B] [INFO] Packet ID: 15
+[2026-09-02T19:03:21.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:21.722+00:00][B] [INFO] Timestamp: 15 ms
+[2026-09-02T19:03:21.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:21.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:21.727+00:00][B] [INFO] [Heartbeat #15]
+[2026-09-02T19:03:21.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:21.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:21.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:21.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=48 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:21.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:22.110+00:00][B] [WARN] Received invalid packet
+[2026-09-02T19:03:22.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:22.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:22.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:22.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:22.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:22.632+00:00][B] [INFO] Sequence: 49
+[2026-09-02T19:03:22.633+00:00][B] [INFO] Packet ID: 16
+[2026-09-02T19:03:22.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:22.638+00:00][B] [INFO] Timestamp: 16 ms
+[2026-09-02T19:03:22.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:22.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:22.643+00:00][B] [INFO] [Heartbeat #16]
+[2026-09-02T19:03:22.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:22.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:22.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:22.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=49 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:22.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:22.665+00:00][B] [WARN] TX_RETRY seq=47
+[2026-09-02T19:03:22.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=47 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:23.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:23.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:23.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:23.711+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:23.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:23.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:23.716+00:00][B] [INFO] Sequence: 49
+[2026-09-02T19:03:23.716+00:00][B] [INFO] Packet ID: 16
+[2026-09-02T19:03:23.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:23.721+00:00][B] [INFO] Timestamp: 16 ms
+[2026-09-02T19:03:23.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:23.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:23.728+00:00][B] [INFO] [Heartbeat #16]
+[2026-09-02T19:03:23.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:23.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:23.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:23.749+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=49 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:23.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:23.749+00:00][B] [WARN] TX_RETRY seq=47
+[2026-09-02T19:03:23.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=47 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:24.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:24.622+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:24.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:24.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:24.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:24.632+00:00][B] [INFO] Sequence: 50
+[2026-09-02T19:03:24.632+00:00][B] [INFO] Packet ID: 17
+[2026-09-02T19:03:24.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:24.638+00:00][B] [INFO] Timestamp: 17 ms
+[2026-09-02T19:03:24.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:24.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:24.644+00:00][B] [INFO] [Heartbeat #17]
+[2026-09-02T19:03:24.649+00:00][B] [INFO] Sent
+[2026-09-02T19:03:24.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:24.650+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:24.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=50 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:24.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:24.810+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:24.810+00:00][B] [WARN] ACK_FAILED seq=47
+[2026-09-02T19:03:24.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=51 remaining=65
+[2026-09-02T19:03:24.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=51 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:24.934+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=59 ackSequence=51 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:24.934+00:00][B] [INFO] ACK_RX seq=51 source=0x01
+[2026-09-02T19:03:24.937+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=52 remaining=64
+[2026-09-02T19:03:24.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=52 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.058+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=60 ackSequence=52 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:25.058+00:00][B] [INFO] ACK_RX seq=52 source=0x01
+[2026-09-02T19:03:25.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=53 remaining=63
+[2026-09-02T19:03:25.119+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=53 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.181+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=61 ackSequence=53 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:25.182+00:00][B] [INFO] ACK_RX seq=53 source=0x01
+[2026-09-02T19:03:25.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=54 remaining=62
+[2026-09-02T19:03:25.240+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=54 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.305+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=62 ackSequence=54 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:25.306+00:00][B] [INFO] ACK_RX seq=54 source=0x01
+[2026-09-02T19:03:25.309+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=55 remaining=61
+[2026-09-02T19:03:25.364+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=55 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.429+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=63 ackSequence=55 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:25.430+00:00][B] [INFO] ACK_RX seq=55 source=0x01
+[2026-09-02T19:03:25.433+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=56 remaining=60
+[2026-09-02T19:03:25.487+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=56 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.553+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=64 ackSequence=56 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:25.554+00:00][B] [INFO] ACK_RX seq=56 source=0x01
+[2026-09-02T19:03:25.556+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=57 remaining=59
+[2026-09-02T19:03:25.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=57 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:25.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:25.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:25.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:25.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:25.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:25.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:25.716+00:00][B] [INFO] Sequence: 50
+[2026-09-02T19:03:25.716+00:00][B] [INFO] Packet ID: 17
+[2026-09-02T19:03:25.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:25.721+00:00][B] [INFO] Timestamp: 17 ms
+[2026-09-02T19:03:25.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:25.728+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:25.728+00:00][B] [INFO] [Heartbeat #17]
+[2026-09-02T19:03:25.733+00:00][B] [INFO] Sent
+[2026-09-02T19:03:25.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:25.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:25.747+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=50 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:25.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:26.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:26.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:26.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:26.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:26.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:26.632+00:00][B] [INFO] Sequence: 58
+[2026-09-02T19:03:26.632+00:00][B] [INFO] Packet ID: 18
+[2026-09-02T19:03:26.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:26.637+00:00][B] [INFO] Timestamp: 18 ms
+[2026-09-02T19:03:26.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:26.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:26.643+00:00][B] [INFO] [Heartbeat #18]
+[2026-09-02T19:03:26.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:26.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:26.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:26.665+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=58 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:26.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:26.666+00:00][B] [WARN] TX_RETRY seq=57
+[2026-09-02T19:03:26.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=57 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:27.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:27.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:27.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:27.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:27.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:27.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:27.716+00:00][B] [INFO] Sequence: 58
+[2026-09-02T19:03:27.716+00:00][B] [INFO] Packet ID: 18
+[2026-09-02T19:03:27.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:27.721+00:00][B] [INFO] Timestamp: 18 ms
+[2026-09-02T19:03:27.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:27.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:27.727+00:00][B] [INFO] [Heartbeat #18]
+[2026-09-02T19:03:27.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:27.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:27.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:27.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=58 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:27.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:27.749+00:00][B] [WARN] TX_RETRY seq=57
+[2026-09-02T19:03:27.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=57 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:28.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:28.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:28.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:28.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:28.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:28.632+00:00][B] [INFO] Sequence: 59
+[2026-09-02T19:03:28.632+00:00][B] [INFO] Packet ID: 19
+[2026-09-02T19:03:28.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:28.637+00:00][B] [INFO] Timestamp: 19 ms
+[2026-09-02T19:03:28.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:28.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:28.643+00:00][B] [INFO] [Heartbeat #19]
+[2026-09-02T19:03:28.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:28.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:28.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:28.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=59 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:28.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:28.806+00:00][B] [WARN] TX_RETRY seq=57
+[2026-09-02T19:03:28.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=57 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:29.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:29.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:29.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:29.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:29.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:29.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:29.716+00:00][B] [INFO] Sequence: 59
+[2026-09-02T19:03:29.716+00:00][B] [INFO] Packet ID: 19
+[2026-09-02T19:03:29.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:29.721+00:00][B] [INFO] Timestamp: 19 ms
+[2026-09-02T19:03:29.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:29.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:29.727+00:00][B] [INFO] [Heartbeat #19]
+[2026-09-02T19:03:29.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:29.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:29.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:29.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=59 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:29.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:29.871+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:29.872+00:00][B] [WARN] ACK_FAILED seq=57
+[2026-09-02T19:03:29.874+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=60 remaining=58
+[2026-09-02T19:03:29.930+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=60 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:29.996+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=69 ackSequence=60 ttl=8 hops=0 payloadSize=2 rssi=-60 snr=10.00
+[2026-09-02T19:03:29.996+00:00][B] [INFO] ACK_RX seq=60 source=0x01
+[2026-09-02T19:03:29.999+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=61 remaining=57
+[2026-09-02T19:03:30.054+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=61 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:30.120+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=70 ackSequence=61 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:30.120+00:00][B] [INFO] ACK_RX seq=61 source=0x01
+[2026-09-02T19:03:30.123+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=62 remaining=56
+[2026-09-02T19:03:30.179+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=62 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:30.243+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=71 ackSequence=62 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.50
+[2026-09-02T19:03:30.243+00:00][B] [INFO] ACK_RX seq=62 source=0x01
+[2026-09-02T19:03:30.247+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=63 remaining=55
+[2026-09-02T19:03:30.302+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=63 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:30.367+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=72 ackSequence=63 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.00
+[2026-09-02T19:03:30.367+00:00][B] [INFO] ACK_RX seq=63 source=0x01
+[2026-09-02T19:03:30.371+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=64 remaining=54
+[2026-09-02T19:03:30.426+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=64 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:30.491+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=73 ackSequence=64 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:30.491+00:00][B] [INFO] ACK_RX seq=64 source=0x01
+[2026-09-02T19:03:30.495+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=65 remaining=53
+[2026-09-02T19:03:30.549+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=65 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:30.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:30.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:30.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:30.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:30.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:30.632+00:00][B] [INFO] Sequence: 66
+[2026-09-02T19:03:30.632+00:00][B] [INFO] Packet ID: 20
+[2026-09-02T19:03:30.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:30.637+00:00][B] [INFO] Timestamp: 20 ms
+[2026-09-02T19:03:30.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:30.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:30.643+00:00][B] [INFO] [Heartbeat #20]
+[2026-09-02T19:03:30.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:30.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:30.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:30.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=66 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:30.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:31.550+00:00][B] [WARN] TX_RETRY seq=65
+[2026-09-02T19:03:31.612+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=65 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:31.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:31.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:31.706+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:31.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:31.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:31.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:31.716+00:00][B] [INFO] Sequence: 66
+[2026-09-02T19:03:31.716+00:00][B] [INFO] Packet ID: 20
+[2026-09-02T19:03:31.717+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:31.721+00:00][B] [INFO] Timestamp: 20 ms
+[2026-09-02T19:03:31.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:31.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:31.727+00:00][B] [INFO] [Heartbeat #20]
+[2026-09-02T19:03:31.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:31.733+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:31.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:31.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=66 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:31.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:32.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:32.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:32.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:32.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:32.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:32.631+00:00][B] [INFO] Sequence: 67
+[2026-09-02T19:03:32.632+00:00][B] [INFO] Packet ID: 21
+[2026-09-02T19:03:32.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:32.637+00:00][B] [INFO] Timestamp: 21 ms
+[2026-09-02T19:03:32.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:32.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:32.643+00:00][B] [INFO] [Heartbeat #21]
+[2026-09-02T19:03:32.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:32.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:32.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:32.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=67 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:32.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:32.665+00:00][B] [WARN] TX_RETRY seq=65
+[2026-09-02T19:03:32.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=65 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:33.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:33.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:33.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:33.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:33.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:33.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:33.716+00:00][B] [INFO] Sequence: 67
+[2026-09-02T19:03:33.716+00:00][B] [INFO] Packet ID: 21
+[2026-09-02T19:03:33.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:33.721+00:00][B] [INFO] Timestamp: 21 ms
+[2026-09-02T19:03:33.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:33.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:33.727+00:00][B] [INFO] [Heartbeat #21]
+[2026-09-02T19:03:33.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:33.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:33.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:33.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=67 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:33.748+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:33.748+00:00][B] [WARN] TX_RETRY seq=65
+[2026-09-02T19:03:33.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=65 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:34.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:34.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:34.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:34.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:34.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:34.632+00:00][B] [INFO] Sequence: 68
+[2026-09-02T19:03:34.632+00:00][B] [INFO] Packet ID: 22
+[2026-09-02T19:03:34.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:34.637+00:00][B] [INFO] Timestamp: 22 ms
+[2026-09-02T19:03:34.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:34.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:34.643+00:00][B] [INFO] [Heartbeat #22]
+[2026-09-02T19:03:34.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:34.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:34.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:34.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=68 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:34.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:34.809+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:34.809+00:00][B] [WARN] ACK_FAILED seq=65
+[2026-09-02T19:03:34.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=69 remaining=52
+[2026-09-02T19:03:34.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=69 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:34.933+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=79 ackSequence=69 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:34.934+00:00][B] [INFO] ACK_RX seq=69 source=0x01
+[2026-09-02T19:03:34.937+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=70 remaining=51
+[2026-09-02T19:03:34.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=70 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.057+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=80 ackSequence=70 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:35.058+00:00][B] [INFO] ACK_RX seq=70 source=0x01
+[2026-09-02T19:03:35.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=71 remaining=50
+[2026-09-02T19:03:35.116+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=71 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.181+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=81 ackSequence=71 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:35.182+00:00][B] [INFO] ACK_RX seq=71 source=0x01
+[2026-09-02T19:03:35.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=72 remaining=49
+[2026-09-02T19:03:35.240+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=72 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.305+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=82 ackSequence=72 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:35.305+00:00][B] [INFO] ACK_RX seq=72 source=0x01
+[2026-09-02T19:03:35.308+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=73 remaining=48
+[2026-09-02T19:03:35.363+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=73 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.429+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=83 ackSequence=73 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:35.429+00:00][B] [INFO] ACK_RX seq=73 source=0x01
+[2026-09-02T19:03:35.432+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=74 remaining=47
+[2026-09-02T19:03:35.487+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=74 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.552+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=84 ackSequence=74 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:35.553+00:00][B] [INFO] ACK_RX seq=74 source=0x01
+[2026-09-02T19:03:35.556+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=75 remaining=46
+[2026-09-02T19:03:35.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=75 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:35.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:35.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:35.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:35.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:35.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:35.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:35.715+00:00][B] [INFO] Sequence: 68
+[2026-09-02T19:03:35.716+00:00][B] [INFO] Packet ID: 22
+[2026-09-02T19:03:35.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:35.721+00:00][B] [INFO] Timestamp: 22 ms
+[2026-09-02T19:03:35.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:35.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:35.727+00:00][B] [INFO] [Heartbeat #22]
+[2026-09-02T19:03:35.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:35.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:35.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:35.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=68 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:35.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:36.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:36.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:36.627+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:36.628+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:36.628+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:36.632+00:00][B] [INFO] Sequence: 76
+[2026-09-02T19:03:36.632+00:00][B] [INFO] Packet ID: 23
+[2026-09-02T19:03:36.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:36.637+00:00][B] [INFO] Timestamp: 23 ms
+[2026-09-02T19:03:36.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:36.644+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:36.644+00:00][B] [INFO] [Heartbeat #23]
+[2026-09-02T19:03:36.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:36.649+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:36.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:36.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=76 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:36.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:36.665+00:00][B] [WARN] TX_RETRY seq=75
+[2026-09-02T19:03:36.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=75 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:37.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:37.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:37.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:37.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:37.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:37.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:37.716+00:00][B] [INFO] Sequence: 76
+[2026-09-02T19:03:37.716+00:00][B] [INFO] Packet ID: 23
+[2026-09-02T19:03:37.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:37.721+00:00][B] [INFO] Timestamp: 23 ms
+[2026-09-02T19:03:37.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:37.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:37.727+00:00][B] [INFO] [Heartbeat #23]
+[2026-09-02T19:03:37.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:37.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:37.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:37.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=76 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:37.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:37.749+00:00][B] [WARN] TX_RETRY seq=75
+[2026-09-02T19:03:37.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=75 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:38.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:38.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:38.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:38.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:38.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:38.631+00:00][B] [INFO] Sequence: 77
+[2026-09-02T19:03:38.631+00:00][B] [INFO] Packet ID: 24
+[2026-09-02T19:03:38.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:38.637+00:00][B] [INFO] Timestamp: 24 ms
+[2026-09-02T19:03:38.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:38.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:38.643+00:00][B] [INFO] [Heartbeat #24]
+[2026-09-02T19:03:38.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:38.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:38.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:38.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=77 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:38.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:38.805+00:00][B] [WARN] TX_RETRY seq=75
+[2026-09-02T19:03:38.867+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=75 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:39.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:39.705+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:39.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:39.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:39.711+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:39.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:39.715+00:00][B] [INFO] Sequence: 77
+[2026-09-02T19:03:39.716+00:00][B] [INFO] Packet ID: 24
+[2026-09-02T19:03:39.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:39.721+00:00][B] [INFO] Timestamp: 24 ms
+[2026-09-02T19:03:39.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:39.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:39.727+00:00][B] [INFO] [Heartbeat #24]
+[2026-09-02T19:03:39.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:39.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:39.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:39.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=77 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:39.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:39.871+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:39.871+00:00][B] [WARN] ACK_FAILED seq=75
+[2026-09-02T19:03:39.874+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=78 remaining=45
+[2026-09-02T19:03:39.930+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=78 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:39.995+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=89 ackSequence=78 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:39.996+00:00][B] [INFO] ACK_RX seq=78 source=0x01
+[2026-09-02T19:03:39.999+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=79 remaining=44
+[2026-09-02T19:03:40.054+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=79 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:40.120+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=90 ackSequence=79 ttl=8 hops=0 payloadSize=2 rssi=-63 snr=9.50
+[2026-09-02T19:03:40.120+00:00][B] [INFO] ACK_RX seq=79 source=0x01
+[2026-09-02T19:03:40.123+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=80 remaining=43
+[2026-09-02T19:03:40.178+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=80 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:40.243+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=91 ackSequence=80 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:40.243+00:00][B] [INFO] ACK_RX seq=80 source=0x01
+[2026-09-02T19:03:40.246+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=81 remaining=42
+[2026-09-02T19:03:40.301+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=81 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:40.367+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=92 ackSequence=81 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.25
+[2026-09-02T19:03:40.367+00:00][B] [INFO] ACK_RX seq=81 source=0x01
+[2026-09-02T19:03:40.370+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=82 remaining=41
+[2026-09-02T19:03:40.425+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=82 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:40.490+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=93 ackSequence=82 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:40.491+00:00][B] [INFO] ACK_RX seq=82 source=0x01
+[2026-09-02T19:03:40.494+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=83 remaining=40
+[2026-09-02T19:03:40.549+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=83 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:40.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:40.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:40.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:40.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:40.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:40.632+00:00][B] [INFO] Sequence: 84
+[2026-09-02T19:03:40.632+00:00][B] [INFO] Packet ID: 25
+[2026-09-02T19:03:40.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:40.637+00:00][B] [INFO] Timestamp: 25 ms
+[2026-09-02T19:03:40.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:40.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:40.644+00:00][B] [INFO] [Heartbeat #25]
+[2026-09-02T19:03:40.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:40.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:40.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:40.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=84 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:40.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:41.550+00:00][B] [WARN] TX_RETRY seq=83
+[2026-09-02T19:03:41.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=83 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:41.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:41.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:41.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:41.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:41.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:41.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:41.715+00:00][B] [INFO] Sequence: 84
+[2026-09-02T19:03:41.715+00:00][B] [INFO] Packet ID: 25
+[2026-09-02T19:03:41.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:41.721+00:00][B] [INFO] Timestamp: 25 ms
+[2026-09-02T19:03:41.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:41.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:41.727+00:00][B] [INFO] [Heartbeat #25]
+[2026-09-02T19:03:41.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:41.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:41.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:41.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=84 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:41.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:42.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:42.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:42.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:42.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:42.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:42.632+00:00][B] [INFO] Sequence: 85
+[2026-09-02T19:03:42.632+00:00][B] [INFO] Packet ID: 26
+[2026-09-02T19:03:42.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:42.637+00:00][B] [INFO] Timestamp: 26 ms
+[2026-09-02T19:03:42.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:42.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:42.643+00:00][B] [INFO] [Heartbeat #26]
+[2026-09-02T19:03:42.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:42.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:42.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:42.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=85 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:42.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:42.665+00:00][B] [WARN] TX_RETRY seq=83
+[2026-09-02T19:03:42.722+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=83 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:43.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:43.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:43.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:43.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:43.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:43.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:43.715+00:00][B] [INFO] Sequence: 85
+[2026-09-02T19:03:43.716+00:00][B] [INFO] Packet ID: 26
+[2026-09-02T19:03:43.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:43.721+00:00][B] [INFO] Timestamp: 26 ms
+[2026-09-02T19:03:43.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:43.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:43.727+00:00][B] [INFO] [Heartbeat #26]
+[2026-09-02T19:03:43.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:43.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:43.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:43.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=85 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:43.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:43.749+00:00][B] [WARN] TX_RETRY seq=83
+[2026-09-02T19:03:43.806+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=83 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:44.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:44.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:44.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:44.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:44.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:44.632+00:00][B] [INFO] Sequence: 86
+[2026-09-02T19:03:44.632+00:00][B] [INFO] Packet ID: 27
+[2026-09-02T19:03:44.633+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:44.637+00:00][B] [INFO] Timestamp: 27 ms
+[2026-09-02T19:03:44.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:44.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:44.644+00:00][B] [INFO] [Heartbeat #27]
+[2026-09-02T19:03:44.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:44.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:44.649+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:44.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=86 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:44.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:44.810+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:44.810+00:00][B] [WARN] ACK_FAILED seq=83
+[2026-09-02T19:03:44.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=87 remaining=39
+[2026-09-02T19:03:44.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=87 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:44.933+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=99 ackSequence=87 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:44.934+00:00][B] [INFO] ACK_RX seq=87 source=0x01
+[2026-09-02T19:03:44.937+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=88 remaining=38
+[2026-09-02T19:03:44.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=88 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.057+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=100 ackSequence=88 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:45.058+00:00][B] [INFO] ACK_RX seq=88 source=0x01
+[2026-09-02T19:03:45.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=89 remaining=37
+[2026-09-02T19:03:45.115+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=89 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.181+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=101 ackSequence=89 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:45.181+00:00][B] [INFO] ACK_RX seq=89 source=0x01
+[2026-09-02T19:03:45.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=90 remaining=36
+[2026-09-02T19:03:45.239+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=90 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.305+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=102 ackSequence=90 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:45.305+00:00][B] [INFO] ACK_RX seq=90 source=0x01
+[2026-09-02T19:03:45.308+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=91 remaining=35
+[2026-09-02T19:03:45.363+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=91 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.428+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=103 ackSequence=91 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:45.429+00:00][B] [INFO] ACK_RX seq=91 source=0x01
+[2026-09-02T19:03:45.432+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=92 remaining=34
+[2026-09-02T19:03:45.487+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=92 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.552+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=104 ackSequence=92 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:03:45.553+00:00][B] [INFO] ACK_RX seq=92 source=0x01
+[2026-09-02T19:03:45.556+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=93 remaining=33
+[2026-09-02T19:03:45.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=93 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:45.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:45.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:45.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:45.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:45.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:45.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:45.715+00:00][B] [INFO] Sequence: 86
+[2026-09-02T19:03:45.716+00:00][B] [INFO] Packet ID: 27
+[2026-09-02T19:03:45.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:45.721+00:00][B] [INFO] Timestamp: 27 ms
+[2026-09-02T19:03:45.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:45.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:45.727+00:00][B] [INFO] [Heartbeat #27]
+[2026-09-02T19:03:45.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:45.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:45.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:45.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=86 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:45.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:46.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:46.620+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:46.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:46.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:46.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:46.631+00:00][B] [INFO] Sequence: 94
+[2026-09-02T19:03:46.631+00:00][B] [INFO] Packet ID: 28
+[2026-09-02T19:03:46.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:46.637+00:00][B] [INFO] Timestamp: 28 ms
+[2026-09-02T19:03:46.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:46.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:46.643+00:00][B] [INFO] [Heartbeat #28]
+[2026-09-02T19:03:46.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:46.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:46.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:46.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=94 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:46.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:46.664+00:00][B] [WARN] TX_RETRY seq=93
+[2026-09-02T19:03:46.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=93 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:47.638+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:47.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:47.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:47.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:47.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:47.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:47.715+00:00][B] [INFO] Sequence: 94
+[2026-09-02T19:03:47.715+00:00][B] [INFO] Packet ID: 28
+[2026-09-02T19:03:47.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:47.721+00:00][B] [INFO] Timestamp: 28 ms
+[2026-09-02T19:03:47.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:47.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:47.727+00:00][B] [INFO] [Heartbeat #28]
+[2026-09-02T19:03:47.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:47.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:47.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:47.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=94 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:47.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:47.749+00:00][B] [WARN] TX_RETRY seq=93
+[2026-09-02T19:03:47.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=93 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:48.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:48.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:48.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:48.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:48.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:48.631+00:00][B] [INFO] Sequence: 95
+[2026-09-02T19:03:48.631+00:00][B] [INFO] Packet ID: 29
+[2026-09-02T19:03:48.632+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:48.637+00:00][B] [INFO] Timestamp: 29 ms
+[2026-09-02T19:03:48.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:48.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:48.643+00:00][B] [INFO] [Heartbeat #29]
+[2026-09-02T19:03:48.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:48.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:48.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:48.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=95 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:48.663+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:48.805+00:00][B] [WARN] TX_RETRY seq=93
+[2026-09-02T19:03:48.867+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=93 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:49.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:49.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:49.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:49.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:49.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:49.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:49.715+00:00][B] [INFO] Sequence: 95
+[2026-09-02T19:03:49.716+00:00][B] [INFO] Packet ID: 29
+[2026-09-02T19:03:49.716+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:49.721+00:00][B] [INFO] Timestamp: 29 ms
+[2026-09-02T19:03:49.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:49.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:49.727+00:00][B] [INFO] [Heartbeat #29]
+[2026-09-02T19:03:49.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:49.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:49.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:49.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=95 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:49.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:49.871+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:49.871+00:00][B] [WARN] ACK_FAILED seq=93
+[2026-09-02T19:03:49.874+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=96 remaining=32
+[2026-09-02T19:03:49.930+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=96 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:49.995+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=109 ackSequence=96 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:49.996+00:00][B] [INFO] ACK_RX seq=96 source=0x01
+[2026-09-02T19:03:49.999+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=97 remaining=31
+[2026-09-02T19:03:50.054+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=97 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:50.119+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=110 ackSequence=97 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:50.120+00:00][B] [INFO] ACK_RX seq=97 source=0x01
+[2026-09-02T19:03:50.123+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=98 remaining=30
+[2026-09-02T19:03:50.177+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=98 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:50.243+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=111 ackSequence=98 ttl=8 hops=0 payloadSize=2 rssi=-63 snr=9.75
+[2026-09-02T19:03:50.243+00:00][B] [INFO] ACK_RX seq=98 source=0x01
+[2026-09-02T19:03:50.246+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=99 remaining=29
+[2026-09-02T19:03:50.301+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=99 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:50.366+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=112 ackSequence=99 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:50.367+00:00][B] [INFO] ACK_RX seq=99 source=0x01
+[2026-09-02T19:03:50.370+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=100 remaining=28
+[2026-09-02T19:03:50.425+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=100 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:50.490+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=113 ackSequence=100 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:50.490+00:00][B] [INFO] ACK_RX seq=100 source=0x01
+[2026-09-02T19:03:50.494+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=101 remaining=27
+[2026-09-02T19:03:50.549+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=101 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:50.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:50.620+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:50.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:50.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:50.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:50.631+00:00][B] [INFO] Sequence: 102
+[2026-09-02T19:03:50.631+00:00][B] [INFO] Packet ID: 30
+[2026-09-02T19:03:50.637+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:50.637+00:00][B] [INFO] Timestamp: 30 ms
+[2026-09-02T19:03:50.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:50.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:50.642+00:00][B] [INFO] [Heartbeat #30]
+[2026-09-02T19:03:50.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:50.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:50.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:50.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=102 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:50.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:51.549+00:00][B] [WARN] TX_RETRY seq=101
+[2026-09-02T19:03:51.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=101 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:51.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:51.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:51.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:51.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:51.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:51.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:51.715+00:00][B] [INFO] Sequence: 102
+[2026-09-02T19:03:51.715+00:00][B] [INFO] Packet ID: 30
+[2026-09-02T19:03:51.721+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:51.721+00:00][B] [INFO] Timestamp: 30 ms
+[2026-09-02T19:03:51.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:51.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:51.726+00:00][B] [INFO] [Heartbeat #30]
+[2026-09-02T19:03:51.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:51.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:51.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:51.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=102 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:51.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:52.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:52.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:52.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:52.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:52.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:52.631+00:00][B] [INFO] Sequence: 103
+[2026-09-02T19:03:52.632+00:00][B] [INFO] Packet ID: 31
+[2026-09-02T19:03:52.637+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:52.637+00:00][B] [INFO] Timestamp: 31 ms
+[2026-09-02T19:03:52.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:52.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:52.643+00:00][B] [INFO] [Heartbeat #31]
+[2026-09-02T19:03:52.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:52.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:52.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:52.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=103 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:52.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:52.665+00:00][B] [WARN] TX_RETRY seq=101
+[2026-09-02T19:03:52.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=101 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:53.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:53.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:53.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:53.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:53.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:53.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:53.715+00:00][B] [INFO] Sequence: 103
+[2026-09-02T19:03:53.715+00:00][B] [INFO] Packet ID: 31
+[2026-09-02T19:03:53.721+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:53.721+00:00][B] [INFO] Timestamp: 31 ms
+[2026-09-02T19:03:53.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:53.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:53.727+00:00][B] [INFO] [Heartbeat #31]
+[2026-09-02T19:03:53.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:53.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:53.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:53.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=103 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:53.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:53.749+00:00][B] [WARN] TX_RETRY seq=101
+[2026-09-02T19:03:53.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=101 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:54.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:54.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:54.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:54.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:54.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:54.631+00:00][B] [INFO] Sequence: 104
+[2026-09-02T19:03:54.632+00:00][B] [INFO] Packet ID: 32
+[2026-09-02T19:03:54.637+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:54.637+00:00][B] [INFO] Timestamp: 32 ms
+[2026-09-02T19:03:54.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:54.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:54.643+00:00][B] [INFO] [Heartbeat #32]
+[2026-09-02T19:03:54.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:54.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:54.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:54.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=104 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:54.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:54.809+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:54.810+00:00][B] [WARN] ACK_FAILED seq=101
+[2026-09-02T19:03:54.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=105 remaining=26
+[2026-09-02T19:03:54.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=105 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:54.933+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=119 ackSequence=105 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.25
+[2026-09-02T19:03:54.934+00:00][B] [INFO] ACK_RX seq=105 source=0x01
+[2026-09-02T19:03:54.937+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=106 remaining=25
+[2026-09-02T19:03:54.992+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=106 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.057+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=120 ackSequence=106 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:55.057+00:00][B] [INFO] ACK_RX seq=106 source=0x01
+[2026-09-02T19:03:55.061+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=107 remaining=24
+[2026-09-02T19:03:55.115+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=107 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.181+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=121 ackSequence=107 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:03:55.181+00:00][B] [INFO] ACK_RX seq=107 source=0x01
+[2026-09-02T19:03:55.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=108 remaining=23
+[2026-09-02T19:03:55.239+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=108 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.305+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=122 ackSequence=108 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:55.305+00:00][B] [INFO] ACK_RX seq=108 source=0x01
+[2026-09-02T19:03:55.309+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=109 remaining=22
+[2026-09-02T19:03:55.363+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=109 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.429+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=123 ackSequence=109 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:03:55.429+00:00][B] [INFO] ACK_RX seq=109 source=0x01
+[2026-09-02T19:03:55.433+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=110 remaining=21
+[2026-09-02T19:03:55.487+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=110 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.552+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=124 ackSequence=110 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:03:55.553+00:00][B] [INFO] ACK_RX seq=110 source=0x01
+[2026-09-02T19:03:55.556+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=111 remaining=20
+[2026-09-02T19:03:55.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=111 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:55.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:55.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:55.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:55.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:55.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:55.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:55.715+00:00][B] [INFO] Sequence: 104
+[2026-09-02T19:03:55.715+00:00][B] [INFO] Packet ID: 32
+[2026-09-02T19:03:55.721+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:55.721+00:00][B] [INFO] Timestamp: 32 ms
+[2026-09-02T19:03:55.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:55.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:55.727+00:00][B] [INFO] [Heartbeat #32]
+[2026-09-02T19:03:55.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:55.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:55.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:55.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=104 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:55.747+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:56.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:56.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:56.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:56.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:56.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:56.631+00:00][B] [INFO] Sequence: 112
+[2026-09-02T19:03:56.631+00:00][B] [INFO] Packet ID: 33
+[2026-09-02T19:03:56.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:56.637+00:00][B] [INFO] Timestamp: 33 ms
+[2026-09-02T19:03:56.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:56.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:56.643+00:00][B] [INFO] [Heartbeat #33]
+[2026-09-02T19:03:56.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:56.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:56.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:56.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=112 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:56.665+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:56.665+00:00][B] [WARN] TX_RETRY seq=111
+[2026-09-02T19:03:56.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=111 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:57.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:57.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:57.705+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:57.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:57.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:57.711+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:57.715+00:00][B] [INFO] Sequence: 112
+[2026-09-02T19:03:57.716+00:00][B] [INFO] Packet ID: 33
+[2026-09-02T19:03:57.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:57.721+00:00][B] [INFO] Timestamp: 33 ms
+[2026-09-02T19:03:57.722+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:57.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:57.727+00:00][B] [INFO] [Heartbeat #33]
+[2026-09-02T19:03:57.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:57.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:57.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:57.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=112 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:57.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:57.749+00:00][B] [WARN] TX_RETRY seq=111
+[2026-09-02T19:03:57.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=111 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:58.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:58.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:58.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:58.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:58.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:58.631+00:00][B] [INFO] Sequence: 113
+[2026-09-02T19:03:58.632+00:00][B] [INFO] Packet ID: 34
+[2026-09-02T19:03:58.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:58.637+00:00][B] [INFO] Timestamp: 34 ms
+[2026-09-02T19:03:58.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:58.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:58.643+00:00][B] [INFO] [Heartbeat #34]
+[2026-09-02T19:03:58.648+00:00][B] [INFO] Sent
+[2026-09-02T19:03:58.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:58.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:58.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=113 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:58.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:58.805+00:00][B] [WARN] TX_RETRY seq=111
+[2026-09-02T19:03:58.867+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=111 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:59.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:03:59.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:59.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:03:59.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:03:59.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:03:59.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:03:59.715+00:00][B] [INFO] Sequence: 113
+[2026-09-02T19:03:59.715+00:00][B] [INFO] Packet ID: 34
+[2026-09-02T19:03:59.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:03:59.721+00:00][B] [INFO] Timestamp: 34 ms
+[2026-09-02T19:03:59.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:03:59.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:03:59.727+00:00][B] [INFO] [Heartbeat #34]
+[2026-09-02T19:03:59.732+00:00][B] [INFO] Sent
+[2026-09-02T19:03:59.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:03:59.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:03:59.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=113 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:03:59.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:03:59.870+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:03:59.871+00:00][B] [WARN] ACK_FAILED seq=111
+[2026-09-02T19:03:59.874+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=114 remaining=19
+[2026-09-02T19:03:59.929+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=114 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:03:59.995+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=129 ackSequence=114 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.50
+[2026-09-02T19:03:59.996+00:00][B] [INFO] ACK_RX seq=114 source=0x01
+[2026-09-02T19:03:59.999+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=115 remaining=18
+[2026-09-02T19:04:00.053+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=115 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:00.119+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=130 ackSequence=115 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.00
+[2026-09-02T19:04:00.120+00:00][B] [INFO] ACK_RX seq=115 source=0x01
+[2026-09-02T19:04:00.123+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=116 remaining=17
+[2026-09-02T19:04:00.177+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=116 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:00.242+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=131 ackSequence=116 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=10.00
+[2026-09-02T19:04:00.243+00:00][B] [INFO] ACK_RX seq=116 source=0x01
+[2026-09-02T19:04:00.246+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=117 remaining=16
+[2026-09-02T19:04:00.301+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=117 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:00.367+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=132 ackSequence=117 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:04:00.367+00:00][B] [INFO] ACK_RX seq=117 source=0x01
+[2026-09-02T19:04:00.371+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=118 remaining=15
+[2026-09-02T19:04:00.425+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=118 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:00.490+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=133 ackSequence=118 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:04:00.491+00:00][B] [INFO] ACK_RX seq=118 source=0x01
+[2026-09-02T19:04:00.494+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=119 remaining=14
+[2026-09-02T19:04:00.549+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=119 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:00.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:00.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:00.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:00.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:00.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:00.631+00:00][B] [INFO] Sequence: 120
+[2026-09-02T19:04:00.631+00:00][B] [INFO] Packet ID: 35
+[2026-09-02T19:04:00.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:00.637+00:00][B] [INFO] Timestamp: 35 ms
+[2026-09-02T19:04:00.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:00.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:00.644+00:00][B] [INFO] [Heartbeat #35]
+[2026-09-02T19:04:00.648+00:00][B] [INFO] Sent
+[2026-09-02T19:04:00.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:00.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:00.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=120 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:00.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:01.549+00:00][B] [WARN] TX_RETRY seq=119
+[2026-09-02T19:04:01.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=119 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:01.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:01.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:01.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:01.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:01.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:01.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:01.715+00:00][B] [INFO] Sequence: 120
+[2026-09-02T19:04:01.716+00:00][B] [INFO] Packet ID: 35
+[2026-09-02T19:04:01.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:01.721+00:00][B] [INFO] Timestamp: 35 ms
+[2026-09-02T19:04:01.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:01.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:01.727+00:00][B] [INFO] [Heartbeat #35]
+[2026-09-02T19:04:01.732+00:00][B] [INFO] Sent
+[2026-09-02T19:04:01.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:01.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:01.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=120 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:01.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:02.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:02.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:02.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:02.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:02.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:02.631+00:00][B] [INFO] Sequence: 121
+[2026-09-02T19:04:02.632+00:00][B] [INFO] Packet ID: 36
+[2026-09-02T19:04:02.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:02.637+00:00][B] [INFO] Timestamp: 36 ms
+[2026-09-02T19:04:02.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:02.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:02.643+00:00][B] [INFO] [Heartbeat #36]
+[2026-09-02T19:04:02.648+00:00][B] [INFO] Sent
+[2026-09-02T19:04:02.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:02.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:02.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=121 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:02.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:02.665+00:00][B] [WARN] TX_RETRY seq=119
+[2026-09-02T19:04:02.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=119 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:03.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:03.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:03.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:03.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:03.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:03.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:03.715+00:00][B] [INFO] Sequence: 121
+[2026-09-02T19:04:03.715+00:00][B] [INFO] Packet ID: 36
+[2026-09-02T19:04:03.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:03.721+00:00][B] [INFO] Timestamp: 36 ms
+[2026-09-02T19:04:03.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:03.727+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:03.727+00:00][B] [INFO] [Heartbeat #36]
+[2026-09-02T19:04:03.732+00:00][B] [INFO] Sent
+[2026-09-02T19:04:03.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:03.733+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:03.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=121 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:03.749+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:03.749+00:00][B] [WARN] TX_RETRY seq=119
+[2026-09-02T19:04:03.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=119 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:04.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:04.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:04.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:04.627+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:04.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:04.631+00:00][B] [INFO] Sequence: 122
+[2026-09-02T19:04:04.631+00:00][B] [INFO] Packet ID: 37
+[2026-09-02T19:04:04.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:04.637+00:00][B] [INFO] Timestamp: 37 ms
+[2026-09-02T19:04:04.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:04.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:04.644+00:00][B] [INFO] [Heartbeat #37]
+[2026-09-02T19:04:04.648+00:00][B] [INFO] Sent
+[2026-09-02T19:04:04.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:04.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:04.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=122 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:04.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:04.809+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:04:04.810+00:00][B] [WARN] ACK_FAILED seq=119
+[2026-09-02T19:04:04.812+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=123 remaining=13
+[2026-09-02T19:04:04.868+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=123 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:04.933+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=139 ackSequence=123 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:04:04.934+00:00][B] [INFO] ACK_RX seq=123 source=0x01
+[2026-09-02T19:04:04.937+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=124 remaining=12
+[2026-09-02T19:04:04.991+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=124 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.057+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=140 ackSequence=124 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:04:05.057+00:00][B] [INFO] ACK_RX seq=124 source=0x01
+[2026-09-02T19:04:05.060+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=125 remaining=11
+[2026-09-02T19:04:05.115+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=125 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.180+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=141 ackSequence=125 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.25
+[2026-09-02T19:04:05.181+00:00][B] [INFO] ACK_RX seq=125 source=0x01
+[2026-09-02T19:04:05.185+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=126 remaining=10
+[2026-09-02T19:04:05.239+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=126 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.304+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=142 ackSequence=126 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:04:05.305+00:00][B] [INFO] ACK_RX seq=126 source=0x01
+[2026-09-02T19:04:05.310+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=127 remaining=9
+[2026-09-02T19:04:05.363+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=127 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.428+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=143 ackSequence=127 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:04:05.428+00:00][B] [INFO] ACK_RX seq=127 source=0x01
+[2026-09-02T19:04:05.432+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=128 remaining=8
+[2026-09-02T19:04:05.487+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=128 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.552+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=144 ackSequence=128 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:04:05.553+00:00][B] [INFO] ACK_RX seq=128 source=0x01
+[2026-09-02T19:04:05.556+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=129 remaining=7
+[2026-09-02T19:04:05.610+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=129 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:05.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:05.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:05.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:05.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:05.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:05.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:05.715+00:00][B] [INFO] Sequence: 122
+[2026-09-02T19:04:05.715+00:00][B] [INFO] Packet ID: 37
+[2026-09-02T19:04:05.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:05.721+00:00][B] [INFO] Timestamp: 37 ms
+[2026-09-02T19:04:05.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:05.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:05.727+00:00][B] [INFO] [Heartbeat #37]
+[2026-09-02T19:04:05.732+00:00][B] [INFO] Sent
+[2026-09-02T19:04:05.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:05.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:05.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=122 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:05.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:06.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:06.620+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:06.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:06.625+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:06.625+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:06.631+00:00][B] [INFO] Sequence: 130
+[2026-09-02T19:04:06.631+00:00][B] [INFO] Packet ID: 38
+[2026-09-02T19:04:06.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:06.637+00:00][B] [INFO] Timestamp: 38 ms
+[2026-09-02T19:04:06.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:06.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:06.642+00:00][B] [INFO] [Heartbeat #38]
+[2026-09-02T19:04:06.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:06.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:06.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:06.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=130 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:06.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:06.664+00:00][B] [WARN] TX_RETRY seq=129
+[2026-09-02T19:04:06.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=129 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:07.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:07.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:07.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:07.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:07.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:07.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:07.715+00:00][B] [INFO] Sequence: 130
+[2026-09-02T19:04:07.715+00:00][B] [INFO] Packet ID: 38
+[2026-09-02T19:04:07.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:07.721+00:00][B] [INFO] Timestamp: 38 ms
+[2026-09-02T19:04:07.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:07.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:07.726+00:00][B] [INFO] [Heartbeat #38]
+[2026-09-02T19:04:07.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:07.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:07.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:07.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=130 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:07.748+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:07.749+00:00][B] [WARN] TX_RETRY seq=129
+[2026-09-02T19:04:07.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=129 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:08.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:08.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:08.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:08.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:08.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:08.631+00:00][B] [INFO] Sequence: 131
+[2026-09-02T19:04:08.631+00:00][B] [INFO] Packet ID: 39
+[2026-09-02T19:04:08.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:08.637+00:00][B] [INFO] Timestamp: 39 ms
+[2026-09-02T19:04:08.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:08.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:08.643+00:00][B] [INFO] [Heartbeat #39]
+[2026-09-02T19:04:08.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:08.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:08.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:08.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=131 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:08.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:08.805+00:00][B] [WARN] TX_RETRY seq=129
+[2026-09-02T19:04:08.867+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=129 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:09.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:09.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:09.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:09.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:09.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:09.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:09.715+00:00][B] [INFO] Sequence: 131
+[2026-09-02T19:04:09.715+00:00][B] [INFO] Packet ID: 39
+[2026-09-02T19:04:09.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:09.720+00:00][B] [INFO] Timestamp: 39 ms
+[2026-09-02T19:04:09.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:09.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:09.726+00:00][B] [INFO] [Heartbeat #39]
+[2026-09-02T19:04:09.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:09.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:09.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:09.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=131 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:09.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:09.870+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:04:09.871+00:00][B] [WARN] ACK_FAILED seq=129
+[2026-09-02T19:04:09.874+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=132 remaining=6
+[2026-09-02T19:04:09.929+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=132 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:09.995+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=149 ackSequence=132 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:04:09.996+00:00][B] [INFO] ACK_RX seq=132 source=0x01
+[2026-09-02T19:04:09.999+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=133 remaining=5
+[2026-09-02T19:04:10.053+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=133 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:10.119+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=150 ackSequence=133 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:04:10.119+00:00][B] [INFO] ACK_RX seq=133 source=0x01
+[2026-09-02T19:04:10.123+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=134 remaining=4
+[2026-09-02T19:04:10.177+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=134 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:10.243+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=151 ackSequence=134 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=10.00
+[2026-09-02T19:04:10.243+00:00][B] [INFO] ACK_RX seq=134 source=0x01
+[2026-09-02T19:04:10.246+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=135 remaining=3
+[2026-09-02T19:04:10.301+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=135 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:10.367+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=152 ackSequence=135 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.50
+[2026-09-02T19:04:10.367+00:00][B] [INFO] ACK_RX seq=135 source=0x01
+[2026-09-02T19:04:10.370+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=136 remaining=2
+[2026-09-02T19:04:10.425+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=136 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:10.490+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=153 ackSequence=136 ttl=8 hops=0 payloadSize=2 rssi=-62 snr=9.75
+[2026-09-02T19:04:10.491+00:00][B] [INFO] ACK_RX seq=136 source=0x01
+[2026-09-02T19:04:10.494+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=137 remaining=1
+[2026-09-02T19:04:10.549+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=137 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:10.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:10.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:10.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:10.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:10.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:10.631+00:00][B] [INFO] Sequence: 138
+[2026-09-02T19:04:10.631+00:00][B] [INFO] Packet ID: 40
+[2026-09-02T19:04:10.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:10.637+00:00][B] [INFO] Timestamp: 40 ms
+[2026-09-02T19:04:10.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:10.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:10.643+00:00][B] [INFO] [Heartbeat #40]
+[2026-09-02T19:04:10.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:10.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:10.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:10.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=138 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:10.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:11.549+00:00][B] [WARN] TX_RETRY seq=137
+[2026-09-02T19:04:11.611+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=137 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:11.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:11.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:11.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:11.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:11.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:11.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:11.715+00:00][B] [INFO] Sequence: 138
+[2026-09-02T19:04:11.715+00:00][B] [INFO] Packet ID: 40
+[2026-09-02T19:04:11.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:11.721+00:00][B] [INFO] Timestamp: 40 ms
+[2026-09-02T19:04:11.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:11.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:11.727+00:00][B] [INFO] [Heartbeat #40]
+[2026-09-02T19:04:11.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:11.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:11.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:11.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=138 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:11.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:12.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:12.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:12.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:12.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:12.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:12.631+00:00][B] [INFO] Sequence: 139
+[2026-09-02T19:04:12.631+00:00][B] [INFO] Packet ID: 41
+[2026-09-02T19:04:12.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:12.637+00:00][B] [INFO] Timestamp: 41 ms
+[2026-09-02T19:04:12.638+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:12.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:12.644+00:00][B] [INFO] [Heartbeat #41]
+[2026-09-02T19:04:12.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:12.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:12.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:12.664+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=139 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:12.664+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:12.664+00:00][B] [WARN] TX_RETRY seq=137
+[2026-09-02T19:04:12.721+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=137 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:13.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:13.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:13.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:13.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:13.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:13.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:13.715+00:00][B] [INFO] Sequence: 139
+[2026-09-02T19:04:13.715+00:00][B] [INFO] Packet ID: 41
+[2026-09-02T19:04:13.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:13.720+00:00][B] [INFO] Timestamp: 41 ms
+[2026-09-02T19:04:13.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:13.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:13.726+00:00][B] [INFO] [Heartbeat #41]
+[2026-09-02T19:04:13.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:13.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:13.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:13.748+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=139 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:13.748+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:13.749+00:00][B] [WARN] TX_RETRY seq=137
+[2026-09-02T19:04:13.805+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=137 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:14.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:14.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:14.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:14.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:14.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:14.631+00:00][B] [INFO] Sequence: 140
+[2026-09-02T19:04:14.631+00:00][B] [INFO] Packet ID: 42
+[2026-09-02T19:04:14.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:14.637+00:00][B] [INFO] Timestamp: 42 ms
+[2026-09-02T19:04:14.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:14.643+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:14.643+00:00][B] [INFO] [Heartbeat #42]
+[2026-09-02T19:04:14.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:14.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:14.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:14.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=140 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:14.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:14.808+00:00][B] [ERROR] TX_FAILED
+[2026-09-02T19:04:14.809+00:00][B] [WARN] ACK_FAILED seq=137
+[2026-09-02T19:04:14.811+00:00][B] [INFO] TEST_DATA_QUEUED dst=0x01 seq=141 remaining=0
+[2026-09-02T19:04:14.867+00:00][B] [INFO] [RF TX] type=1 source=0x02 destination=0x01 previousHop=0x02 sequence=141 ackSequence=0 ttl=8 hops=0 payloadSize=4 rssi=0 snr=0.00
+[2026-09-02T19:04:14.932+00:00][B] [INFO] [RF RX] type=3 source=0x01 destination=0x02 previousHop=0x01 sequence=159 ackSequence=141 ttl=8 hops=0 payloadSize=2 rssi=-61 snr=9.75
+[2026-09-02T19:04:14.932+00:00][B] [INFO] ACK_RX seq=141 source=0x01
+[2026-09-02T19:04:15.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:15.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:15.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:15.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:15.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:15.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:15.715+00:00][B] [INFO] Sequence: 140
+[2026-09-02T19:04:15.715+00:00][B] [INFO] Packet ID: 42
+[2026-09-02T19:04:15.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:15.721+00:00][B] [INFO] Timestamp: 42 ms
+[2026-09-02T19:04:15.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:15.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:15.727+00:00][B] [INFO] [Heartbeat #42]
+[2026-09-02T19:04:15.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:15.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:15.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:15.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=140 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:15.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:16.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:16.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:16.626+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:16.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:16.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:16.631+00:00][B] [INFO] Sequence: 142
+[2026-09-02T19:04:16.631+00:00][B] [INFO] Packet ID: 43
+[2026-09-02T19:04:16.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:16.637+00:00][B] [INFO] Timestamp: 43 ms
+[2026-09-02T19:04:16.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:16.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:16.643+00:00][B] [INFO] [Heartbeat #43]
+[2026-09-02T19:04:16.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:16.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:16.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:16.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=142 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:16.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:17.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:17.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:17.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:17.710+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:17.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:17.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:17.715+00:00][B] [INFO] Sequence: 142
+[2026-09-02T19:04:17.715+00:00][B] [INFO] Packet ID: 43
+[2026-09-02T19:04:17.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:17.721+00:00][B] [INFO] Timestamp: 43 ms
+[2026-09-02T19:04:17.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:17.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:17.727+00:00][B] [INFO] [Heartbeat #43]
+[2026-09-02T19:04:17.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:17.732+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:17.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:17.746+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=142 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:17.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:18.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:18.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:18.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:18.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:18.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:18.631+00:00][B] [INFO] Sequence: 143
+[2026-09-02T19:04:18.631+00:00][B] [INFO] Packet ID: 44
+[2026-09-02T19:04:18.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:18.637+00:00][B] [INFO] Timestamp: 44 ms
+[2026-09-02T19:04:18.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:18.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:18.642+00:00][B] [INFO] [Heartbeat #44]
+[2026-09-02T19:04:18.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:18.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:18.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:18.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=143 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:18.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:19.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:19.703+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:19.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:19.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:19.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:19.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:19.714+00:00][B] [INFO] Sequence: 143
+[2026-09-02T19:04:19.715+00:00][B] [INFO] Packet ID: 44
+[2026-09-02T19:04:19.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:19.720+00:00][B] [INFO] Timestamp: 44 ms
+[2026-09-02T19:04:19.720+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:19.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:19.726+00:00][B] [INFO] [Heartbeat #44]
+[2026-09-02T19:04:19.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:19.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:19.731+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:19.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=143 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:19.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:20.619+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:20.620+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:20.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:20.625+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:20.625+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:20.630+00:00][B] [INFO] Sequence: 144
+[2026-09-02T19:04:20.630+00:00][B] [INFO] Packet ID: 45
+[2026-09-02T19:04:20.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:20.636+00:00][B] [INFO] Timestamp: 45 ms
+[2026-09-02T19:04:20.636+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:20.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:20.642+00:00][B] [INFO] [Heartbeat #45]
+[2026-09-02T19:04:20.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:20.647+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:20.647+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:20.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=144 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:20.661+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:21.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:21.703+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:21.703+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:21.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:21.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:21.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:21.714+00:00][B] [INFO] Sequence: 144
+[2026-09-02T19:04:21.714+00:00][B] [INFO] Packet ID: 45
+[2026-09-02T19:04:21.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:21.720+00:00][B] [INFO] Timestamp: 45 ms
+[2026-09-02T19:04:21.720+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:21.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:21.726+00:00][B] [INFO] [Heartbeat #45]
+[2026-09-02T19:04:21.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:21.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:21.731+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:21.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=144 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:21.745+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:22.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:22.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:22.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:22.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:22.627+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:22.631+00:00][B] [INFO] Sequence: 145
+[2026-09-02T19:04:22.631+00:00][B] [INFO] Packet ID: 46
+[2026-09-02T19:04:22.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:22.637+00:00][B] [INFO] Timestamp: 46 ms
+[2026-09-02T19:04:22.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:22.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:22.643+00:00][B] [INFO] [Heartbeat #46]
+[2026-09-02T19:04:22.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:22.648+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:22.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:22.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=145 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:22.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:23.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:23.703+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:23.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:23.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:23.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:23.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:23.714+00:00][B] [INFO] Sequence: 145
+[2026-09-02T19:04:23.715+00:00][B] [INFO] Packet ID: 46
+[2026-09-02T19:04:23.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:23.720+00:00][B] [INFO] Timestamp: 46 ms
+[2026-09-02T19:04:23.720+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:23.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:23.726+00:00][B] [INFO] [Heartbeat #46]
+[2026-09-02T19:04:23.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:23.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:23.731+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:23.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=145 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:23.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:24.621+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:24.621+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:24.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:24.626+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:24.626+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:24.631+00:00][B] [INFO] Sequence: 146
+[2026-09-02T19:04:24.631+00:00][B] [INFO] Packet ID: 47
+[2026-09-02T19:04:24.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:24.637+00:00][B] [INFO] Timestamp: 47 ms
+[2026-09-02T19:04:24.637+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:24.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:24.642+00:00][B] [INFO] [Heartbeat #47]
+[2026-09-02T19:04:24.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:24.647+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:24.648+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:24.662+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=146 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:24.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:25.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:25.703+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:25.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:25.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:25.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:25.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:25.714+00:00][B] [INFO] Sequence: 146
+[2026-09-02T19:04:25.715+00:00][B] [INFO] Packet ID: 47
+[2026-09-02T19:04:25.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:25.720+00:00][B] [INFO] Timestamp: 47 ms
+[2026-09-02T19:04:25.720+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:25.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:25.726+00:00][B] [INFO] [Heartbeat #47]
+[2026-09-02T19:04:25.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:25.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:25.731+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:25.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=146 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:25.746+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:26.620+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:26.620+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:26.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:26.625+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:26.625+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:26.630+00:00][B] [INFO] Sequence: 147
+[2026-09-02T19:04:26.631+00:00][B] [INFO] Packet ID: 48
+[2026-09-02T19:04:26.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:26.636+00:00][B] [INFO] Timestamp: 48 ms
+[2026-09-02T19:04:26.636+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:26.642+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:26.642+00:00][B] [INFO] [Heartbeat #48]
+[2026-09-02T19:04:26.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:26.647+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:26.647+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:26.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=147 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:26.662+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:27.636+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:27.703+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:27.703+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:27.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:27.709+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:27.709+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:27.714+00:00][B] [INFO] Sequence: 147
+[2026-09-02T19:04:27.714+00:00][B] [INFO] Packet ID: 48
+[2026-09-02T19:04:27.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:27.720+00:00][B] [INFO] Timestamp: 48 ms
+[2026-09-02T19:04:27.720+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:27.725+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:27.725+00:00][B] [INFO] [Heartbeat #48]
+[2026-09-02T19:04:27.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:27.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:27.731+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:27.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=147 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:27.745+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:28.619+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:28.619+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:28.625+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:28.625+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:28.625+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:28.630+00:00][B] [INFO] Sequence: 148
+[2026-09-02T19:04:28.630+00:00][B] [INFO] Packet ID: 49
+[2026-09-02T19:04:28.636+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:28.636+00:00][B] [INFO] Timestamp: 49 ms
+[2026-09-02T19:04:28.636+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:28.641+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:28.642+00:00][B] [INFO] [Heartbeat #49]
+[2026-09-02T19:04:28.647+00:00][B] [INFO] Sent
+[2026-09-02T19:04:28.647+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:28.647+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:28.661+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=148 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:28.661+00:00][B] [INFO] Heartbeat packet sent
+[2026-09-02T19:04:29.637+00:00][B] [WARN] Retry 1
+[2026-09-02T19:04:29.704+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:29.704+00:00][B] [INFO] [HEARTBEAT TX]
+[2026-09-02T19:04:29.709+00:00][B] [INFO] Node ID: 2
+[2026-09-02T19:04:29.710+00:00][B] [INFO] type: 2
+[2026-09-02T19:04:29.710+00:00][B] [INFO] Destination: 0xFF
+[2026-09-02T19:04:29.714+00:00][B] [INFO] Sequence: 148
+[2026-09-02T19:04:29.715+00:00][B] [INFO] Packet ID: 49
+[2026-09-02T19:04:29.720+00:00][B] [INFO] Packet Size: 26
+[2026-09-02T19:04:29.720+00:00][B] [INFO] Timestamp: 49 ms
+[2026-09-02T19:04:29.721+00:00][B] [INFO] Transmission Result: success
+[2026-09-02T19:04:29.726+00:00][B] [INFO] --------------------------------
+[2026-09-02T19:04:29.727+00:00][B] [INFO] [Heartbeat #49]
+[2026-09-02T19:04:29.731+00:00][B] [INFO] Sent
+[2026-09-02T19:04:29.731+00:00][B] [INFO] Waiting ACK...
+[2026-09-02T19:04:29.732+00:00][B] [INFO] [WAITING ACK]
+[2026-09-02T19:04:29.745+00:00][B] [INFO] [RF TX] type=2 source=0x02 destination=0xFF previousHop=0x02 sequence=148 ackSequence=0 ttl=8 hops=0 payloadSize=13 rssi=0 snr=0.00
+[2026-09-02T19:04:29.746+00:00][B] [INFO] Heartbeat packet sent

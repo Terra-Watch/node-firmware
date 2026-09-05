@@ -4,15 +4,18 @@
 
 namespace jalari::reliable
 {
-    bool DuplicatePacketCache::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber)
+    bool DuplicatePacketCache::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber,
+                                                      std::uint32_t nowMs, std::uint32_t expiryMs)
     {
-        for (const Entry &entry : entries_)
+        for (Entry &entry : entries_)
         {
+            if (entry.active && (nowMs - entry.seenMs) >= expiryMs) entry.active = false;
             if (entry.active && entry.sourceId == sourceId && entry.sequenceNumber == sequenceNumber) return true;
         }
         Entry &entry = entries_[nextEntry_];
         entry.sourceId = sourceId;
         entry.sequenceNumber = sequenceNumber;
+        entry.seenMs = nowMs;
         entry.active = true;
         nextEntry_ = (nextEntry_ + 1U) % entries_.size();
         return false;
@@ -36,17 +39,7 @@ namespace jalari::reliable
         {
             if (!pending.active || pending.retryQueued ||
                 (now - pending.lastTransmittedMs) < config_.acknowledgementTimeoutMs) continue;
-            if (pending.retries >= config_.maxRetries)
-            {
-                if (eventBus_ != nullptr)
-                {
-                    eventBus_->publish({event::Type::AcknowledgementFailed, pending.packet});
-                    eventBus_->publish({event::Type::PacketDropped, pending.packet});
-                }
-                pending.active = false;
-                continue;
-            }
-            if (packetQueue_.enqueue(pending.packet)) { ++pending.retries; pending.retryQueued = true; }
+            scheduleRetryOrFail_(pending);
         }
     }
 
@@ -56,9 +49,46 @@ namespace jalari::reliable
         if (event.type == event::Type::PacketSent) handleTransmitted_(event.packet);
     }
 
+    bool AckManager::processReceivedData(const protocol::Packet &packet)
+    {
+        if (packet.type != protocol::PacketType::Data) return false;
+
+        const bool duplicate = duplicates_.isDuplicateAndRemember(packet.sourceId, packet.sequenceNumber,
+                                                                   clock_.millis(), constants::kDuplicateExpiryMs);
+        if (duplicate && eventBus_ != nullptr) eventBus_->publish({event::Type::DuplicateSuppressed, packet});
+
+        if (packet.destinationId != 0xFFU && packet.previousHopId != 0U)
+        {
+            protocol::Packet acknowledgement;
+            if (packetFactory_.createAcknowledgement(packet, acknowledgement) &&
+                !packetQueue_.enqueue(acknowledgement) && eventBus_ != nullptr)
+                eventBus_->publish({event::Type::PacketDropped, acknowledgement});
+        }
+        return !duplicate;
+    }
+
+    void AckManager::onTransmissionFailed(const protocol::Packet &packet)
+    {
+        if (packet.type != protocol::PacketType::Data) return;
+        PendingTransmission *pending = findPending_(packet.sequenceNumber);
+        if (pending == nullptr)
+        {
+            pending = allocatePending_();
+            if (pending == nullptr)
+            {
+                if (eventBus_ != nullptr) eventBus_->publish({event::Type::TransmissionFailed, packet});
+                return;
+            }
+            pending->packet = packet;
+            pending->retries = 0;
+            pending->active = true;
+        }
+        scheduleRetryOrFail_(*pending);
+    }
+
     bool AckManager::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber)
     {
-        return duplicates_.isDuplicateAndRemember(sourceId, sequenceNumber);
+        return duplicates_.isDuplicateAndRemember(sourceId, sequenceNumber, clock_.millis(), constants::kDuplicateExpiryMs);
     }
 
     std::size_t AckManager::pendingCount() const
@@ -72,10 +102,37 @@ namespace jalari::reliable
     {
         if (packet.destinationId != node_.id()) return;
         if (packet.type == protocol::PacketType::Acknowledgement) { acknowledge_(packet); return; }
-        if (packet.type != protocol::PacketType::Data) return;
-        (void)duplicates_.isDuplicateAndRemember(packet.sourceId, packet.sequenceNumber);
-        protocol::Packet acknowledgement;
-        if (packetFactory_.createAcknowledgement(packet, acknowledgement)) (void)packetQueue_.enqueue(acknowledgement);
+        // DATA is preprocessed by processReceivedData before PacketReceived is published.
+    }
+
+    void AckManager::scheduleRetryOrFail_(PendingTransmission &pending)
+    {
+        if (pending.retries >= config_.maxRetries)
+        {
+            if (eventBus_ != nullptr)
+            {
+                eventBus_->publish({event::Type::TransmissionFailed, pending.packet});
+                eventBus_->publish({event::Type::AcknowledgementFailed, pending.packet});
+                eventBus_->publish({event::Type::PacketDropped, pending.packet});
+            }
+            pending.active = false;
+            return;
+        }
+
+        if (!packetQueue_.enqueue(pending.packet))
+        {
+            if (eventBus_ != nullptr)
+            {
+                eventBus_->publish({event::Type::TransmissionFailed, pending.packet});
+                eventBus_->publish({event::Type::PacketDropped, pending.packet});
+            }
+            pending.active = false;
+            return;
+        }
+
+        ++pending.retries;
+        pending.retryQueued = true;
+        if (eventBus_ != nullptr) eventBus_->publish({event::Type::TransmissionRetryQueued, pending.packet});
     }
 
     void AckManager::handleTransmitted_(const protocol::Packet &packet)
@@ -99,7 +156,11 @@ namespace jalari::reliable
         const std::uint16_t acknowledgedSequence = static_cast<std::uint16_t>(packet.payload[0]) |
                                                    (static_cast<std::uint16_t>(packet.payload[1]) << 8U);
         PendingTransmission *pending = findPending_(acknowledgedSequence);
-        if (pending != nullptr && pending->packet.destinationId == packet.sourceId)
+        const bool expectedNextHop = pending != nullptr &&
+                                     (pending->packet.nextHopId != 0U
+                                          ? pending->packet.nextHopId == packet.sourceId
+                                          : pending->packet.destinationId == packet.sourceId);
+        if (expectedNextHop)
         {
             pending->active = false;
             if (eventBus_ != nullptr) eventBus_->publish({event::Type::AcknowledgementReceived, packet});

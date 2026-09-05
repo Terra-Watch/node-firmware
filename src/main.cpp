@@ -17,7 +17,11 @@
 #include "AckManager.h"
 #include "NeighborService.h"
 #include "ReliableLinkService.h"
-#include "NullForwardingStrategy.h"
+#include "DynamicForwardingStrategy.h"
+#include "RouteTable.h"
+#include "RouteAdvertisementService.h"
+#include "RouteFailureService.h"
+#include "DtnStoreForwardService.h"
 
 namespace
 {
@@ -33,7 +37,8 @@ namespace
         jalari::protocol::PacketFactory packetFactory{node, jalari::config::kDefaultFirmwareConfig.network};
         jalari::queue::PacketQueue packetQueue;
         jalari::event::EventBus eventBus;
-        jalari::forwarding::NullForwardingStrategy forwardingStrategy;
+        jalari::routing::RouteTable routeTable{node.id()};
+        jalari::forwarding::DynamicForwardingStrategy forwardingStrategy{node.id(), routeTable, clock};
         jalari::neighbor::NeighborManager neighborManager;
         jalari::reliable::AckManager ackManager{jalari::config::kDefaultFirmwareConfig.reliability, node, packetFactory, packetQueue, clock};
         jalari::services::HeartbeatService heartbeatService{jalari::config::kDefaultFirmwareConfig.power, packetFactory, packetQueue, clock};
@@ -41,7 +46,14 @@ namespace
         jalari::services::NeighborService neighborService{jalari::config::kDefaultFirmwareConfig.network, neighborManager, clock};
         jalari::services::ReliableLinkService reliableLinkService{ackManager};
         jalari::services::ForwardingService forwardingService{jalari::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
-        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager, neighborService, reliableLinkService, forwardingService, logger};
+        jalari::routing::RouteAdvertisementService routeAdvertisementService{
+            node.id(), routeTable, neighborManager, packetFactory, packetQueue, clock,
+            jalari::config::kDefaultFirmwareConfig.network.neighborTimeoutMs};
+        jalari::routing::RouteFailureService routeFailureService{routeTable};
+        jalari::services::DtnStoreForwardService dtnService{forwardingStrategy, forwardingService, clock, eventBus};
+        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager,
+                        neighborService, reliableLinkService, forwardingService, routeAdvertisementService,
+                        routeFailureService, dtnService, logger, packetFactory, console};
     };
     FirmwareComposition &firmware() { static FirmwareComposition composition; return composition; }
 }

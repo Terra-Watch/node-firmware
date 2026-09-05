@@ -1,0 +1,3 @@
+timestamp_utc,trial_id,node_a,node_b,direction,distance_m,packets_sent,packets_received,pdr_percent,ack_success,retransmissions,latency_ms,rssi_dbm,snr_db,failure_injected,recovery_time_ms,notes
+2026-09-02T19:00Z,isolated-a-to-b-100,0x01,0x02,A_TO_B,,100,100,100.0,85,observed,1.88,-63..-59,9.00..10.50,no,,One isolated baseline; five-trial batch excluded because command intervals overlapped.
+2026-09-02T19:02Z,isolated-b-to-a-100,0x01,0x02,B_TO_A,,100,100,100.0,84,observed,1.88,-63..-58,9.00..10.50,no,,One isolated baseline; five-trial batch excluded because command intervals overlapped.

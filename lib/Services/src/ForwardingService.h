@@ -6,15 +6,24 @@
 #include "PacketQueue.h"
 
 namespace jalari::node { class NodeManager; }
+namespace jalari::services { class DtnStoreForwardService; }
 
 namespace jalari::services
 {
+    class IDtnStoreForwardSink
+    {
+    public:
+        virtual ~IDtnStoreForwardSink() = default;
+        virtual bool enqueue(const protocol::Packet &packet) = 0;
+    };
+
     class ForwardingService
     {
     public:
         ForwardingService(const config::NetworkConfig &config, const node::NodeManager &node,
                           const forwarding::IForwardingStrategy &strategy,
                           queue::PacketQueue &packetQueue, event::EventBus &eventBus);
+        void setDtnService(IDtnStoreForwardSink *dtnService);
         bool processReceived(protocol::Packet &packet) const;
 
     private:
@@ -24,5 +33,6 @@ namespace jalari::services
         const forwarding::IForwardingStrategy &strategy_;
         queue::PacketQueue &packetQueue_;
         event::EventBus &eventBus_;
+        IDtnStoreForwardSink *dtnService_ = nullptr;
     };
 } // namespace jalari::services

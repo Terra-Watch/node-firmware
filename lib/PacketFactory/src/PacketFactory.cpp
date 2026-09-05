@@ -50,6 +50,14 @@ namespace jalari::protocol
     {
         if (payload == nullptr && payloadSize != 0U) return false;
         initializePacket_(PacketType::Data, destinationId, outPacket);
+        for (std::size_t i = 0; i < networkConfig_.staticRouteCount && i < networkConfig_.staticRoutes.size(); ++i)
+        {
+            if (networkConfig_.staticRoutes[i].destinationId == destinationId)
+            {
+                outPacket.nextHopId = networkConfig_.staticRoutes[i].nextHopId;
+                break;
+            }
+        }
         return outPacket.setPayload(payload, payloadSize);
     }
 
@@ -59,7 +67,7 @@ namespace jalari::protocol
             static_cast<std::uint8_t>(receivedPacket.sequenceNumber & 0xFFU),
             static_cast<std::uint8_t>((receivedPacket.sequenceNumber >> 8U) & 0xFFU),
         };
-        initializePacket_(PacketType::Acknowledgement, receivedPacket.sourceId, outPacket);
+        initializePacket_(PacketType::Acknowledgement, receivedPacket.previousHopId, outPacket);
         return outPacket.setPayload(payload, sizeof(payload));
     }
 
@@ -80,12 +88,29 @@ namespace jalari::protocol
         return outPacket.setPayload(payload, sizeof(payload));
     }
 
+    bool PacketFactory::createRouteAdvertisement(std::uint8_t destinationId, std::uint16_t routeMetric,
+                                                 std::uint8_t hopCount, std::uint16_t routeVersion, Packet &outPacket)
+    {
+        if (destinationId == 0U || destinationId == 0xFFU || routeMetric == 0U || hopCount == 0U) return false;
+        const std::uint8_t payload[] = {
+            destinationId,
+            static_cast<std::uint8_t>(routeMetric & 0xFFU),
+            static_cast<std::uint8_t>((routeMetric >> 8U) & 0xFFU),
+            hopCount,
+            static_cast<std::uint8_t>(routeVersion & 0xFFU),
+            static_cast<std::uint8_t>((routeVersion >> 8U) & 0xFFU),
+        };
+        initializePacket_(PacketType::RouteAdvertisement, 0xFFU, outPacket);
+        return outPacket.setPayload(payload, sizeof(payload));
+    }
+
     void PacketFactory::initializePacket_(PacketType type, std::uint8_t destinationId, Packet &outPacket)
     {
         outPacket = {};
         outPacket.type = type;
         outPacket.sourceId = node_.id();
         outPacket.destinationId = destinationId;
+        outPacket.previousHopId = node_.id();
         outPacket.sequenceNumber = nextSequenceNumber_++;
         outPacket.ttl = networkConfig_.defaultTtl;
         outPacket.hopCount = 0;

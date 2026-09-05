@@ -22,11 +22,12 @@ namespace jalari::protocol
         outBuffer[2] = static_cast<std::uint8_t>(packet.type);
         outBuffer[3] = packet.sourceId;
         outBuffer[4] = packet.destinationId;
-        outBuffer[5] = static_cast<std::uint8_t>(packet.sequenceNumber & 0xFFU);
-        outBuffer[6] = static_cast<std::uint8_t>((packet.sequenceNumber >> 8U) & 0xFFU);
-        outBuffer[7] = packet.ttl;
-        outBuffer[8] = packet.hopCount;
-        outBuffer[9] = static_cast<std::uint8_t>(packet.payloadSize);
+        outBuffer[5] = packet.previousHopId;
+        outBuffer[6] = static_cast<std::uint8_t>(packet.sequenceNumber & 0xFFU);
+        outBuffer[7] = static_cast<std::uint8_t>((packet.sequenceNumber >> 8U) & 0xFFU);
+        outBuffer[8] = packet.ttl;
+        outBuffer[9] = packet.hopCount;
+        outBuffer[10] = static_cast<std::uint8_t>(packet.payloadSize);
 
         for (std::size_t i = 0; i < packet.payloadSize; ++i)
         {

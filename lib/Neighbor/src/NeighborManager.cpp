@@ -35,15 +35,18 @@ namespace jalari::neighbor
         }
     }
 
-    void NeighborManager::recordAcknowledgementSuccess(std::uint8_t nodeId)
+    void NeighborManager::recordAcknowledgementSuccess(std::uint8_t nodeId, std::uint32_t now)
     {
         for (Neighbor &neighbor : neighbors_)
-        {
-            if (neighbor.active && neighbor.nodeId == nodeId) { ++neighbor.acknowledgementSuccessCount; return; }
-        }
+            if (neighbor.active && neighbor.nodeId == nodeId)
+            {
+                ++neighbor.acknowledgementSuccessCount;
+                addAcknowledgementObservation_(neighbor, true, now);
+                return;
+            }
     }
 
-    void NeighborManager::recordAcknowledgementFailure(std::uint8_t nodeId)
+    void NeighborManager::recordAcknowledgementFailure(std::uint8_t nodeId, std::uint32_t now)
     {
         for (Neighbor &neighbor : neighbors_)
         {
@@ -51,6 +54,7 @@ namespace jalari::neighbor
             {
                 ++neighbor.packetFailureCount;
                 ++neighbor.acknowledgementFailureCount;
+                addAcknowledgementObservation_(neighbor, false, now);
                 return;
             }
         }
@@ -74,6 +78,34 @@ namespace jalari::neighbor
     {
         for (const Neighbor &neighbor : neighbors_) if (neighbor.active && neighbor.nodeId == nodeId) return &neighbor;
         return nullptr;
+    }
+
+    bool NeighborManager::getLinkMetric(std::uint8_t nodeId, std::uint32_t now,
+                                        std::uint32_t staleTimeoutMs, LinkMetric &outMetric) const
+    {
+        const Neighbor *neighbor = find(nodeId);
+        outMetric = {};
+        if (neighbor == nullptr) return false;
+
+        outMetric.observationCount = static_cast<std::uint16_t>(neighbor->ackSampleCount);
+        if (neighbor->ackSampleCount < constants::kMinimumAckMetricObservations)
+            return true;
+
+        outMetric.ageMs = now - neighbor->lastAckObservationMs;
+        if (outMetric.ageMs >= staleTimeoutMs)
+        {
+            outMetric.state = MetricState::Stale;
+            return true;
+        }
+
+        outMetric.state = MetricState::Valid;
+        outMetric.acknowledgementSuccessProbability =
+            static_cast<float>(neighbor->ackSuccessCount) / static_cast<float>(neighbor->ackSampleCount);
+        const float boundedProbability = outMetric.acknowledgementSuccessProbability < constants::kMinimumAckSuccessProbability
+                                             ? constants::kMinimumAckSuccessProbability
+                                             : outMetric.acknowledgementSuccessProbability;
+        outMetric.etxCost = 1.0F / boundedProbability;
+        return true;
     }
 
     std::size_t NeighborManager::count() const
@@ -112,5 +144,18 @@ namespace jalari::neighbor
         }
         neighbor.averageRssi = rssiTotal / neighbor.sampleCount;
         neighbor.averageSnr = snrTotal / neighbor.sampleCount;
+    }
+
+    void NeighborManager::addAcknowledgementObservation_(Neighbor &neighbor, bool success, std::uint32_t now)
+    {
+        if (neighbor.ackSampleCount == constants::kAckMetricWindowSize && neighbor.ackObservations[neighbor.nextAckSample])
+            --neighbor.ackSuccessCount;
+        else if (neighbor.ackSampleCount < constants::kAckMetricWindowSize)
+            ++neighbor.ackSampleCount;
+
+        neighbor.ackObservations[neighbor.nextAckSample] = success;
+        if (success) ++neighbor.ackSuccessCount;
+        neighbor.nextAckSample = (neighbor.nextAckSample + 1U) % constants::kAckMetricWindowSize;
+        neighbor.lastAckObservationMs = now;
     }
 } // namespace jalari::neighbor

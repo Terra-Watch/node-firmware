@@ -29,7 +29,7 @@ namespace jalari::protocol
             return false;
         }
 
-        const std::size_t payloadSize = data[9];
+        const std::size_t payloadSize = data[10];
         const std::size_t expectedSize = constants::kPacketHeaderSize + payloadSize + constants::kPacketCrcSize;
 
         if (payloadSize > constants::kMaxPayloadSize || size != expectedSize)
@@ -49,10 +49,11 @@ namespace jalari::protocol
         outPacket.type = static_cast<PacketType>(data[2]);
         outPacket.sourceId = data[3];
         outPacket.destinationId = data[4];
-        outPacket.sequenceNumber = static_cast<std::uint16_t>(data[5]) |
-                                   (static_cast<std::uint16_t>(data[6]) << 8U);
-        outPacket.ttl = data[7];
-        outPacket.hopCount = data[8];
+        outPacket.previousHopId = data[5];
+        outPacket.sequenceNumber = static_cast<std::uint16_t>(data[6]) |
+                                   (static_cast<std::uint16_t>(data[7]) << 8U);
+        outPacket.ttl = data[8];
+        outPacket.hopCount = data[9];
         outPacket.payloadSize = payloadSize;
 
         for (std::size_t i = 0; i < payloadSize; ++i)
