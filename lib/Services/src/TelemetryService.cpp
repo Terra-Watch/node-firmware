@@ -55,9 +55,25 @@ namespace jalari::services
             LOG_WARN(logger_, "[TELEMETRY TX FAILED] reason=QUEUE_FULL_OR_PACKET_BUILD");
             return;
         }
-        std::snprintf(log, sizeof(log), "[TELEMETRY TX] source=0x%02X destination=0x%02X sequence=%u ttl=%u hops=%u payloadSize=%u",
+        std::snprintf(log, sizeof(log), "[TELEMETRY TX] source=0x%02X destination=0x%02X sequence=%u ttl=%u hops=%u payloadSize=%u timestamp=%04u-%02u-%02uT%02u:%02u:%02u temperature_c=%.2f",
                       packet.sourceId, packet.destinationId, packet.sequenceNumber, packet.ttl, packet.hopCount,
-                      static_cast<unsigned>(packet.payloadSize));
+                      static_cast<unsigned>(packet.payloadSize), sample.year, sample.month, sample.day,
+                      sample.hour, sample.minute, sample.second, static_cast<double>(sample.temperatureCentiC) / 100.0);
         LOG_INFO(logger_, log);
+    }
+
+    bool TelemetryService::setRtcFromCommand(const char *command)
+    {
+        if (command == nullptr) return false;
+        sensors::RtcSample sample;
+        unsigned year, month, day, hour, minute, second;
+        if (std::sscanf(command, "RTC SET %u-%u-%u %u:%u:%u", &year, &month, &day, &hour, &minute, &second) != 6) return false;
+        sample.timeValid = true;
+        sample.year = static_cast<std::uint16_t>(year); sample.month = static_cast<std::uint8_t>(month);
+        sample.day = static_cast<std::uint8_t>(day); sample.hour = static_cast<std::uint8_t>(hour);
+        sample.minute = static_cast<std::uint8_t>(minute); sample.second = static_cast<std::uint8_t>(second);
+        const bool ok = rtc_.setDateTime(sample);
+        LOG_INFO(logger_, ok ? "[RTC SET] DS3231 time updated" : "[RTC SET ERROR] invalid time or write failed");
+        return ok;
     }
 } // namespace jalari::services

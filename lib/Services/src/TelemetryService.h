@@ -23,6 +23,7 @@ namespace jalari::services
 
         bool begin();
         void update();
+        bool setRtcFromCommand(const char *command);
 
     private:
         const config::PowerConfig &config_;

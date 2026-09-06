@@ -84,6 +84,7 @@ namespace jalari
     {
         if (!initialized_) return;
         processIncoming_();
+        processRtcCommand_();
         processTestCommands_();
         reliableLinkService_.update();
         heartbeatService_.update();
@@ -251,6 +252,16 @@ namespace jalari
         testRemainingCount_ = command.count;
         testPayloadSize_ = command.payloadSize;
         for (std::size_t index = 0; index < testPayloadSize_; ++index) testPayload_[index] = command.payload[index];
+#endif
+    }
+
+    void App::processRtcCommand_()
+    {
+#if !JALARI_TEST_MODE
+        char line[64]{};
+        if (!console_.readLine(line, sizeof(line))) return;
+        if (telemetryService_.setRtcFromCommand(line)) return;
+        LOG_WARN(logger_, "RTC_CMD_ERROR use: RTC SET YYYY-MM-DD HH:MM:SS");
 #endif
     }
 

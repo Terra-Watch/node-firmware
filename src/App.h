@@ -32,6 +32,7 @@ namespace jalari
         void transmitQueued_();
         void processIncoming_();
         void processTestCommands_();
+        void processRtcCommand_();
         radio::IRadio &radio_;
         node::NodeManager &node_;
         queue::PacketQueue &packetQueue_;

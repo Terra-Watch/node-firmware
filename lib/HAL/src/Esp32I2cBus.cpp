@@ -20,4 +20,11 @@ namespace jalari::hal
         for (std::size_t i = 0; i < readSize; ++i) readData[i] = static_cast<std::uint8_t>(Wire.read());
         return true;
     }
+
+    bool Esp32I2cBus::write(std::uint8_t address, const std::uint8_t *data, std::size_t size)
+    {
+        Wire.beginTransmission(address);
+        for (std::size_t i = 0; i < size; ++i) Wire.write(data[i]);
+        return Wire.endTransmission() == 0;
+    }
 } // namespace jalari::hal
