@@ -5,7 +5,7 @@ namespace jalari::protocol
 
     bool Validator::isValid(const Packet &packet)
     {
-        if (packet.payloadSize > packet.payload.size())
+        if (packet.sourceId == 0U || packet.previousHopId == 0U || packet.payloadSize > packet.payload.size())
         {
             return false;
         }
@@ -20,6 +20,8 @@ namespace jalari::protocol
             return packet.payloadSize == 9U;
         case PacketType::Acknowledgement:
             return packet.payloadSize == constants::kAcknowledgementPayloadSize;
+        case PacketType::RouteAdvertisement:
+            return packet.destinationId == 0xFFU && packet.payloadSize == constants::kRouteAdvertisementPayloadSize;
         case PacketType::Unknown:
         default:
             return false;

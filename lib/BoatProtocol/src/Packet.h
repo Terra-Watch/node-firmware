@@ -17,6 +17,7 @@ namespace jalari::protocol
         Heartbeat = 2,
         Acknowledgement = 3,
         HeartbeatAck = 4,
+        RouteAdvertisement = 5,
     };
 
     struct Packet
@@ -25,6 +26,7 @@ namespace jalari::protocol
         std::uint8_t sourceId = 0;
         std::uint8_t destinationId = 0;
         std::uint8_t previousHopId = 0;
+        std::uint8_t nextHopId = 0; // Local forwarding metadata; never serialized.
         std::uint16_t sequenceNumber = 0;
         std::uint8_t ttl = 0;
         std::uint8_t hopCount = 0;

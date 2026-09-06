@@ -18,6 +18,8 @@ namespace jalari::protocol
                         Packet &outPacket);
         bool createAcknowledgement(const Packet &receivedPacket, Packet &outPacket);
         bool createHeartbeatAck(std::uint32_t packetId, std::uint8_t targetNodeId, std::uint32_t timestamp, Packet &outPacket);
+        bool createRouteAdvertisement(std::uint8_t destinationId, std::uint16_t routeMetric,
+                                      std::uint8_t hopCount, std::uint16_t routeVersion, Packet &outPacket);
 
     private:
         void initializePacket_(PacketType type, std::uint8_t destinationId, Packet &outPacket);

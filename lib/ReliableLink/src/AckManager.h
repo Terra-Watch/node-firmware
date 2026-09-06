@@ -18,10 +18,11 @@ namespace jalari::reliable
     class DuplicatePacketCache
     {
     public:
-        bool isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber);
+        bool isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber,
+                                    std::uint32_t nowMs, std::uint32_t expiryMs);
 
     private:
-        struct Entry { std::uint8_t sourceId = 0; std::uint16_t sequenceNumber = 0; bool active = false; };
+        struct Entry { std::uint8_t sourceId = 0; std::uint16_t sequenceNumber = 0; std::uint32_t seenMs = 0; bool active = false; };
         std::array<Entry, constants::kDuplicatePacketCapacity> entries_{};
         std::size_t nextEntry_ = 0;
     };
@@ -36,6 +37,8 @@ namespace jalari::reliable
         bool begin(event::EventBus &eventBus);
         void update();
         void onEvent(const event::Event &event) override;
+        bool processReceivedData(const protocol::Packet &packet);
+        void onTransmissionFailed(const protocol::Packet &packet);
         bool isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber);
         std::size_t pendingCount() const;
 
@@ -51,6 +54,7 @@ namespace jalari::reliable
 
         void handleReceived_(const protocol::Packet &packet);
         void handleTransmitted_(const protocol::Packet &packet);
+        void scheduleRetryOrFail_(PendingTransmission &pending);
         void acknowledge_(const protocol::Packet &packet);
         PendingTransmission *findPending_(std::uint16_t sequenceNumber);
         PendingTransmission *allocatePending_();

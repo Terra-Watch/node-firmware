@@ -1,0 +1,1 @@
+timestamp_utc,trial_id,node_a,node_b,direction,distance_m,packets_sent,packets_received,pdr_percent,ack_success,retransmissions,latency_ms,rssi_dbm,snr_db,failure_injected,recovery_time_ms,notes

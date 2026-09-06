@@ -1,5 +1,5 @@
 
-This directory is intended for PlatformIO Test Runner and project tests.
+This directory contains deterministic host tests and PlatformIO project tests.
 
 Unit Testing is a software testing method by which individual units of
 source code, sets of one or more MCU program modules together with associated
@@ -9,3 +9,17 @@ in the development cycle.
 
 More information about PlatformIO Unit Testing:
 - https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+
+Host validation scripts:
+
+- `run_protocol_v4_tests.sh`
+- `run_n1_tests.sh`
+- `run_n2_static_forwarding_tests.sh`
+- `run_n2c_failure_recovery_tests.sh`
+- `run_n3b_metric_tests.sh`
+- `run_n3c_route_table_tests.sh`
+- `run_n3d_route_learning_tests.sh`
+- `run_n3e_dynamic_forwarding_tests.sh`
+- `run_n3f_dynamic_route_recovery_tests.sh`
+- `run_dtn_store_forward_tests.sh`
+- `run_test_command_parser_tests.sh`

@@ -44,12 +44,12 @@ namespace jalari::services
         }
         else if (event.type == event::Type::AcknowledgementReceived)
         {
-            neighborManager_.recordAcknowledgementSuccess(event.packet.sourceId);
+            neighborManager_.recordAcknowledgementSuccess(event.packet.sourceId, clock_.millis());
             publishMetricsUpdated_(event.packet.sourceId);
         }
         else if (event.type == event::Type::AcknowledgementFailed)
         {
-            neighborManager_.recordAcknowledgementFailure(event.packet.destinationId);
+            neighborManager_.recordAcknowledgementFailure(event.packet.destinationId, clock_.millis());
             publishMetricsUpdated_(event.packet.destinationId);
         }
     }

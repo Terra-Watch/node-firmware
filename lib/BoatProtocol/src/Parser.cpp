@@ -29,7 +29,7 @@ namespace jalari::protocol
             return false;
         }
 
-        const std::size_t payloadSize = data[9];
+        const std::size_t payloadSize = data[10];
         const std::size_t expectedSize = constants::kPacketHeaderSize + payloadSize + constants::kPacketCrcSize;
 
         if (payloadSize > constants::kMaxPayloadSize || size != expectedSize)

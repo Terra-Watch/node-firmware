@@ -18,19 +18,33 @@
 
 #include "HeartbeatAckManager.h"
 #include "CrewMessageService.h"
+#include "RouteAdvertisementService.h"
+#include "RouteFailureService.h"
+#include "DtnStoreForwardService.h"
+#include "PacketFactory.h"
+#include "TestCommandParser.h"
+#include "TelemetryService.h"
 
 namespace jalari
 {
     App::App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
              services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
              services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
-             services::ForwardingService &forwardingService, services::CrewMessageService &crewMessageService, utils::Logger &logger)
+             services::TelemetryService &telemetryService,
+             services::ForwardingService &forwardingService, routing::RouteAdvertisementService &routeAdvertisementService,
+             routing::RouteFailureService &routeFailureService, services::DtnStoreForwardService &dtnService,
+             services::CrewMessageService &crewMessageService, utils::Logger &logger,
+             protocol::PacketFactory &packetFactory, hal::IConsole &console)
         : radio_(radio), node_(node), packetQueue_(packetQueue), eventBus_(eventBus), heartbeatService_(heartbeatService),
           heartbeatAckManager_(heartbeatAckManager), neighborService_(neighborService),
-          reliableLinkService_(reliableLinkService), forwardingService_(forwardingService), crewMessageService_(crewMessageService), logger_(logger) {}
+          reliableLinkService_(reliableLinkService), telemetryService_(telemetryService), forwardingService_(forwardingService),
+          routeAdvertisementService_(routeAdvertisementService), routeFailureService_(routeFailureService),
+          dtnService_(dtnService), crewMessageService_(crewMessageService), logger_(logger),
+          packetFactory_(packetFactory), console_(console) {}
 
     bool App::begin()
     {
+        forwardingService_.setDtnService(&dtnService_);
         logger_.begin();
         LOG_INFO(logger_, "================================");
         LOG_INFO(logger_, version::kFirmwareName);
@@ -42,10 +56,25 @@ namespace jalari
             LOG_ERROR(logger_, "Event bus subscription failed");
             return false;
         }
+        if (!routeAdvertisementService_.begin(eventBus_))
+        {
+            LOG_ERROR(logger_, "Route advertisement service subscription failed");
+            return false;
+        }
+        if (!routeFailureService_.begin(eventBus_))
+        {
+            LOG_ERROR(logger_, "Route failure service subscription failed");
+            return false;
+        }
         if (!radio_.begin())
         {
             node_.setStatus(node::NodeStatus::Fault);
             eventBus_.publish({event::Type::RadioError});
+            return false;
+        }
+        if (!telemetryService_.begin())
+        {
+            node_.setStatus(node::NodeStatus::Fault);
             return false;
         }
         node_.setStatus(node::NodeStatus::Ready);
@@ -58,10 +87,15 @@ namespace jalari
     {
         if (!initialized_) return;
         processIncoming_();
+        processRtcCommand_();
+        processTestCommands_();
         reliableLinkService_.update();
         heartbeatService_.update();
+        telemetryService_.update();
         heartbeatAckManager_.update();
         neighborService_.update();
+        routeAdvertisementService_.update();
+        dtnService_.update();
         transmitQueued_();
     }
 
@@ -110,12 +144,12 @@ namespace jalari
             LOG_INFO(logger_, msg);
 
             std::uint32_t uptimeMs = 0;
-            if (packet->payloadSize >= 4)
+            if (packet->payloadSize >= 8)
             {
-                uptimeMs = static_cast<std::uint32_t>(packet->payload[0]) |
-                           (static_cast<std::uint32_t>(packet->payload[1]) << 8U) |
-                           (static_cast<std::uint32_t>(packet->payload[2]) << 16U) |
-                           (static_cast<std::uint32_t>(packet->payload[3]) << 24U);
+                uptimeMs = static_cast<std::uint32_t>(packet->payload[4]) |
+                           (static_cast<std::uint32_t>(packet->payload[5]) << 8U) |
+                           (static_cast<std::uint32_t>(packet->payload[6]) << 16U) |
+                           (static_cast<std::uint32_t>(packet->payload[7]) << 24U);
             }
             snprintf(msg, sizeof(msg), "Timestamp: %u ms", uptimeMs);
             LOG_INFO(logger_, msg);
@@ -131,6 +165,7 @@ namespace jalari
             LOG_WARN(logger_, "Packet transmission failed");
             protocol::Packet failedPacket;
             (void)packetQueue_.dequeue(failedPacket);
+            reliableLinkService_.onTransmissionFailed(failedPacket);
             return;
         }
 
@@ -177,13 +212,111 @@ namespace jalari
             return;
         }
 
-        if (forwardingService_.processReceived(packet)) eventBus_.publish({event::Type::PacketReceived, packet, frame.rssi, frame.snr});
+        if (packet.type == protocol::PacketType::Data)
+        {
+            if (!reliableLinkService_.processReceivedData(packet)) return;
+        }
+        if (forwardingService_.processReceived(packet))
+            eventBus_.publish({event::Type::PacketReceived, packet, frame.rssi, frame.snr});
+    }
+
+    void App::processTestCommands_()
+    {
+#if JALARI_TEST_MODE
+        if (testRemainingCount_ > 0U)
+        {
+            if (!packetQueue_.empty() || !reliableLinkService_.readyForTestPacket()) return;
+            protocol::Packet packet;
+            if (packetFactory_.createData(testDestinationId_, testPayload_, testPayloadSize_, packet) &&
+                packetQueue_.enqueue(packet))
+            {
+                --testRemainingCount_;
+                char message[96];
+                snprintf(message, sizeof(message), "TEST_DATA_QUEUED dst=0x%02X seq=%u remaining=%u",
+                         testDestinationId_, packet.sequenceNumber, testRemainingCount_);
+                LOG_INFO(logger_, message);
+            }
+            return;
+        }
+        char line[constants::kTestCommandLineCapacity]{};
+        if (!console_.readLine(line, sizeof(line))) return;
+        services::TestCommand command;
+        if (!services::parseTestCommand(line, command))
+        {
+            LOG_WARN(logger_, "TEST_CMD_ERROR");
+            return;
+        }
+        if (command.destinationId == node_.id())
+        {
+            LOG_WARN(logger_, "TEST_CMD_ERROR_LOCAL_DESTINATION");
+            return;
+        }
+        testDestinationId_ = command.destinationId;
+        testRemainingCount_ = command.count;
+        testPayloadSize_ = command.payloadSize;
+        for (std::size_t index = 0; index < testPayloadSize_; ++index) testPayload_[index] = command.payload[index];
+#endif
+    }
+
+    void App::processRtcCommand_()
+    {
+#if !JALARI_TEST_MODE
+        char line[64]{};
+        if (!console_.readLine(line, sizeof(line))) return;
+        if (telemetryService_.setRtcFromCommand(line)) return;
+        LOG_WARN(logger_, "RTC_CMD_ERROR use: RTC SET YYYY-MM-DD HH:MM:SS");
+#endif
     }
 
     void App::onEvent(const event::Event &event)
     {
         switch (event.type)
         {
+        case event::Type::PacketSent:
+        case event::Type::PacketReceived:
+        {
+            char msg[192];
+            const char *direction = event.type == event::Type::PacketSent ? "TX" : "RX";
+            std::uint16_t acknowledgedSequence = 0U;
+            if (event.packet.type == protocol::PacketType::Acknowledgement && event.packet.payloadSize >= 2U)
+                acknowledgedSequence = static_cast<std::uint16_t>(event.packet.payload[0]) |
+                                       (static_cast<std::uint16_t>(event.packet.payload[1]) << 8U);
+            snprintf(msg, sizeof(msg), "[RF %s] type=%u source=0x%02X destination=0x%02X previousHop=0x%02X sequence=%u ackSequence=%u ttl=%u hops=%u payloadSize=%u rssi=%d snr=%.2f",
+                     direction, static_cast<unsigned>(event.packet.type), event.packet.sourceId,
+                     event.packet.destinationId, event.packet.previousHopId, event.packet.sequenceNumber,
+                     acknowledgedSequence, event.packet.ttl, event.packet.hopCount,
+                     static_cast<unsigned>(event.packet.payloadSize),
+                     event.rssi, static_cast<double>(event.snr));
+            LOG_INFO(logger_, msg);
+            break;
+        }
+        case event::Type::AcknowledgementReceived:
+        {
+            char msg[64];
+            const std::uint16_t sequence = event.packet.payloadSize >= 2U
+                ? static_cast<std::uint16_t>(event.packet.payload[0]) |
+                  (static_cast<std::uint16_t>(event.packet.payload[1]) << 8U) : 0U;
+            snprintf(msg, sizeof(msg), "ACK_RX seq=%u source=0x%02X", sequence, event.packet.sourceId);
+            LOG_INFO(logger_, msg);
+            break;
+        }
+        case event::Type::AcknowledgementFailed:
+        {
+            char msg[64];
+            snprintf(msg, sizeof(msg), "ACK_FAILED seq=%u", event.packet.sequenceNumber);
+            LOG_WARN(logger_, msg);
+            break;
+        }
+        case event::Type::TransmissionRetryQueued:
+        {
+            char msg[64];
+            snprintf(msg, sizeof(msg), "TX_RETRY seq=%u", event.packet.sequenceNumber);
+            LOG_WARN(logger_, msg);
+            break;
+        }
+        case event::Type::TransmissionFailed:
+            LOG_ERROR(logger_, "TX_FAILED");
+            break;
         case event::Type::HeartbeatSent: LOG_INFO(logger_, "Heartbeat packet sent"); break;
         case event::Type::RadioReady: LOG_INFO(logger_, "LoRa ready"); break;
         case event::Type::RadioError: LOG_ERROR(logger_, "LoRa initialization failed"); break;
