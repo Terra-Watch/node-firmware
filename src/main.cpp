@@ -18,6 +18,7 @@
 #include "NeighborService.h"
 #include "ReliableLinkService.h"
 #include "NullForwardingStrategy.h"
+#include "CrewMessageService.h"
 
 namespace
 {
@@ -41,7 +42,8 @@ namespace
         jalari::services::NeighborService neighborService{jalari::config::kDefaultFirmwareConfig.network, neighborManager, clock};
         jalari::services::ReliableLinkService reliableLinkService{ackManager};
         jalari::services::ForwardingService forwardingService{jalari::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
-        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager, neighborService, reliableLinkService, forwardingService, logger};
+        jalari::services::CrewMessageService crewMessageService{packetFactory, packetQueue};
+        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager, neighborService, reliableLinkService, forwardingService, crewMessageService, logger};
     };
     FirmwareComposition &firmware() { static FirmwareComposition composition; return composition; }
 }

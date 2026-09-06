@@ -86,6 +86,7 @@ namespace jalari::protocol
         outPacket.type = type;
         outPacket.sourceId = node_.id();
         outPacket.destinationId = destinationId;
+        outPacket.previousHopId = node_.id();
         outPacket.sequenceNumber = nextSequenceNumber_++;
         outPacket.ttl = networkConfig_.defaultTtl;
         outPacket.hopCount = 0;

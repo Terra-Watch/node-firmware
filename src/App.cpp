@@ -17,16 +17,17 @@
 #include "Version.h"
 
 #include "HeartbeatAckManager.h"
+#include "CrewMessageService.h"
 
 namespace jalari
 {
     App::App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
              services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
              services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
-             services::ForwardingService &forwardingService, utils::Logger &logger)
+             services::ForwardingService &forwardingService, services::CrewMessageService &crewMessageService, utils::Logger &logger)
         : radio_(radio), node_(node), packetQueue_(packetQueue), eventBus_(eventBus), heartbeatService_(heartbeatService),
           heartbeatAckManager_(heartbeatAckManager), neighborService_(neighborService),
-          reliableLinkService_(reliableLinkService), forwardingService_(forwardingService), logger_(logger) {}
+          reliableLinkService_(reliableLinkService), forwardingService_(forwardingService), crewMessageService_(crewMessageService), logger_(logger) {}
 
     bool App::begin()
     {
@@ -36,7 +37,7 @@ namespace jalari
         LOG_INFO(logger_, version::kFirmwareVersion);
         LOG_INFO(logger_, "================================");
         if (!eventBus_.subscribe(*this) || !heartbeatService_.begin(eventBus_) ||
-            !neighborService_.begin(eventBus_) || !reliableLinkService_.begin(eventBus_))
+            !neighborService_.begin(eventBus_) || !reliableLinkService_.begin(eventBus_) || !crewMessageService_.begin())
         {
             LOG_ERROR(logger_, "Event bus subscription failed");
             return false;

@@ -24,6 +24,7 @@ namespace jalari::protocol
         PacketType type = PacketType::Unknown;
         std::uint8_t sourceId = 0;
         std::uint8_t destinationId = 0;
+        std::uint8_t previousHopId = 0;
         std::uint16_t sequenceNumber = 0;
         std::uint8_t ttl = 0;
         std::uint8_t hopCount = 0;

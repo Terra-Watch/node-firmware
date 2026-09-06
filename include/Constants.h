@@ -5,7 +5,7 @@
 namespace jalari::constants
 {
 
-    constexpr std::size_t kPacketHeaderSize = 10;
+    constexpr std::size_t kPacketHeaderSize = 11;
     constexpr std::size_t kPacketCrcSize = 2;
     constexpr std::size_t kMaxPayloadSize = 48;
     constexpr std::size_t kMaxPacketSize = kPacketHeaderSize + kMaxPayloadSize + kPacketCrcSize;

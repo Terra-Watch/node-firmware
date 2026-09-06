@@ -62,7 +62,7 @@ namespace jalari::config
     constexpr FirmwareConfig kDefaultFirmwareConfig{
         {433000000L, 12, 13, 11, 10, 9, 14},
         {1},
-        {0xA5U, 3U, 48U, 255U},
+        {0xA5U, 4U, 48U, 255U},
         {2000U},
         {1000U, 3U},
         {8U, 16U, 30000U, 8U},

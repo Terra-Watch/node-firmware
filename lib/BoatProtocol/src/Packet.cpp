@@ -32,6 +32,7 @@ namespace jalari::protocol
             return false;
         }
         ++hopCount;
+        previousHopId = sourceId;
         return true;
     }
 
