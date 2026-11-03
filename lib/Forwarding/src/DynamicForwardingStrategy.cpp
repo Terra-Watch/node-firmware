@@ -1,6 +1,6 @@
 #include "DynamicForwardingStrategy.h"
 
-namespace jalari::forwarding
+namespace terrawatch::forwarding
 {
     ForwardDecision DynamicForwardingStrategy::decide(const protocol::Packet &packet,
                                                        std::uint8_t &nextHopId) const
@@ -22,4 +22,4 @@ namespace jalari::forwarding
         nextHopId = route.nextHopId;
         return ForwardDecision::Forward;
     }
-} // namespace jalari::forwarding
+} // namespace terrawatch::forwarding

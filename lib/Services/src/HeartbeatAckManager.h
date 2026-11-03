@@ -7,7 +7,7 @@
 #include "PacketQueue.h"
 #include "NodeManager.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     struct HeartbeatStats
     {
@@ -56,4 +56,4 @@ namespace jalari::services
         static constexpr std::uint32_t kAckTimeoutMs = 1000U;
         static constexpr std::uint8_t kMaxRetries = 3U;
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

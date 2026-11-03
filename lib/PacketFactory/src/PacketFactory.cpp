@@ -3,7 +3,7 @@
 #include "Version.h"
 #include <cstdio>
 
-namespace jalari::protocol
+namespace terrawatch::protocol
 {
     PacketFactory::PacketFactory(const node::NodeManager &node, const config::NetworkConfig &networkConfig)
         : node_(node), networkConfig_(networkConfig) {}
@@ -117,4 +117,4 @@ namespace jalari::protocol
         outPacket.ttl = networkConfig_.defaultTtl;
         outPacket.hopCount = 0;
     }
-} // namespace jalari::protocol
+} // namespace terrawatch::protocol

@@ -1,0 +1,31 @@
+#include "Validator.h"
+
+namespace terrawatch::protocol
+{
+
+    bool Validator::isValid(const Packet &packet)
+    {
+        if (packet.sourceId == 0U || packet.previousHopId == 0U || packet.payloadSize > packet.payload.size())
+        {
+            return false;
+        }
+
+        switch (packet.type)
+        {
+        case PacketType::Data:
+            return true;
+        case PacketType::Heartbeat:
+            return packet.payloadSize == 13U;
+        case PacketType::HeartbeatAck:
+            return packet.payloadSize == 9U;
+        case PacketType::Acknowledgement:
+            return packet.payloadSize == constants::kAcknowledgementPayloadSize;
+        case PacketType::RouteAdvertisement:
+            return packet.destinationId == 0xFFU && packet.payloadSize == constants::kRouteAdvertisementPayloadSize;
+        case PacketType::Unknown:
+        default:
+            return false;
+        }
+    }
+
+} // namespace terrawatch::protocol

@@ -6,7 +6,7 @@
 #include "NeighborManager.h"
 #include "Packet.h"
 
-using namespace jalari;
+using namespace terrawatch;
 
 static protocol::Packet heartbeatFrom(std::uint8_t nodeId) {
     protocol::Packet packet;

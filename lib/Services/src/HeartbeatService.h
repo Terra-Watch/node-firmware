@@ -7,9 +7,9 @@
 #include "PacketFactory.h"
 #include "PacketQueue.h"
 
-namespace jalari::hal { class IClock; }
+namespace terrawatch::hal { class IClock; }
 
-namespace jalari::services
+namespace terrawatch::services
 {
     class HeartbeatService final : public event::IEventListener
     {
@@ -28,4 +28,4 @@ namespace jalari::services
         event::EventBus *eventBus_ = nullptr;
         std::uint32_t lastHeartbeatMs_ = 0;
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

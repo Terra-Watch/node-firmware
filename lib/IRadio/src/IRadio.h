@@ -6,7 +6,7 @@
 
 #include "Constants.h"
 
-namespace jalari::radio
+namespace terrawatch::radio
 {
     struct ReceivedFrame
     {
@@ -28,4 +28,4 @@ namespace jalari::radio
         virtual float snr() const = 0;
         virtual bool cad() = 0;
     };
-} // namespace jalari::radio
+} // namespace terrawatch::radio

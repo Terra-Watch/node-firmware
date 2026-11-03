@@ -5,9 +5,9 @@
 #include "Config.h"
 #include "Packet.h"
 
-namespace jalari::node { class NodeManager; }
+namespace terrawatch::node { class NodeManager; }
 
-namespace jalari::protocol
+namespace terrawatch::protocol
 {
     class PacketFactory
     {
@@ -28,4 +28,4 @@ namespace jalari::protocol
         std::uint16_t nextSequenceNumber_ = 0;
         std::uint32_t nextPacketId_ = 1;
     };
-} // namespace jalari::protocol
+} // namespace terrawatch::protocol

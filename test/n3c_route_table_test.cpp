@@ -4,7 +4,7 @@
 #include "NeighborManager.h"
 #include "RouteTable.h"
 
-using namespace jalari;
+using namespace terrawatch;
 
 static neighbor::LinkMetric validMetric(float cost) {
     neighbor::LinkMetric metric;

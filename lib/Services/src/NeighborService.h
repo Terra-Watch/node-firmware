@@ -4,9 +4,9 @@
 #include "EventBus.h"
 #include "NeighborManager.h"
 
-namespace jalari::hal { class IClock; }
+namespace terrawatch::hal { class IClock; }
 
-namespace jalari::services
+namespace terrawatch::services
 {
     class NeighborService final : public event::IEventListener
     {
@@ -24,4 +24,4 @@ namespace jalari::services
         hal::IClock &clock_;
         event::EventBus *eventBus_ = nullptr;
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

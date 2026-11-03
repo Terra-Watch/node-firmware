@@ -14,26 +14,26 @@
 #include "Validator.h"
 
 namespace {
-class Clock final : public jalari::hal::IClock {
+class Clock final : public terrawatch::hal::IClock {
 public:
     std::uint32_t millis() const override { return now; }
     std::uint32_t now = 0;
 };
 
-class Listener final : public jalari::event::IEventListener {
+class Listener final : public terrawatch::event::IEventListener {
 public:
-    void onEvent(const jalari::event::Event &event) override {
-        if (event.type == jalari::event::Type::TransmissionRetryQueued) ++retries;
-        if (event.type == jalari::event::Type::TransmissionFailed) ++failures;
-        if (event.type == jalari::event::Type::DuplicateSuppressed) ++duplicates;
+    void onEvent(const terrawatch::event::Event &event) override {
+        if (event.type == terrawatch::event::Type::TransmissionRetryQueued) ++retries;
+        if (event.type == terrawatch::event::Type::TransmissionFailed) ++failures;
+        if (event.type == terrawatch::event::Type::DuplicateSuppressed) ++duplicates;
     }
     int retries = 0;
     int failures = 0;
     int duplicates = 0;
 };
 
-jalari::protocol::Packet dataPacket(jalari::protocol::PacketFactory &factory, std::uint8_t destination) {
-    jalari::protocol::Packet packet;
+terrawatch::protocol::Packet dataPacket(terrawatch::protocol::PacketFactory &factory, std::uint8_t destination) {
+    terrawatch::protocol::Packet packet;
     const std::uint8_t payload[] = {1, 2, 3};
     assert(factory.createData(destination, payload, sizeof(payload), packet));
     packet.nextHopId = destination; // N1 fixture models a direct link.
@@ -42,8 +42,8 @@ jalari::protocol::Packet dataPacket(jalari::protocol::PacketFactory &factory, st
 }
 
 int main() {
-    using namespace jalari;
-    node::NodeManager node(config::kDefaultFirmwareConfig.node, node::DeviceRole::BoatNode);
+    using namespace terrawatch;
+    node::NodeManager node(config::kDefaultFirmwareConfig.node, node::DeviceRole::FieldNode);
     protocol::PacketFactory factory(node, config::kDefaultFirmwareConfig.network);
     queue::PacketQueue queue;
     event::EventBus bus;

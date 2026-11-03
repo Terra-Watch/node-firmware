@@ -1,6 +1,6 @@
 #include "RouteFailureService.h"
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     bool RouteFailureService::begin(event::EventBus &eventBus)
     {
@@ -23,4 +23,4 @@ namespace jalari::routing
             eventBus_->publish({event::Type::ForwardingRouteNotFound, event.packet});
         }
     }
-} // namespace jalari::routing
+} // namespace terrawatch::routing

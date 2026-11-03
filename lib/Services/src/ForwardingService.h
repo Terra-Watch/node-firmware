@@ -5,10 +5,10 @@
 #include "IForwardingStrategy.h"
 #include "PacketQueue.h"
 
-namespace jalari::node { class NodeManager; }
-namespace jalari::services { class DtnStoreForwardService; }
+namespace terrawatch::node { class NodeManager; }
+namespace terrawatch::services { class DtnStoreForwardService; }
 
-namespace jalari::services
+namespace terrawatch::services
 {
     class IDtnStoreForwardSink
     {
@@ -35,4 +35,4 @@ namespace jalari::services
         event::EventBus &eventBus_;
         IDtnStoreForwardSink *dtnService_ = nullptr;
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

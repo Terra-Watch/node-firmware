@@ -4,7 +4,7 @@
 #include "TestCommandParser.h"
 
 int main() {
-    using namespace jalari::services;
+    using namespace terrawatch::services;
     TestCommand command;
     assert(parseTestCommand("SEND_DATA 2 HELLO", command));
     assert(command.type == TestCommandType::SendData && command.destinationId == 2U && command.count == 1U);

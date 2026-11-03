@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     RouteAdvertisementService::RouteAdvertisementService(
         std::uint8_t localNodeId, RouteTable &routeTable, neighbor::NeighborManager &neighborManager,
@@ -137,4 +137,4 @@ namespace jalari::routing
         return destinationId != 0U && destinationId != 0xFFU && destinationId != localNodeId_ &&
                metric != 0U && hopCount != 0U;
     }
-} // namespace jalari::routing
+} // namespace terrawatch::routing

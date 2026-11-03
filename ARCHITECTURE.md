@@ -1,8 +1,8 @@
-# Jalari BoatNode Architecture
+# TerraWatch field node architecture
 
 `main.cpp` is the composition root. It creates concrete ESP32 HAL adapters, configuration, and the application graph exactly once. It is the only place that selects ESP32 implementations.
 
-Application flow is `App -> IRadio`, `App -> PacketQueue -> BoatProtocol -> IRadio`; parsed frames are published as `EventBus` events. The current bus is synchronous and fixed-capacity, which keeps RAM use and execution ordering deterministic before an RTOS is introduced.
+Application flow is `App -> IRadio`, `App -> PacketQueue -> Protocol -> IRadio`; parsed frames are published as `EventBus` events. The current bus is synchronous and fixed-capacity, which keeps RAM use and execution ordering deterministic before an RTOS is introduced.
 
 Reliable unicast DATA handling is event-driven: `AckManager` observes received packets, queues acknowledgements, tracks up to eight sent DATA packets, and re-enqueues each timed-out packet at most three times. `NeighborService` observes heartbeats and maintains `NeighborManager`'s fixed-size table. Neither module accesses the radio directly.
 

@@ -6,7 +6,7 @@
 #include "IForwardingStrategy.h"
 #include "RouteTable.h"
 
-namespace jalari::forwarding
+namespace terrawatch::forwarding
 {
     class DynamicForwardingStrategy final : public IForwardingStrategy
     {
@@ -22,4 +22,4 @@ namespace jalari::forwarding
         const routing::RouteTable &routeTable_;
         const hal::IClock &clock_;
     };
-} // namespace jalari::forwarding
+} // namespace terrawatch::forwarding

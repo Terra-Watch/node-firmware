@@ -7,7 +7,7 @@
 #include "Constants.h"
 #include "Packet.h"
 
-namespace jalari::neighbor
+namespace terrawatch::neighbor
 {
     enum class MetricState : std::uint8_t { Unknown, Valid, Stale };
 
@@ -66,4 +66,4 @@ namespace jalari::neighbor
         static void addAcknowledgementObservation_(Neighbor &neighbor, bool success, std::uint32_t now);
         std::array<Neighbor, constants::kNeighborCapacity> neighbors_{};
     };
-} // namespace jalari::neighbor
+} // namespace terrawatch::neighbor

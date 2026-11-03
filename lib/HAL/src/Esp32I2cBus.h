@@ -2,7 +2,7 @@
 
 #include "II2cBus.h"
 
-namespace jalari::hal
+namespace terrawatch::hal
 {
     class Esp32I2cBus final : public II2cBus
     {
@@ -12,4 +12,4 @@ namespace jalari::hal
                        std::uint8_t *readData, std::size_t readSize) override;
         bool write(std::uint8_t address, const std::uint8_t *data, std::size_t size) override;
     };
-} // namespace jalari::hal
+} // namespace terrawatch::hal

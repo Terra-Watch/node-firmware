@@ -2,7 +2,7 @@
 
 #include "IConsole.h"
 
-namespace jalari::utils
+namespace terrawatch::utils
 {
 
     enum class LogLevel : unsigned char
@@ -15,8 +15,8 @@ namespace jalari::utils
         Off,
     };
 
-#ifndef JALARI_LOG_LEVEL
-#define JALARI_LOG_LEVEL 2
+#ifndef TW_LOG_LEVEL
+#define TW_LOG_LEVEL 2
 #endif
 
     class Logger
@@ -35,7 +35,7 @@ namespace jalari::utils
         hal::IConsole &console_;
     };
 
-} // namespace jalari::utils
+} // namespace terrawatch::utils
 
 #define LOG_TRACE(logger, message) (logger).trace(message)
 #define LOG_DEBUG(logger, message) (logger).debug(message)

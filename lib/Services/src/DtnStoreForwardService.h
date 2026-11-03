@@ -10,10 +10,10 @@
 #include "IForwardingStrategy.h"
 #include "Packet.h"
 
-namespace jalari::hal { class IClock; }
-namespace jalari::services { class ForwardingService; }
+namespace terrawatch::hal { class IClock; }
+namespace terrawatch::services { class ForwardingService; }
 
-namespace jalari::services
+namespace terrawatch::services
 {
     enum class DtnPriority : std::uint8_t
     {
@@ -56,4 +56,4 @@ namespace jalari::services
         const std::uint32_t queueLifetimeMs_;
         std::array<Entry, constants::kDtnQueueCapacity> entries_{};
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

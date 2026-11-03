@@ -7,7 +7,7 @@
 #include "PacketFactory.h"
 #include "RouteAdvertisementService.h"
 
-using namespace jalari;
+using namespace terrawatch;
 
 class Clock final : public hal::IClock {
 public:
@@ -33,10 +33,10 @@ static routing::RouteEntry lookup(routing::RouteTable &table, std::uint8_t desti
 
 int main() {
     config::NodeConfig aConfig{0x01U}, bConfig{0x02U}, cConfig{0x03U}, gatewayConfig{0xFEU};
-    node::NodeManager aNode(aConfig, node::DeviceRole::BoatNode);
-    node::NodeManager bNode(bConfig, node::DeviceRole::BoatNode);
-    node::NodeManager cNode(cConfig, node::DeviceRole::BoatNode);
-    node::NodeManager gatewayNode(gatewayConfig, node::DeviceRole::ShoreGateway);
+    node::NodeManager aNode(aConfig, node::DeviceRole::FieldNode);
+    node::NodeManager bNode(bConfig, node::DeviceRole::FieldNode);
+    node::NodeManager cNode(cConfig, node::DeviceRole::FieldNode);
+    node::NodeManager gatewayNode(gatewayConfig, node::DeviceRole::Gateway);
     const config::NetworkConfig network{};
     protocol::PacketFactory aFactory(aNode, network), bFactory(bNode, network), cFactory(cNode, network), gatewayFactory(gatewayNode, network);
 

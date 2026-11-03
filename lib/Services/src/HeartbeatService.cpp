@@ -2,7 +2,7 @@
 
 #include "IClock.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     HeartbeatService::HeartbeatService(const config::PowerConfig &config, protocol::PacketFactory &packetFactory,
                                        queue::PacketQueue &packetQueue, hal::IClock &clock)
@@ -44,4 +44,4 @@ namespace jalari::services
             eventBus_->publish({event::Type::HeartbeatSent, event.packet});
         }
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <cstring>
 
-namespace jalari::services
+namespace terrawatch::services
 {
     namespace
     {
@@ -57,6 +57,27 @@ namespace jalari::services
             return true;
         }
 
+        if (std::strcmp(command, "SEND_HEX") == 0)     // SEND_HEX <node id> <hex bytes>: send an exact payload, e.g. a station reading
+        {
+            char hex[constants::kMaxPayloadSize * 2U + 1U]{};
+            if (!token(cursor, hex, sizeof(hex))) return false;
+            const std::size_t digits = std::strlen(hex);
+            if (digits == 0U || digits % 2U != 0U) return false;
+            for (std::size_t i = 0U; i < digits; i += 2U)
+            {
+                const char pair[3] = {hex[i], hex[i + 1U], '\0'};
+                char *end = nullptr;
+                const unsigned long value = std::strtoul(pair, &end, 16);
+                if (end != pair + 2 || !std::isxdigit(static_cast<unsigned char>(pair[0])) || !std::isxdigit(static_cast<unsigned char>(pair[1]))) return false;
+                outCommand.payload[i / 2U] = static_cast<std::uint8_t>(value);
+            }
+            outCommand.type = TestCommandType::SendData;
+            outCommand.count = 1U;
+            outCommand.destinationId = static_cast<std::uint8_t>(destinationValue);
+            outCommand.payloadSize = digits / 2U;
+            return true;
+        }
+
         if (std::strcmp(command, "SEND_DATA_COUNT") != 0 || !token(cursor, count, sizeof(count))) return false;
         unsigned long countValue = 0U;
         if (!number(count, constants::kTestDataCountMaximum, countValue) || countValue == 0U) return false;
@@ -71,4 +92,4 @@ namespace jalari::services
         std::memcpy(outCommand.payload, cursor, payloadSize);
         return true;
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

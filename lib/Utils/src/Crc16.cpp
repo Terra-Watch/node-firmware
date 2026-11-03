@@ -1,6 +1,6 @@
 #include "Crc16.h"
 
-namespace jalari::utils
+namespace terrawatch::utils
 {
 
     std::uint16_t Crc16::computeCcitt(const std::uint8_t *data, std::size_t length)
@@ -25,4 +25,4 @@ namespace jalari::utils
         return crc;
     }
 
-} // namespace jalari::utils
+} // namespace terrawatch::utils

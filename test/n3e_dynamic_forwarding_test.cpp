@@ -11,31 +11,31 @@
 #include "PacketQueue.h"
 #include "RouteTable.h"
 
-class Clock final : public jalari::hal::IClock {
+class Clock final : public terrawatch::hal::IClock {
 public:
     std::uint32_t millis() const override { return now; }
     std::uint32_t now = 100U;
 };
 
-class Listener final : public jalari::event::IEventListener {
+class Listener final : public terrawatch::event::IEventListener {
 public:
-    void onEvent(const jalari::event::Event &event) override {
-        if (event.type == jalari::event::Type::ForwardingRouteNotFound) ++routeMisses;
-        if (event.type == jalari::event::Type::PacketDropped) ++drops;
+    void onEvent(const terrawatch::event::Event &event) override {
+        if (event.type == terrawatch::event::Type::ForwardingRouteNotFound) ++routeMisses;
+        if (event.type == terrawatch::event::Type::PacketDropped) ++drops;
     }
     int routeMisses = 0;
     int drops = 0;
 };
 
-static jalari::config::NetworkConfig network() {
-    jalari::config::NetworkConfig config{};
+static terrawatch::config::NetworkConfig network() {
+    terrawatch::config::NetworkConfig config{};
     config.maximumHopCount = 16U;
     return config;
 }
 
-static jalari::protocol::Packet dataPacket() {
-    jalari::protocol::Packet packet;
-    packet.type = jalari::protocol::PacketType::Data;
+static terrawatch::protocol::Packet dataPacket() {
+    terrawatch::protocol::Packet packet;
+    packet.type = terrawatch::protocol::PacketType::Data;
     packet.sourceId = 0x01U;
     packet.destinationId = 0xFEU;
     packet.previousHopId = 0x01U;
@@ -47,7 +47,7 @@ static jalari::protocol::Packet dataPacket() {
 }
 
 int main() {
-    using namespace jalari;
+    using namespace terrawatch;
     const auto config = network();
     Clock clock;
 
@@ -56,9 +56,9 @@ int main() {
     assert(bRoutes.updateRoute(0xFEU, 0x03U, 200U, 2U, 1U, clock.now));
     assert(cRoutes.updateRoute(0xFEU, 0xFEU, 300U, 1U, 1U, clock.now));
 
-    node::NodeManager aNode({0x01U}, node::DeviceRole::BoatNode);
-    node::NodeManager bNode({0x02U}, node::DeviceRole::BoatNode);
-    node::NodeManager cNode({0x03U}, node::DeviceRole::BoatNode);
+    node::NodeManager aNode({0x01U}, node::DeviceRole::FieldNode);
+    node::NodeManager bNode({0x02U}, node::DeviceRole::FieldNode);
+    node::NodeManager cNode({0x03U}, node::DeviceRole::FieldNode);
     forwarding::DynamicForwardingStrategy aStrategy(aNode.id(), aRoutes, clock);
     forwarding::DynamicForwardingStrategy bStrategy(bNode.id(), bRoutes, clock);
     forwarding::DynamicForwardingStrategy cStrategy(cNode.id(), cRoutes, clock);

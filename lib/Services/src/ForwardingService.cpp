@@ -2,7 +2,7 @@
 
 #include "NodeManager.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     ForwardingService::ForwardingService(const config::NetworkConfig &config, const node::NodeManager &node,
                                          const forwarding::IForwardingStrategy &strategy,
@@ -47,4 +47,4 @@ namespace jalari::services
         eventBus_.publish({type, packet});
         if (type == event::Type::TtlExpired) eventBus_.publish({event::Type::PacketDropped, packet});
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

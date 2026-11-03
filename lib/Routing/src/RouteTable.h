@@ -7,7 +7,7 @@
 #include "Constants.h"
 #include "NeighborManager.h"
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     struct RouteEntry
     {
@@ -59,4 +59,4 @@ namespace jalari::routing
         const std::uint32_t routeLifetimeMs_;
         std::array<RouteEntry, constants::kRouteTableCapacity> routes_{};
     };
-} // namespace jalari::routing
+} // namespace terrawatch::routing

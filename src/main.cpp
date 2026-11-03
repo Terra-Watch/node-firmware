@@ -1,10 +1,11 @@
+#include <Arduino.h>
+
 #include "App.h"
 #include "Config.h"
 #include "Esp32Clock.h"
 #include "Esp32Delay.h"
 #include "Esp32SerialConsole.h"
 #include "Esp32SpiBus.h"
-#include "Esp32I2cBus.h"
 #include "EventBus.h"
 #include "ForwardingService.h"
 #include "LoRaDriver.h"
@@ -18,52 +19,56 @@
 #include "AckManager.h"
 #include "NeighborService.h"
 #include "ReliableLinkService.h"
-#include "CrewMessageService.h"
 #include "DynamicForwardingStrategy.h"
 #include "RouteTable.h"
 #include "RouteAdvertisementService.h"
 #include "RouteFailureService.h"
 #include "DtnStoreForwardService.h"
 #include "TelemetryService.h"
-#include "Ds3231.h"
+#include "Bme680.h"
+#include "Pms5003.h"
+#include "AcousticMonitor.h"
+
+#ifndef TW_ACOUSTIC
+#define TW_ACOUSTIC 1 // 0 = leave out the INMP441 + MAX4466 sound module
+#endif
 
 namespace
 {
     struct FirmwareComposition
     {
-        jalari::hal::Esp32SerialConsole console;
-        jalari::utils::Logger logger{console};
-        jalari::hal::Esp32Clock clock;
-        jalari::hal::Esp32Delay delay;
-        jalari::hal::Esp32SpiBus spiBus;
-        jalari::hal::Esp32I2cBus i2cBus;
-        jalari::sensors::Ds3231 rtc{i2cBus};
-        jalari::node::NodeManager node{jalari::config::kDefaultFirmwareConfig.node, jalari::node::DeviceRole::BoatNode};
-        jalari::lora::LoRaDriver radio{jalari::config::kDefaultFirmwareConfig.radio, spiBus};
-        jalari::protocol::PacketFactory packetFactory{node, jalari::config::kDefaultFirmwareConfig.network};
-        jalari::queue::PacketQueue packetQueue;
-        jalari::event::EventBus eventBus;
-        jalari::routing::RouteTable routeTable{node.id()};
-        jalari::forwarding::DynamicForwardingStrategy forwardingStrategy{node.id(), routeTable, clock};
-        jalari::neighbor::NeighborManager neighborManager;
-        jalari::reliable::AckManager ackManager{jalari::config::kDefaultFirmwareConfig.reliability, node, packetFactory, packetQueue, clock};
-        jalari::services::HeartbeatService heartbeatService{jalari::config::kDefaultFirmwareConfig.power, packetFactory, packetQueue, clock};
-        jalari::services::HeartbeatAckManager heartbeatAckManager{clock, logger, packetQueue, node};
-        jalari::services::NeighborService neighborService{jalari::config::kDefaultFirmwareConfig.network, neighborManager, clock};
-        jalari::services::ReliableLinkService reliableLinkService{ackManager};
-        jalari::services::TelemetryService telemetryService{jalari::config::kDefaultFirmwareConfig.power,
-                                                            jalari::config::kDefaultFirmwareConfig.sensors, rtc,
+        terrawatch::hal::Esp32SerialConsole console;
+        terrawatch::utils::Logger logger{console};
+        terrawatch::hal::Esp32Clock clock;
+        terrawatch::hal::Esp32Delay delay;
+        terrawatch::hal::Esp32SpiBus spiBus;
+        terrawatch::sensors::Bme680 bme;
+        terrawatch::sensors::Pms5003 pms;
+        terrawatch::node::NodeManager node{terrawatch::config::kDefaultFirmwareConfig.node, terrawatch::node::DeviceRole::FieldNode};
+        terrawatch::lora::LoRaDriver radio{terrawatch::config::kDefaultFirmwareConfig.radio, spiBus};
+        terrawatch::protocol::PacketFactory packetFactory{node, terrawatch::config::kDefaultFirmwareConfig.network};
+        terrawatch::queue::PacketQueue packetQueue;
+        terrawatch::event::EventBus eventBus;
+        terrawatch::routing::RouteTable routeTable{node.id()};
+        terrawatch::forwarding::DynamicForwardingStrategy forwardingStrategy{node.id(), routeTable, clock};
+        terrawatch::neighbor::NeighborManager neighborManager;
+        terrawatch::reliable::AckManager ackManager{terrawatch::config::kDefaultFirmwareConfig.reliability, node, packetFactory, packetQueue, clock};
+        terrawatch::services::HeartbeatService heartbeatService{terrawatch::config::kDefaultFirmwareConfig.power, packetFactory, packetQueue, clock};
+        terrawatch::services::HeartbeatAckManager heartbeatAckManager{clock, logger, packetQueue, node};
+        terrawatch::services::NeighborService neighborService{terrawatch::config::kDefaultFirmwareConfig.network, neighborManager, clock};
+        terrawatch::services::ReliableLinkService reliableLinkService{ackManager};
+        terrawatch::services::TelemetryService telemetryService{terrawatch::config::kDefaultFirmwareConfig.power,
+                                                            terrawatch::config::kDefaultFirmwareConfig.sensors, bme, pms,
                                                             packetFactory, packetQueue, clock, logger};
-        jalari::services::ForwardingService forwardingService{jalari::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
-        jalari::services::CrewMessageService crewMessageService{packetFactory, packetQueue};
-        jalari::routing::RouteAdvertisementService routeAdvertisementService{
+        terrawatch::services::ForwardingService forwardingService{terrawatch::config::kDefaultFirmwareConfig.network, node, forwardingStrategy, packetQueue, eventBus};
+        terrawatch::routing::RouteAdvertisementService routeAdvertisementService{
             node.id(), routeTable, neighborManager, packetFactory, packetQueue, clock,
-            jalari::config::kDefaultFirmwareConfig.network.neighborTimeoutMs};
-        jalari::routing::RouteFailureService routeFailureService{routeTable};
-        jalari::services::DtnStoreForwardService dtnService{forwardingStrategy, forwardingService, clock, eventBus};
-        jalari::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager,
-                        neighborService, reliableLinkService, telemetryService, forwardingService, routeAdvertisementService,
-                        routeFailureService, dtnService, crewMessageService, logger, packetFactory, console};
+            terrawatch::config::kDefaultFirmwareConfig.network.neighborTimeoutMs};
+        terrawatch::routing::RouteFailureService routeFailureService{routeTable};
+        terrawatch::services::DtnStoreForwardService dtnService{forwardingStrategy, forwardingService, clock, eventBus};
+        terrawatch::App app{radio, node, packetQueue, eventBus, heartbeatService, heartbeatAckManager,
+                        neighborService, reliableLinkService, &telemetryService, forwardingService, routeAdvertisementService,
+                        routeFailureService, dtnService, logger, packetFactory, console};
     };
     FirmwareComposition &firmware() { static FirmwareComposition composition; return composition; }
 }
@@ -79,9 +84,15 @@ void setup()
             firmware().delay.milliseconds(1000U);
         }
     }
+#if TW_ACOUSTIC
+    static terrawatch::acoustic::AcousticMonitor acoustic;
+    if (!acoustic.begin()) Serial.println("[ACOUSTIC] module not started");
+#endif
 }
 
 void loop()
 {
     firmware().app.update();
 }
+
+

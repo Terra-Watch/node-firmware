@@ -4,14 +4,14 @@
 
 #include "Config.h"
 
-namespace jalari::node
+namespace terrawatch::node
 {
 
     enum class DeviceRole : std::uint8_t
     {
         Unknown = 0,
-        BoatNode = 1,
-        ShoreGateway = 2,
+        FieldNode = 1,
+        Gateway = 2,
     };
 
     enum class NodeStatus : std::uint8_t
@@ -38,4 +38,4 @@ namespace jalari::node
         NodeStatus status_ = NodeStatus::Booting;
     };
 
-} // namespace jalari::node
+} // namespace terrawatch::node

@@ -11,24 +11,24 @@
 #include "PacketQueue.h"
 #include "StaticForwardingStrategy.h"
 
-class Listener final : public jalari::event::IEventListener {
+class Listener final : public terrawatch::event::IEventListener {
 public:
-    void onEvent(const jalari::event::Event &event) override {
-        if (event.type == jalari::event::Type::ForwardingRouteNotFound) ++routeMisses;
-        if (event.type == jalari::event::Type::PacketDropped) ++drops;
+    void onEvent(const terrawatch::event::Event &event) override {
+        if (event.type == terrawatch::event::Type::ForwardingRouteNotFound) ++routeMisses;
+        if (event.type == terrawatch::event::Type::PacketDropped) ++drops;
     }
     int routeMisses = 0;
     int drops = 0;
 };
 
-class Clock final : public jalari::hal::IClock {
+class Clock final : public terrawatch::hal::IClock {
 public:
     std::uint32_t millis() const override { return now; }
     std::uint32_t now = 0;
 };
 
-static jalari::config::NetworkConfig routeTo(std::uint8_t nextHop) {
-    jalari::config::NetworkConfig config{};
+static terrawatch::config::NetworkConfig routeTo(std::uint8_t nextHop) {
+    terrawatch::config::NetworkConfig config{};
     config.defaultTtl = 8U;
     config.maximumHopCount = 16U;
     config.staticRoutes[0] = {0xFEU, nextHop};
@@ -37,11 +37,11 @@ static jalari::config::NetworkConfig routeTo(std::uint8_t nextHop) {
 }
 
 int main() {
-    using namespace jalari;
+    using namespace terrawatch;
     config::NodeConfig aConfig{0x01U}, bConfig{0x02U}, cConfig{0x03U};
-    node::NodeManager aNode(aConfig, node::DeviceRole::BoatNode);
-    node::NodeManager bNode(bConfig, node::DeviceRole::BoatNode);
-    node::NodeManager cNode(cConfig, node::DeviceRole::BoatNode);
+    node::NodeManager aNode(aConfig, node::DeviceRole::FieldNode);
+    node::NodeManager bNode(bConfig, node::DeviceRole::FieldNode);
+    node::NodeManager cNode(cConfig, node::DeviceRole::FieldNode);
     const auto aRoutes = routeTo(0x02U);
     const auto bRoutes = routeTo(0x03U);
     const auto cRoutes = routeTo(0xFEU);

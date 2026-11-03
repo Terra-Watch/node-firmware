@@ -11,9 +11,9 @@
 #include "PacketFactory.h"
 #include "PacketQueue.h"
 
-namespace jalari::node { class NodeManager; }
+namespace terrawatch::node { class NodeManager; }
 
-namespace jalari::reliable
+namespace terrawatch::reliable
 {
     class DuplicatePacketCache
     {
@@ -68,4 +68,4 @@ namespace jalari::reliable
         DuplicatePacketCache duplicates_;
         std::array<PendingTransmission, constants::kPendingTransmissionCapacity> pending_{};
     };
-} // namespace jalari::reliable
+} // namespace terrawatch::reliable

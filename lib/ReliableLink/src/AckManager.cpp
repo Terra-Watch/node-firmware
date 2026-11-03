@@ -2,7 +2,7 @@
 
 #include "NodeManager.h"
 
-namespace jalari::reliable
+namespace terrawatch::reliable
 {
     bool DuplicatePacketCache::isDuplicateAndRemember(std::uint8_t sourceId, std::uint16_t sequenceNumber,
                                                       std::uint32_t nowMs, std::uint32_t expiryMs)
@@ -156,10 +156,10 @@ namespace jalari::reliable
         const std::uint16_t acknowledgedSequence = static_cast<std::uint16_t>(packet.payload[0]) |
                                                    (static_cast<std::uint16_t>(packet.payload[1]) << 8U);
         PendingTransmission *pending = findPending_(acknowledgedSequence);
+        // The final destination may ack directly even when a static route names a relay as next hop.
         const bool expectedNextHop = pending != nullptr &&
-                                     (pending->packet.nextHopId != 0U
-                                          ? pending->packet.nextHopId == packet.sourceId
-                                          : pending->packet.destinationId == packet.sourceId);
+                                     (pending->packet.destinationId == packet.sourceId ||
+                                      (pending->packet.nextHopId != 0U && pending->packet.nextHopId == packet.sourceId));
         if (expectedNextHop)
         {
             pending->active = false;
@@ -181,4 +181,4 @@ namespace jalari::reliable
         for (PendingTransmission &pending : pending_) if (!pending.active) return &pending;
         return nullptr;
     }
-} // namespace jalari::reliable
+} // namespace terrawatch::reliable

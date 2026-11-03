@@ -11,7 +11,7 @@
 #include "PacketQueue.h"
 #include "RouteTable.h"
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     class RouteAdvertisementService final : public event::IEventListener
     {
@@ -62,4 +62,4 @@ namespace jalari::routing
         std::array<AdvertisementState, constants::kRouteTableCapacity> advertisements_{};
         std::size_t nextDuplicate_ = 0;
     };
-} // namespace jalari::routing
+} // namespace terrawatch::routing

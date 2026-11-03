@@ -2,7 +2,7 @@
 
 #include "Packet.h"
 
-namespace jalari::forwarding
+namespace terrawatch::forwarding
 {
     enum class ForwardDecision : unsigned char
     {
@@ -18,4 +18,4 @@ namespace jalari::forwarding
         virtual ~IForwardingStrategy() = default;
         virtual ForwardDecision decide(const protocol::Packet &packet, std::uint8_t &nextHopId) const = 0;
     };
-} // namespace jalari::forwarding
+} // namespace terrawatch::forwarding

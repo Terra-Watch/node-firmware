@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace jalari::utils
+namespace terrawatch::utils
 {
 
     class BufferUtils
@@ -28,4 +28,4 @@ namespace jalari::utils
         }
     };
 
-} // namespace jalari::utils
+} // namespace terrawatch::utils

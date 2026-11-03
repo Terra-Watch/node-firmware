@@ -11,25 +11,25 @@
 #include "RouteFailureService.h"
 #include "RouteTable.h"
 
-class Clock final : public jalari::hal::IClock {
+class Clock final : public terrawatch::hal::IClock {
 public:
     std::uint32_t millis() const override { return now; }
     std::uint32_t now = 100U;
 };
 
-class Listener final : public jalari::event::IEventListener {
+class Listener final : public terrawatch::event::IEventListener {
 public:
-    void onEvent(const jalari::event::Event &event) override {
-        if (event.type == jalari::event::Type::RouteInvalidated) ++invalidated;
-        if (event.type == jalari::event::Type::ForwardingRouteNotFound) ++unavailable;
+    void onEvent(const terrawatch::event::Event &event) override {
+        if (event.type == terrawatch::event::Type::RouteInvalidated) ++invalidated;
+        if (event.type == terrawatch::event::Type::ForwardingRouteNotFound) ++unavailable;
     }
     int invalidated = 0;
     int unavailable = 0;
 };
 
-static jalari::protocol::Packet makeData(std::uint16_t sequence = 7U, std::uint8_t ttl = 8U) {
-    jalari::protocol::Packet packet;
-    packet.type = jalari::protocol::PacketType::Data;
+static terrawatch::protocol::Packet makeData(std::uint16_t sequence = 7U, std::uint8_t ttl = 8U) {
+    terrawatch::protocol::Packet packet;
+    packet.type = terrawatch::protocol::PacketType::Data;
     packet.sourceId = 0x01U;
     packet.destinationId = 0xFEU;
     packet.previousHopId = 0x01U;
@@ -41,7 +41,7 @@ static jalari::protocol::Packet makeData(std::uint16_t sequence = 7U, std::uint8
 }
 
 int main() {
-    using namespace jalari;
+    using namespace terrawatch;
     Clock clock;
     routing::RouteTable routes(0x01U, 1000U);
     assert(routes.updateRoute(0xFEU, 0x02U, 100U, 3U, 1U, clock.now));
@@ -78,7 +78,7 @@ int main() {
     config::NetworkConfig config{};
     config.maximumHopCount = 16U;
     config::NodeConfig nodeConfig{0x01U};
-    node::NodeManager node(nodeConfig, node::DeviceRole::BoatNode);
+    node::NodeManager node(nodeConfig, node::DeviceRole::FieldNode);
     queue::PacketQueue queue;
     event::EventBus forwardingBus;
     services::ForwardingService forwarding(config, node, strategy, queue, forwardingBus);

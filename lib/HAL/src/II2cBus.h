@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace jalari::hal
+namespace terrawatch::hal
 {
     class II2cBus
     {
@@ -14,4 +14,4 @@ namespace jalari::hal
                                std::uint8_t *readData, std::size_t readSize) = 0;
         virtual bool write(std::uint8_t address, const std::uint8_t *data, std::size_t size) = 0;
     };
-} // namespace jalari::hal
+} // namespace terrawatch::hal

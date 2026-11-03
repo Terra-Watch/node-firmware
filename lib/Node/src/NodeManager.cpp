@@ -2,7 +2,7 @@
 
 #include "Version.h"
 
-namespace jalari::node
+namespace terrawatch::node
 {
 
     NodeManager::NodeManager(const config::NodeConfig &config, DeviceRole role)
@@ -16,4 +16,4 @@ namespace jalari::node
     const char *NodeManager::firmwareVersion() const { return version::kFirmwareVersion; }
     void NodeManager::setStatus(NodeStatus status) { status_ = status; }
 
-} // namespace jalari::node
+} // namespace terrawatch::node

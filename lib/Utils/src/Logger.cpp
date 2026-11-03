@@ -1,11 +1,16 @@
 #include "Logger.h"
 
-namespace jalari::utils
+// Console speed. The NodeMCU-32S relay logs at 921600 so that a burst of log lines ends before the radio's reply arrives (slower logging corrupts reception on that board).
+#ifndef TW_CONSOLE_BAUD
+#define TW_CONSOLE_BAUD 115200U
+#endif
+
+namespace terrawatch::utils
 {
 
     Logger::Logger(hal::IConsole &console) : console_(console)
     {
-        console_.begin(115200U);
+        console_.begin(TW_CONSOLE_BAUD);
     }
     void Logger::begin(unsigned long baudRate) {}
     void Logger::trace(const char *message) const { log_(LogLevel::Trace, "TRACE", message); }
@@ -16,8 +21,8 @@ namespace jalari::utils
 
     void Logger::log_(LogLevel level, const char *tag, const char *message) const
     {
-        if (static_cast<unsigned char>(level) < JALARI_LOG_LEVEL) return;
+        if (static_cast<unsigned char>(level) < TW_LOG_LEVEL) return;
         console_.print("["); console_.print(tag); console_.print("] "); console_.println(message);
     }
 
-} // namespace jalari::utils
+} // namespace terrawatch::utils

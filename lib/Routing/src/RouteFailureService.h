@@ -3,7 +3,7 @@
 #include "EventBus.h"
 #include "RouteTable.h"
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     class RouteFailureService final : public event::IEventListener
     {
@@ -16,4 +16,4 @@ namespace jalari::routing
         RouteTable &routeTable_;
         event::EventBus *eventBus_ = nullptr;
     };
-} // namespace jalari::routing
+} // namespace terrawatch::routing

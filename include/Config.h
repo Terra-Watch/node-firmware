@@ -4,14 +4,14 @@
 #include <cstdint>
 #include <array>
 
-namespace jalari::config
+namespace terrawatch::config
 {
 
-#ifndef JALARI_NODE_ID
-#define JALARI_NODE_ID 1U
+#ifndef TW_NODE_ID
+#define TW_NODE_ID 1U
 #endif
-#ifndef JALARI_TEST_MODE
-#define JALARI_TEST_MODE 0
+#ifndef TW_TEST_MODE
+#define TW_TEST_MODE 0
 #endif
 
     struct RadioConfig
@@ -48,6 +48,9 @@ namespace jalari::config
     {
         int i2cSdaPin;
         int i2cSclPin;
+        int pmsRxPin; // ESP RX <- PMS5003 TX
+        int pmsTxPin;
+        int pmsSetPin; // low = fan asleep; RESET left unconnected
     };
 
     struct ReliabilityConfig
@@ -92,16 +95,26 @@ namespace jalari::config
         const NetworkConfig network;
     };
 
+    // LoRa pins. Defaults are the ESP32-S3 wiring; another board overrides them with -D TW_LORA_* in platformio.ini (see ../relay-firmware).
+#ifndef TW_LORA_SCK
+#define TW_LORA_SCK 12
+#define TW_LORA_MISO 13
+#define TW_LORA_MOSI 11
+#define TW_LORA_CS 10
+#define TW_LORA_RST 9
+#define TW_LORA_DIO0 14
+#endif
+
     constexpr NetworkConfig kDefaultNetworkConfig(8U, 16U, 30000U, 8U, 0xFEU, 0x02U);
 
     constexpr FirmwareConfig kDefaultFirmwareConfig{
-        {433000000L, 12, 13, 11, 10, 9, 14},
-        {static_cast<std::uint8_t>(JALARI_NODE_ID)},
+        {433000000L, TW_LORA_SCK, TW_LORA_MISO, TW_LORA_MOSI, TW_LORA_CS, TW_LORA_RST, TW_LORA_DIO0},
+        {static_cast<std::uint8_t>(TW_NODE_ID)},
         {0xA5U, 4U, 48U, 255U},
-        {2000U, 5000U},
-        {21, 18},
-        {1000U, 3U},
+        {10000U, 15000U},
+        {17, 18, 16, 15, 21}, // I2C SDA, SCL (not 20: that is USB D+); PMS5003 RX, TX, SET
+        {2500U, 3U},
         kDefaultNetworkConfig,
     };
 
-} // namespace jalari::config
+} // namespace terrawatch::config

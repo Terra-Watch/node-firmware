@@ -1,6 +1,6 @@
 #include "StaticForwardingStrategy.h"
 
-namespace jalari::forwarding
+namespace terrawatch::forwarding
 {
     ForwardDecision StaticForwardingStrategy::decide(const protocol::Packet &packet,
                                                       std::uint8_t &nextHopId) const
@@ -17,4 +17,4 @@ namespace jalari::forwarding
         }
         return ForwardDecision::RouteNotFound;
     }
-} // namespace jalari::forwarding
+} // namespace terrawatch::forwarding

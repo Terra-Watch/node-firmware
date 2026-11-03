@@ -2,10 +2,10 @@
 
 #include "Packet.h"
 
-namespace jalari::event { class EventBus; }
-namespace jalari::reliable { class AckManager; }
+namespace terrawatch::event { class EventBus; }
+namespace terrawatch::reliable { class AckManager; }
 
-namespace jalari::services
+namespace terrawatch::services
 {
     class ReliableLinkService
     {
@@ -20,4 +20,4 @@ namespace jalari::services
     private:
         reliable::AckManager &ackManager_;
     };
-} // namespace jalari::services
+} // namespace terrawatch::services

@@ -1,7 +1,7 @@
 #include "HeartbeatAckManager.h"
 #include <cstdio>
 
-namespace jalari::services
+namespace terrawatch::services
 {
     HeartbeatAckManager::HeartbeatAckManager(hal::IClock &clock, utils::Logger &logger, queue::PacketQueue &packetQueue,
                                              const node::NodeManager &node)
@@ -110,4 +110,4 @@ namespace jalari::services
             }
         }
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

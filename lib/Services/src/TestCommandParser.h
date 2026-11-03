@@ -5,7 +5,7 @@
 
 #include "Constants.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     enum class TestCommandType : std::uint8_t { Invalid, SendData, SendDataCount };
 
@@ -19,4 +19,4 @@ namespace jalari::services
     };
 
     bool parseTestCommand(const char *line, TestCommand &outCommand);
-} // namespace jalari::services
+} // namespace terrawatch::services

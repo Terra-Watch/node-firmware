@@ -1,4 +1,8 @@
 #include "App.h"
+
+#ifndef TW_HEARTBEAT
+#define TW_HEARTBEAT 1 // 0 = do not transmit heartbeats
+#endif
 #include <Arduino.h>
 
 #include <array>
@@ -17,7 +21,6 @@
 #include "Version.h"
 
 #include "HeartbeatAckManager.h"
-#include "CrewMessageService.h"
 #include "RouteAdvertisementService.h"
 #include "RouteFailureService.h"
 #include "DtnStoreForwardService.h"
@@ -25,21 +28,21 @@
 #include "TestCommandParser.h"
 #include "TelemetryService.h"
 
-namespace jalari
+namespace terrawatch
 {
     App::App(radio::IRadio &radio, node::NodeManager &node, queue::PacketQueue &packetQueue, event::EventBus &eventBus,
              services::HeartbeatService &heartbeatService, services::HeartbeatAckManager &heartbeatAckManager,
              services::NeighborService &neighborService, services::ReliableLinkService &reliableLinkService,
-             services::TelemetryService &telemetryService,
+             services::TelemetryService *telemetryService,
              services::ForwardingService &forwardingService, routing::RouteAdvertisementService &routeAdvertisementService,
              routing::RouteFailureService &routeFailureService, services::DtnStoreForwardService &dtnService,
-             services::CrewMessageService &crewMessageService, utils::Logger &logger,
+             utils::Logger &logger,
              protocol::PacketFactory &packetFactory, hal::IConsole &console)
         : radio_(radio), node_(node), packetQueue_(packetQueue), eventBus_(eventBus), heartbeatService_(heartbeatService),
           heartbeatAckManager_(heartbeatAckManager), neighborService_(neighborService),
           reliableLinkService_(reliableLinkService), telemetryService_(telemetryService), forwardingService_(forwardingService),
           routeAdvertisementService_(routeAdvertisementService), routeFailureService_(routeFailureService),
-          dtnService_(dtnService), crewMessageService_(crewMessageService), logger_(logger),
+          dtnService_(dtnService), logger_(logger),
           packetFactory_(packetFactory), console_(console) {}
 
     bool App::begin()
@@ -51,7 +54,7 @@ namespace jalari
         LOG_INFO(logger_, version::kFirmwareVersion);
         LOG_INFO(logger_, "================================");
         if (!eventBus_.subscribe(*this) || !heartbeatService_.begin(eventBus_) ||
-            !neighborService_.begin(eventBus_) || !reliableLinkService_.begin(eventBus_) || !crewMessageService_.begin())
+            !neighborService_.begin(eventBus_) || !reliableLinkService_.begin(eventBus_))
         {
             LOG_ERROR(logger_, "Event bus subscription failed");
             return false;
@@ -72,7 +75,7 @@ namespace jalari
             eventBus_.publish({event::Type::RadioError});
             return false;
         }
-        if (!telemetryService_.begin())
+        if (telemetryService_ != nullptr && !telemetryService_->begin())
         {
             node_.setStatus(node::NodeStatus::Fault);
             return false;
@@ -87,12 +90,15 @@ namespace jalari
     {
         if (!initialized_) return;
         processIncoming_();
-        processRtcCommand_();
         processTestCommands_();
         reliableLinkService_.update();
+#if TW_HEARTBEAT
         heartbeatService_.update();
-        telemetryService_.update();
+#endif
+        if (telemetryService_ != nullptr) telemetryService_->update();
+#if TW_HEARTBEAT
         heartbeatAckManager_.update();
+#endif
         neighborService_.update();
         routeAdvertisementService_.update();
         dtnService_.update();
@@ -222,7 +228,7 @@ namespace jalari
 
     void App::processTestCommands_()
     {
-#if JALARI_TEST_MODE
+#if TW_TEST_MODE
         if (testRemainingCount_ > 0U)
         {
             if (!packetQueue_.empty() || !reliableLinkService_.readyForTestPacket()) return;
@@ -255,16 +261,6 @@ namespace jalari
         testRemainingCount_ = command.count;
         testPayloadSize_ = command.payloadSize;
         for (std::size_t index = 0; index < testPayloadSize_; ++index) testPayload_[index] = command.payload[index];
-#endif
-    }
-
-    void App::processRtcCommand_()
-    {
-#if !JALARI_TEST_MODE
-        char line[64]{};
-        if (!console_.readLine(line, sizeof(line))) return;
-        if (telemetryService_.setRtcFromCommand(line)) return;
-        LOG_WARN(logger_, "RTC_CMD_ERROR use: RTC SET YYYY-MM-DD HH:MM:SS");
 #endif
     }
 
@@ -323,4 +319,4 @@ namespace jalari
         default: break;
         }
     }
-} // namespace jalari
+} // namespace terrawatch

@@ -1,6 +1,6 @@
 #include "NeighborManager.h"
 
-namespace jalari::neighbor
+namespace terrawatch::neighbor
 {
     float Neighbor::acknowledgementSuccessRate() const
     {
@@ -158,4 +158,4 @@ namespace jalari::neighbor
         neighbor.nextAckSample = (neighbor.nextAckSample + 1U) % constants::kAckMetricWindowSize;
         neighbor.lastAckObservationMs = now;
     }
-} // namespace jalari::neighbor
+} // namespace terrawatch::neighbor

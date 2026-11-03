@@ -3,7 +3,7 @@
 #include "Config.h"
 #include "IForwardingStrategy.h"
 
-namespace jalari::forwarding
+namespace terrawatch::forwarding
 {
     class StaticForwardingStrategy final : public IForwardingStrategy
     {
@@ -14,4 +14,4 @@ namespace jalari::forwarding
     private:
         const config::NetworkConfig &config_;
     };
-} // namespace jalari::forwarding
+} // namespace terrawatch::forwarding

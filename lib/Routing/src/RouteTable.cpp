@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-namespace jalari::routing
+namespace terrawatch::routing
 {
     RouteTable::RouteTable(std::uint8_t localNodeId, std::uint32_t routeLifetimeMs)
         : localNodeId_(localNodeId), routeLifetimeMs_(routeLifetimeMs) {}
@@ -189,4 +189,4 @@ namespace jalari::routing
         }
         return victim;
     }
-} // namespace jalari::routing
+} // namespace terrawatch::routing

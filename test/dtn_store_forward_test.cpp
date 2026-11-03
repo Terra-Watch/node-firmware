@@ -12,27 +12,27 @@
 #include "PacketQueue.h"
 #include "RouteTable.h"
 
-class Clock final : public jalari::hal::IClock {
+class Clock final : public terrawatch::hal::IClock {
 public:
     std::uint32_t millis() const override { return now; }
     std::uint32_t now = 100U;
 };
 
-class Listener final : public jalari::event::IEventListener {
+class Listener final : public terrawatch::event::IEventListener {
 public:
-    void onEvent(const jalari::event::Event &event) override {
-        if (event.type == jalari::event::Type::DtnPacketQueued) ++queued;
-        if (event.type == jalari::event::Type::DtnPacketDequeued) ++dequeued;
-        if (event.type == jalari::event::Type::DtnPacketExpired) ++expired;
-        if (event.type == jalari::event::Type::DtnPacketDropped) ++dropped;
-        if (event.type == jalari::event::Type::DtnPacketForwarded) ++forwarded;
+    void onEvent(const terrawatch::event::Event &event) override {
+        if (event.type == terrawatch::event::Type::DtnPacketQueued) ++queued;
+        if (event.type == terrawatch::event::Type::DtnPacketDequeued) ++dequeued;
+        if (event.type == terrawatch::event::Type::DtnPacketExpired) ++expired;
+        if (event.type == terrawatch::event::Type::DtnPacketDropped) ++dropped;
+        if (event.type == terrawatch::event::Type::DtnPacketForwarded) ++forwarded;
     }
     int queued = 0, dequeued = 0, expired = 0, dropped = 0, forwarded = 0;
 };
 
-static jalari::protocol::Packet packet(std::uint16_t sequence, std::uint8_t destination = 0xFEU) {
-    jalari::protocol::Packet result;
-    result.type = jalari::protocol::PacketType::Data;
+static terrawatch::protocol::Packet packet(std::uint16_t sequence, std::uint8_t destination = 0xFEU) {
+    terrawatch::protocol::Packet result;
+    result.type = terrawatch::protocol::PacketType::Data;
     result.sourceId = 0x01U;
     result.destinationId = destination;
     result.previousHopId = 0x01U;
@@ -45,11 +45,11 @@ static jalari::protocol::Packet packet(std::uint16_t sequence, std::uint8_t dest
 }
 
 int main() {
-    using namespace jalari;
+    using namespace terrawatch;
     config::NetworkConfig config{};
     config.maximumHopCount = 16U;
     config::NodeConfig nodeConfig{0x01U};
-    node::NodeManager node(nodeConfig, node::DeviceRole::BoatNode);
+    node::NodeManager node(nodeConfig, node::DeviceRole::FieldNode);
     Clock clock;
     routing::RouteTable routes(node.id(), 1000U);
     forwarding::DynamicForwardingStrategy strategy(node.id(), routes, clock);

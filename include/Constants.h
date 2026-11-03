@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-namespace jalari::constants
+namespace terrawatch::constants
 {
 
     constexpr std::size_t kPacketHeaderSize = 11;
@@ -34,4 +34,4 @@ namespace jalari::constants
     constexpr std::size_t kTestCommandLineCapacity = 96U;
     constexpr std::uint16_t kTestDataCountMaximum = 100U;
 
-} // namespace jalari::constants
+} // namespace terrawatch::constants

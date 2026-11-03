@@ -3,7 +3,7 @@
 #include "ForwardingService.h"
 #include "IClock.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     DtnStoreForwardService::DtnStoreForwardService(
         const forwarding::IForwardingStrategy &strategy, ForwardingService &forwardingService,
@@ -133,4 +133,4 @@ namespace jalari::services
     {
         eventBus_.publish({type, packet});
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

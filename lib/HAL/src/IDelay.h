@@ -1,2 +1,2 @@
 #pragma once
-namespace jalari::hal { class IDelay { public: virtual ~IDelay() = default; virtual void milliseconds(unsigned long duration) const = 0; }; }
+namespace terrawatch::hal { class IDelay { public: virtual ~IDelay() = default; virtual void milliseconds(unsigned long duration) const = 0; }; }

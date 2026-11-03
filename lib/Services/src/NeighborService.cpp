@@ -2,7 +2,7 @@
 
 #include "IClock.h"
 
-namespace jalari::services
+namespace terrawatch::services
 {
     NeighborService::NeighborService(const config::NetworkConfig &config, neighbor::NeighborManager &neighborManager,
                                      hal::IClock &clock)
@@ -61,4 +61,4 @@ namespace jalari::services
         event.nodeId = nodeId;
         eventBus_->publish(event);
     }
-} // namespace jalari::services
+} // namespace terrawatch::services

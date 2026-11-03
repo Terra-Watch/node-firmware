@@ -4,7 +4,7 @@
 #include "IRadio.h"
 #include "ISpiBus.h"
 
-namespace jalari::lora
+namespace terrawatch::lora
 {
     class LoRaDriver final : public radio::IRadio
     {
@@ -22,6 +22,9 @@ namespace jalari::lora
         hal::ISpiBus &spiBus_;
         bool initialized_ = false;
         int lastRssi_ = 0;
+#ifdef TW_RF_DIAGNOSTIC
+        unsigned long lastTxEndMs_ = 0;
+#endif
         float lastSnr_ = 0.0F;
     };
-} // namespace jalari::lora
+} // namespace terrawatch::lora

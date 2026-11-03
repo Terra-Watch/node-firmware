@@ -1,7 +1,15 @@
 #include "LoRaDriver.h"
+#ifdef TW_RF_DIAGNOSTIC
+#include <Arduino.h>
+#include <SPI.h>
+#define private public   // diagnostic build only: read the modem interrupt flags directly
+#endif
 #include <LoRa.h>
+#ifdef TW_RF_DIAGNOSTIC
+#undef private
+#endif
 
-namespace jalari::lora
+namespace terrawatch::lora
 {
     LoRaDriver::LoRaDriver(const config::RadioConfig &config, hal::ISpiBus &spiBus) : config_(config), spiBus_(spiBus) {}
     bool LoRaDriver::begin()
@@ -43,6 +51,9 @@ namespace jalari::lora
             return false;
         }
         const bool success = (LoRa.endPacket() == 1);
+#ifdef TW_RF_DIAGNOSTIC
+        lastTxEndMs_ = millis();
+#endif
 
         LoRa.enableCrc();
         LoRa.receive();
@@ -52,7 +63,22 @@ namespace jalari::lora
     bool LoRaDriver::receive(radio::ReceivedFrame &outFrame) {
         outFrame = {};
         if (!initialized_) return false;
+#ifdef TW_RF_DIAGNOSTIC
+        // Modem interrupt flags before parsePacket() clears them: 0x10 valid header, 0x40 receive done, 0x20 payload CRC error.
+        static uint8_t lastFlags = 0;
+        const uint8_t flags = LoRa.readRegister(0x12);
+        if ((flags & 0x70) && flags != lastFlags) Serial.printf("[RF DIAG] modem flags 0x%02X (valid header %d, rx done %d, payload CRC error %d), bytes %d\n", flags, !!(flags & 0x10), !!(flags & 0x40), !!(flags & 0x20), LoRa.readRegister(0x13));
+        lastFlags = flags;
+#endif
         const int packetSize = LoRa.parsePacket();
+#ifdef TW_RF_DIAGNOSTIC
+        // Channel energy while nothing decodes: shows whether the other radio's transmissions reach this antenna at all.
+        static int maxRssi = -200; static unsigned long lastReport = 0;
+        const int now = LoRa.rssi(); if (now > maxRssi) maxRssi = now;
+        if (now > -85) Serial.printf("[RF DIAG] channel RSSI %d dBm, %lu ms after our last transmission ended\n", now, millis() - lastTxEndMs_);
+        if (millis() - lastReport > 2000UL) { Serial.printf("[RF DIAG] max channel RSSI last 2 s: %d dBm\n", maxRssi); maxRssi = -200; lastReport = millis(); }
+        if (packetSize > 0) Serial.printf("[RF DIAG] packet decoded: %d bytes rssi %d snr %.1f\n", packetSize, LoRa.packetRssi(), LoRa.packetSnr());
+#endif
         if (packetSize <= 0) return false;
 
         const auto boundedSize = static_cast<std::size_t>(packetSize) < outFrame.bytes.size() ? static_cast<std::size_t>(packetSize) : outFrame.bytes.size();
@@ -73,4 +99,4 @@ namespace jalari::lora
     int LoRaDriver::rssi() const { return lastRssi_; }
     float LoRaDriver::snr() const { return lastSnr_; }
     bool LoRaDriver::cad() { return false; }
-} // namespace jalari::lora
+} // namespace terrawatch::lora

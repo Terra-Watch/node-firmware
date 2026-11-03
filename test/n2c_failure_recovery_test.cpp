@@ -10,7 +10,7 @@
 #include "PacketQueue.h"
 #include "StaticForwardingStrategy.h"
 
-using namespace jalari;
+using namespace terrawatch;
 
 class Clock final : public hal::IClock {
 public:
@@ -59,9 +59,9 @@ static protocol::Packet makeData(protocol::PacketFactory &factory) {
 
 int main() {
     config::NodeConfig aConfig{0x01U}, bConfig{0x02U}, cConfig{0x03U};
-    node::NodeManager aNode(aConfig, node::DeviceRole::BoatNode);
-    node::NodeManager bNode(bConfig, node::DeviceRole::BoatNode);
-    node::NodeManager cNode(cConfig, node::DeviceRole::BoatNode);
+    node::NodeManager aNode(aConfig, node::DeviceRole::FieldNode);
+    node::NodeManager bNode(bConfig, node::DeviceRole::FieldNode);
+    node::NodeManager cNode(cConfig, node::DeviceRole::FieldNode);
     const auto aRoutes = routeTo(0x02U);
     const auto bRoutes = routeTo(0x03U);
     const auto cRoutes = routeTo(0xFEU);
