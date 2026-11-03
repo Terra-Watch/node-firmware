@@ -5,7 +5,7 @@
 namespace terrawatch::constants
 {
 
-    constexpr std::size_t kPacketHeaderSize = 11;
+    constexpr std::size_t kPacketHeaderSize = 12;
     constexpr std::size_t kPacketCrcSize = 2;
     constexpr std::size_t kMaxPayloadSize = 48;
     constexpr std::size_t kMaxPacketSize = kPacketHeaderSize + kMaxPayloadSize + kPacketCrcSize;
@@ -18,6 +18,7 @@ namespace terrawatch::constants
     constexpr std::uint32_t kDuplicateExpiryMs = 10000U;
     constexpr std::size_t kAcknowledgementPayloadSize = 2;
     constexpr std::uint8_t kGatewayNodeId = 0xFEU;
+    constexpr std::uint8_t kAnyNextHop = 0xFFU; // next-hop byte: no single node is named, every node with a route may carry the packet (0 means the same)
     constexpr std::size_t kMaximumLinkMetricWindowSize = 8;
     constexpr std::size_t kAckMetricWindowSize = 16;
     constexpr std::size_t kMinimumAckMetricObservations = 2;

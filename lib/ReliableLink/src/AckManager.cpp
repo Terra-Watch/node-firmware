@@ -159,7 +159,8 @@ namespace terrawatch::reliable
         // The final destination may ack directly even when a static route names a relay as next hop.
         const bool expectedNextHop = pending != nullptr &&
                                      (pending->packet.destinationId == packet.sourceId ||
-                                      (pending->packet.nextHopId != 0U && pending->packet.nextHopId == packet.sourceId));
+                                      pending->packet.nextHopId == 0U || pending->packet.nextHopId == constants::kAnyNextHop ||
+                                      pending->packet.nextHopId == packet.sourceId);
         if (expectedNextHop)
         {
             pending->active = false;

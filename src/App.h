@@ -57,6 +57,8 @@ namespace terrawatch
         std::uint8_t lbtAttempts_ = 0U;
         bool txJitterArmed_ = false;
         std::uint32_t lbtBusyCount_ = 0U;
+        std::uint32_t ledOffMs_ = 0U; // when the status LED goes dark again (0 = already dark)
+        void flashLed_(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint32_t durationMs);
         bool initialized_ = false;
     };
 } // namespace terrawatch

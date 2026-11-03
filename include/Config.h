@@ -110,7 +110,7 @@ namespace terrawatch::config
     constexpr FirmwareConfig kDefaultFirmwareConfig{
         {433000000L, TW_LORA_SCK, TW_LORA_MISO, TW_LORA_MOSI, TW_LORA_CS, TW_LORA_RST, TW_LORA_DIO0},
         {static_cast<std::uint8_t>(TW_NODE_ID)},
-        {0xA5U, 4U, 48U, 255U},
+        {0xA5U, 5U, 48U, 255U},
         {10000U, 15000U},
         {17, 18, 16, 15, 21}, // I2C SDA, SCL (not 20: that is USB D+); PMS5003 RX, TX, SET
         {2500U, 3U},

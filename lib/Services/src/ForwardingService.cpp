@@ -43,6 +43,13 @@ namespace terrawatch::services
         }
     }
 
+    void ForwardingService::resolveNextHop(protocol::Packet &packet) const
+    {
+        std::uint8_t nextHopId = 0U;
+        packet.nextHopId = (packet.destinationId != 0xFFU && strategy_.decide(packet, nextHopId) == forwarding::ForwardDecision::Forward)
+                               ? nextHopId : constants::kAnyNextHop;
+    }
+
     void ForwardingService::publishDrop_(event::Type type, const protocol::Packet &packet) const
     {
         eventBus_.publish({type, packet});

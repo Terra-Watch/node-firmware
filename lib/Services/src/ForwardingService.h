@@ -25,6 +25,9 @@ namespace terrawatch::services
                           queue::PacketQueue &packetQueue, event::EventBus &eventBus);
         void setDtnService(IDtnStoreForwardSink *dtnService);
         bool processReceived(protocol::Packet &packet) const;
+        // Names the next hop on the packet just before it is sent, from the route table as it is now (so a retry after a failover goes to the backup parent).
+        // No usable route: any node with a route may carry it.
+        void resolveNextHop(protocol::Packet &packet) const;
 
     private:
         void publishDrop_(event::Type type, const protocol::Packet &packet) const;

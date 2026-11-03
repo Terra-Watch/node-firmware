@@ -54,6 +54,7 @@ namespace terrawatch::protocol
                                    (static_cast<std::uint16_t>(data[7]) << 8U);
         outPacket.ttl = data[8];
         outPacket.hopCount = data[9];
+        outPacket.nextHopId = data[11];
         outPacket.payloadSize = payloadSize;
 
         for (std::size_t i = 0; i < payloadSize; ++i)

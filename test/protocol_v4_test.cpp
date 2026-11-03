@@ -26,28 +26,28 @@ int main() {
     std::array<std::uint8_t, terrawatch::constants::kMaxPacketSize> bytes{};
     std::size_t size = 0;
     assert(terrawatch::protocol::Serializer::serialize(packet, bytes, size));
-    assert(size == 61U);
-    assert(bytes[5] == 0x02U && bytes[10] == 48U);
+    assert(size == 62U);
+    assert(bytes[1] == 5U && bytes[5] == 0x02U && bytes[10] == 48U && bytes[11] == 0x03U); // v5: the next hop is on the wire
     assert(terrawatch::protocol::Validator::isValid(packet));
 
     terrawatch::protocol::Packet parsed;
     assert(terrawatch::protocol::Parser::parse(bytes.data(), size, parsed));
     assert(parsed.sourceId == packet.sourceId && parsed.destinationId == packet.destinationId);
     assert(parsed.previousHopId == 0x02U && parsed.sequenceNumber == packet.sequenceNumber);
-    assert(parsed.nextHopId == 0U);
+    assert(parsed.nextHopId == 0x03U);
     assert(parsed.payloadSize == 48U && parsed.payload[47] == 47U);
 
     auto corrupted = bytes;
     corrupted[size - 1U] ^= 1U;
     assert(!terrawatch::protocol::Parser::parse(corrupted.data(), size, parsed));
     auto legacy = bytes;
-    legacy[1] = 3U;
+    legacy[1] = 4U; // the previous protocol version, without the next-hop byte
     assert(!terrawatch::protocol::Parser::parse(legacy.data(), size, parsed));
 
     terrawatch::protocol::Packet acknowledgement;
     assert(factory.createAcknowledgement(packet, acknowledgement));
     assert(acknowledgement.sourceId == node.id() && acknowledgement.destinationId == 0x02U);
-    assert(acknowledgement.previousHopId == node.id());
+    assert(acknowledgement.previousHopId == node.id() && acknowledgement.nextHopId == 0x02U);
     assert(acknowledgement.payloadSize == 2U);
     assert(acknowledgement.payload[0] == static_cast<std::uint8_t>(packet.sequenceNumber & 0xFFU));
     assert(acknowledgement.payload[1] == static_cast<std::uint8_t>(packet.sequenceNumber >> 8U));

@@ -69,6 +69,7 @@ namespace terrawatch::protocol
             static_cast<std::uint8_t>((receivedPacket.sequenceNumber >> 8U) & 0xFFU),
         };
         initializePacket_(PacketType::Acknowledgement, receivedPacket.previousHopId, outPacket);
+        outPacket.nextHopId = receivedPacket.previousHopId;
         return outPacket.setPayload(payload, sizeof(payload));
     }
 
@@ -86,6 +87,7 @@ namespace terrawatch::protocol
         payload[8] = static_cast<std::uint8_t>((timestamp >> 24U) & 0xFFU);
 
         initializePacket_(PacketType::HeartbeatAck, targetNodeId, outPacket);
+        outPacket.nextHopId = targetNodeId;
         outPacket.previousHopId = node_.id();
         return outPacket.setPayload(payload, sizeof(payload));
     }

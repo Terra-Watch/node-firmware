@@ -25,6 +25,9 @@ namespace terrawatch::lora
             LoRa.setSignalBandwidth(125000L);
             LoRa.setCodingRate4(5);
             LoRa.setSyncWord(0x12);
+#ifdef TW_TX_POWER_DBM
+            LoRa.setTxPower(TW_TX_POWER_DBM); // 2..17 dBm; lowering it shrinks the range, which lets a bench test force a packet through the relay
+#endif
             LoRa.enableCrc();
             LoRa.receive();
         }

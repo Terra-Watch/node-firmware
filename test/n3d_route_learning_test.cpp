@@ -70,7 +70,9 @@ int main() {
     Clock bClock;
     queue::PacketQueue bQueue;
     routing::RouteAdvertisementService bLearning(0x02U, bRoutes, bNeighbors, bFactory, bQueue, bClock, 30000U, 15000U);
-    assert(bLearning.processReceived(gatewayAdvertisement, 20U) == false); // no direct Gateway metric at B
+    protocol::Packet unmeasured = gatewayAdvertisement; unmeasured.previousHopId = 0x04U; // an advertiser B has no measured link to
+    assert(bLearning.processReceived(unmeasured, 20U) == false);
+    // (the gateway itself is the one exception: it sends no heartbeats, so its advertisement is taken at link cost 1 - see e2e_backup_route_test)
     assert(cLearning.advertiseRoute(0xFEU, 30U));
     protocol::Packet bAdvertisement;
     assert(cQueue.dequeue(bAdvertisement));

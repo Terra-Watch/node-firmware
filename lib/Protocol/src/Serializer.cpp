@@ -28,6 +28,7 @@ namespace terrawatch::protocol
         outBuffer[8] = packet.ttl;
         outBuffer[9] = packet.hopCount;
         outBuffer[10] = static_cast<std::uint8_t>(packet.payloadSize);
+        outBuffer[11] = packet.nextHopId;
 
         for (std::size_t i = 0; i < packet.payloadSize; ++i)
         {

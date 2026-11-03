@@ -86,9 +86,24 @@ namespace terrawatch
         return true;
     }
 
+    // The board's RGB LED shows what the node just sent: blue = air-quality reading, red = chainsaw alert, magenta = blast alert, white = position.
+    // TW_LED_PIN is the pin of the WS2812 on the board (48 on most ESP32-S3 DevKitC-1, 38 on v1.1); undefined = no LED.
+    void App::flashLed_(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint32_t durationMs)
+    {
+#ifdef TW_LED_PIN
+        neopixelWrite(TW_LED_PIN, red, green, blue);
+        ledOffMs_ = millis() + durationMs; if (ledOffMs_ == 0U) ledOffMs_ = 1U;
+#else
+        (void)red; (void)green; (void)blue; (void)durationMs;
+#endif
+    }
+
     void App::update()
     {
         if (!initialized_) return;
+#ifdef TW_LED_PIN
+        if (ledOffMs_ != 0U && static_cast<std::int32_t>(millis() - ledOffMs_) >= 0) { neopixelWrite(TW_LED_PIN, 0, 0, 0); ledOffMs_ = 0U; }
+#endif
         processIncoming_();
         processTestCommands_();
         reliableLinkService_.update();
@@ -118,6 +133,11 @@ namespace terrawatch
     {
         const protocol::Packet *packet = packetQueue_.peek();
         if (packet == nullptr) return;
+        // Name the next hop at the moment of sending, from the route table as it is now (a retry after a failover goes to the backup parent).
+        protocol::Packet outgoing = *packet;
+        if (outgoing.type == protocol::PacketType::Data || outgoing.type == protocol::PacketType::EndToEndAck)
+            forwardingService_.resolveNextHop(outgoing);
+        packet = &outgoing;
 
         // Do not start the first attempt at once: nodes that heard the same packet would answer together. Then listen before talking.
         const std::uint32_t nowMs = millis();
@@ -203,12 +223,21 @@ namespace terrawatch
             LOG_WARN(logger_, "Packet transmission failed");
             protocol::Packet failedPacket;
             (void)packetQueue_.dequeue(failedPacket);
+            failedPacket.nextHopId = outgoing.nextHopId;
             reliableLinkService_.onTransmissionFailed(failedPacket);
             return;
         }
 
         protocol::Packet sentPacket;
         (void)packetQueue_.dequeue(sentPacket);
+        sentPacket.nextHopId = outgoing.nextHopId;
+        if (sentPacket.type == protocol::PacketType::Data && sentPacket.sourceId == node_.id() && sentPacket.payloadSize > 0U)
+        {
+            const std::uint8_t kind = sentPacket.payload[0];
+            if (kind == 0x53U) flashLed_(0, 0, 40, 300);                                                     // 'S' air-quality reading
+            else if (kind == 0x41U) { if (sentPacket.payloadSize > 2U && sentPacket.payload[2] == 2U) flashLed_(40, 0, 40, 1500); else flashLed_(60, 0, 0, 1500); } // 'A' alert
+            else if (kind == 0x50U) flashLed_(25, 25, 25, 300);                                              // 'P' position
+        }
         // Only alerts are kept for an end-to-end resend. A periodic reading is replaced by the next one, and resending those loads the channel enough
         // to lose more than it saves (simulations/multihop).
         if (sentPacket.type == protocol::PacketType::Data && sentPacket.sourceId == node_.id() && sentPacket.destinationId == constants::kGatewayNodeId &&
@@ -242,6 +271,11 @@ namespace terrawatch
         {
             return; // Ignore self-echo from radio
         }
+
+        // Protocol v5 names the next hop. A packet for someone else that does not name this node was only overheard: it is not ours to carry or to acknowledge.
+        if (packet.destinationId != node_.id() && packet.destinationId != 0xFFU && packet.nextHopId != node_.id() &&
+            packet.nextHopId != 0U && packet.nextHopId != constants::kAnyNextHop)
+            return;
 
         if (packet.type == protocol::PacketType::HeartbeatAck)
         {

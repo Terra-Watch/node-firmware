@@ -27,7 +27,7 @@ namespace terrawatch::protocol
         std::uint8_t sourceId = 0;
         std::uint8_t destinationId = 0;
         std::uint8_t previousHopId = 0;
-        std::uint8_t nextHopId = 0; // Local forwarding metadata; never serialized.
+        std::uint8_t nextHopId = 0; // Protocol v5: on the wire (byte 11). The one node asked to carry the packet on; 0 or 0xFF = any node with a route.
         std::uint16_t sequenceNumber = 0;
         std::uint8_t ttl = 0;
         std::uint8_t hopCount = 0;
