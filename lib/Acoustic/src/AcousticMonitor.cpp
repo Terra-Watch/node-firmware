@@ -9,6 +9,11 @@
 #include "AcousticConfig.h"
 #include "AcousticTrigger.h"
 #include "AudioCapture.h"
+#ifdef TW_ACOUSTIC_MODEL
+#include "AcousticClassifier.h"
+#include "AcousticThresholds.h"
+#include "AlertLogic.h"
+#endif
 
 namespace terrawatch::acoustic
 {
@@ -26,6 +31,25 @@ namespace terrawatch::acoustic
         Max4466Sampler g_sampler;
         TaskHandle_t g_eventTask = nullptr;
         volatile uint32_t g_events = 0;
+        AcousticMonitor::AlertSink g_alertSink = nullptr;
+#ifdef TW_ACOUSTIC_MODEL
+        extern "C" const uint8_t kAcousticModelStart[] asm("_binary_model_acoustic_mn10_int8_tflite_start");
+        extern "C" const uint8_t kAcousticModelEnd[] asm("_binary_model_acoustic_mn10_int8_tflite_end");
+        AcousticClassifier g_classifier;
+        AlertLogic g_alertLogic(ACOUSTIC_THRESHOLD_CHAINSAW, ACOUSTIC_THRESHOLD_BLAST);
+        const char *const kClassNames[6] = {"chainsaw", "blast", "fire", "wood", "wind", "background"};
+
+        void onClassified(const ClassifierResult &r)
+        {
+            int top = 0; for (int i = 1; i < 6; ++i) if (r.probs[i] > r.probs[top]) top = i;
+            Serial.printf("[ACOUSTIC CLASS] %s %.0f%% (chainsaw %.2f blast %.2f fire %.2f wood %.2f wind %.2f background %.2f) front end %.0f ms, model %.0f ms\n", kClassNames[top], static_cast<double>(r.probs[top] * 100.0f),
+                          static_cast<double>(r.probs[0]), static_cast<double>(r.probs[1]), static_cast<double>(r.probs[2]), static_cast<double>(r.probs[3]), static_cast<double>(r.probs[4]), static_cast<double>(r.probs[5]), static_cast<double>(r.frontendMs), static_cast<double>(r.modelMs));
+            const Alert a = g_alertLogic.update(r.probs, millis());
+            if (a.kind == AlertKind::None) return;
+            Serial.printf("[ACOUSTIC ALERT] %s %u%%\n", a.kind == AlertKind::Chainsaw ? "chainsaw" : "blast", static_cast<unsigned>(a.confidencePercent));
+            if (g_alertSink) g_alertSink(a);
+        }
+#endif
 
         void *psramOrInternal(size_t bytes)
         {
@@ -117,6 +141,9 @@ namespace terrawatch::acoustic
                 ++g_events;
                 Serial.printf("[ACOUSTIC EVENT #%lu] INMP441 window: rms=%.0f min=%d max=%d samples=%u\n", static_cast<unsigned long>(g_events),
                               static_cast<double>(s.rms), s.min, s.max, static_cast<unsigned>(s.count));
+#ifdef TW_ACOUSTIC_MODEL
+                if (!g_classifier.submit(g_window)) Serial.println("[ACOUSTIC] classifier busy or not started: this window is not classified");
+#endif
             }
         }
     } // namespace
@@ -137,6 +164,9 @@ namespace terrawatch::acoustic
             Serial.println("[ACOUSTIC] MAX4466 init failed");
             return false;
         }
+#ifdef TW_ACOUSTIC_MODEL
+        if (!g_classifier.begin(kAcousticModelStart, kAcousticModelEnd - kAcousticModelStart, onClassified)) Serial.println("[ACOUSTIC] classifier not started: events are only logged");
+#endif
         xTaskCreatePinnedToCore(eventTask, "ac-event", 4096, nullptr, 1, &g_eventTask, 0);
         xTaskCreatePinnedToCore(captureTask, "ac-capture", 4096, nullptr, 3, nullptr, 0);
         xTaskCreatePinnedToCore(triggerTask, "ac-trigger", 8192, nullptr, 2, nullptr, 0);
@@ -144,4 +174,5 @@ namespace terrawatch::acoustic
     }
 
     std::uint32_t AcousticMonitor::eventCount() const { return g_events; }
+    void AcousticMonitor::setAlertSink(AlertSink sink) { g_alertSink = sink; }
 } // namespace terrawatch::acoustic

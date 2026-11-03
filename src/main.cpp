@@ -33,6 +33,16 @@
 #define TW_ACOUSTIC 1 // 0 = leave out the INMP441 + MAX4466 sound module
 #endif
 
+#if TW_ACOUSTIC && defined(TW_ACOUSTIC_MODEL)
+namespace
+{
+    // The classifier raises an alert on its own task; the main loop turns it into a data packet, so the packet queue is only touched from one task.
+    volatile bool g_alertPending = false;
+    terrawatch::acoustic::Alert g_alert;
+    void onAlert(const terrawatch::acoustic::Alert &alert) { g_alert = alert; g_alertPending = true; }
+}
+#endif
+
 namespace
 {
     struct FirmwareComposition
@@ -86,6 +96,9 @@ void setup()
     }
 #if TW_ACOUSTIC
     static terrawatch::acoustic::AcousticMonitor acoustic;
+#ifdef TW_ACOUSTIC_MODEL
+    terrawatch::acoustic::AcousticMonitor::setAlertSink(onAlert);
+#endif
     if (!acoustic.begin()) Serial.println("[ACOUSTIC] module not started");
 #endif
 }
@@ -93,6 +106,19 @@ void setup()
 void loop()
 {
     firmware().app.update();
+#if TW_ACOUSTIC && defined(TW_ACOUSTIC_MODEL)
+    if (g_alertPending)
+    {
+        g_alertPending = false;
+        // Alert payload v1: 'A', version 1, kind (1 chainsaw, 2 blast), confidence in percent. Sent to the gateway like a station reading.
+        const std::uint8_t payload[4] = {0x41U, 1U, static_cast<std::uint8_t>(g_alert.kind), g_alert.confidencePercent};
+        terrawatch::protocol::Packet packet;
+        if (firmware().packetFactory.createData(0xFEU, payload, sizeof(payload), packet) && firmware().packetQueue.enqueue(packet))
+            Serial.printf("[ACOUSTIC ALERT TX] kind=%u confidence=%u%%\n", static_cast<unsigned>(g_alert.kind), static_cast<unsigned>(g_alert.confidencePercent));
+        else
+            Serial.println("[ACOUSTIC ALERT] could not queue the alert packet");
+    }
+#endif
 }
 
 
