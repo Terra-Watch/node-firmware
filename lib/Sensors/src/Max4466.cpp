@@ -59,7 +59,12 @@ bool Max4466::readBlock(BlockStats& stats, uint32_t timeoutMs) {
         const int want = std::min<int>(64, blockSize_ - filled_);
         uint32_t got = 0;
         const esp_err_t err = adc_digi_read_bytes(reinterpret_cast<uint8_t*>(words), want * 4, &got, timeoutMs);
-        if (err != ESP_OK || got == 0) return false;   // ESP_ERR_TIMEOUT: no data yet
+        if (err != ESP_OK || got == 0)
+        {
+            static bool logged = false;
+            if (!logged && err != ESP_ERR_TIMEOUT) { logged = true; Serial.printf("[MAX4466] adc_digi_read_bytes returned 0x%x (got %u bytes)\n", static_cast<unsigned>(err), static_cast<unsigned>(got)); }
+            return false;   // ESP_ERR_TIMEOUT: no data yet
+        }
         for (uint32_t i = 0; i < got / 4 && filled_ < blockSize_; ++i) {
             adc_digi_output_data_t d;
             d.val = words[i];

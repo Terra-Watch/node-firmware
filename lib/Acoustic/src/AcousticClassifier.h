@@ -18,7 +18,7 @@ namespace terrawatch::acoustic
     {
     public:
         using Callback = void (*)(const ClassifierResult &);
-        // model: the .tflite bytes (embedded in the firmware). Copies them to PSRAM. callback runs on the classifier task (core 1).
+        // model: the .tflite bytes (embedded in the firmware). Copies them to PSRAM. callback runs on the classifier task (core 0, priority 1, below the audio capture and trigger tasks).
         bool begin(const std::uint8_t *model, std::size_t modelBytes, Callback callback);
         bool submit(const std::int16_t *pcm);                       // copies 16000 samples and queues them; false when busy or not started
         bool classify(const std::int16_t *pcm, ClassifierResult &out);   // synchronous, for tests; do not call while the task may run

@@ -50,7 +50,7 @@ namespace terrawatch::acoustic
         if (m.interpreter->AllocateTensors() != kTfLiteOk) { Serial.println("[CLASSIFIER] AllocateTensors failed (arena too small or an operation is missing)"); return false; }
         m.callback = callback;
         Serial.printf("[CLASSIFIER] ready: model %u bytes, arena used %u bytes\n", (unsigned)modelBytes, (unsigned)m.interpreter->arena_used_bytes());
-        if (callback) xTaskCreatePinnedToCore(taskEntry, "ac-classify", 16384, this, 1, &m.task, 1);
+        if (callback) xTaskCreatePinnedToCore(taskEntry, "ac-classify", 16384, this, 1, &m.task, 0);      // core 0: the Arduino loop (radio, sensors) has core 1 to itself; sharing it doubled the model time
         return true;
     }
 

@@ -89,7 +89,13 @@ namespace terrawatch::acoustic
                           static_cast<double>(ACOUSTIC_TRIGGER_HIGH_DB), MAX4466_SAMPLE_RATE, MAX4466_BLOCK_SIZE);
             for (;;)
             {
-                if (!g_sampler.readBlock(st, 100)) continue;
+                if (!g_sampler.readBlock(st, 100))
+                {
+                    static uint32_t misses = 0, lastMissLog = 0;
+                    ++misses;
+                    if (millis() - lastMissLog > 3000) { lastMissLog = millis(); Serial.printf("[ACOUSTIC] MAX4466 delivered no data (%lu failed reads): the ADC DMA is not running\n", static_cast<unsigned long>(misses)); }
+                    continue;
+                }
                 if (settleLeft > 0) { --settleLeft; continue; }
                 const uint32_t now = millis();
                 const auto edge = detector.update(st.rms);
@@ -150,6 +156,11 @@ namespace terrawatch::acoustic
 
     bool AcousticMonitor::begin()
     {
+        // The classifier starts first: it takes a few hundred ms (copying the model to PSRAM), and the ADC digital controller used by the MAX4466 overflows
+        // its ring buffer and stays in an error state if nobody reads it for that long. So everything slow comes before the ADC is started.
+#ifdef TW_ACOUSTIC_MODEL
+        if (!g_classifier.begin(kAcousticModelStart, kAcousticModelEnd - kAcousticModelStart, onClassified)) Serial.println("[ACOUSTIC] classifier not started: events are only logged");
+#endif
         auto *storage = static_cast<int16_t *>(psramOrInternal(sizeof(int16_t) * ACOUSTIC_RING_SAMPLES));
         g_window = static_cast<int16_t *>(psramOrInternal(sizeof(int16_t) * ACOUSTIC_WINDOW_SAMPLES));
         if (storage == nullptr || g_window == nullptr) return false;
@@ -164,9 +175,6 @@ namespace terrawatch::acoustic
             Serial.println("[ACOUSTIC] MAX4466 init failed");
             return false;
         }
-#ifdef TW_ACOUSTIC_MODEL
-        if (!g_classifier.begin(kAcousticModelStart, kAcousticModelEnd - kAcousticModelStart, onClassified)) Serial.println("[ACOUSTIC] classifier not started: events are only logged");
-#endif
         xTaskCreatePinnedToCore(eventTask, "ac-event", 4096, nullptr, 1, &g_eventTask, 0);
         xTaskCreatePinnedToCore(captureTask, "ac-capture", 4096, nullptr, 3, nullptr, 0);
         xTaskCreatePinnedToCore(triggerTask, "ac-trigger", 8192, nullptr, 2, nullptr, 0);
