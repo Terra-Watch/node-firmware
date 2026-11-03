@@ -29,6 +29,7 @@ namespace terrawatch::event
         RouteAdvertisementSuppressed,
         RouteAdvertisementRejected,
         RouteInvalidated,
+        RouteFailedOver,
         RouteRecovered,
         DtnPacketQueued,
         DtnPacketDequeued,

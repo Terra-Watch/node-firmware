@@ -32,7 +32,8 @@ namespace terrawatch::services
             return false;
         case forwarding::ForwardDecision::RouteNotFound:
             publishDrop_(event::Type::ForwardingRouteNotFound, packet);
-            if (dtnService_ == nullptr || !dtnService_->enqueue(packet))
+            // A receipt is useless once it is old: the sender retries the data, so do not park it.
+            if (packet.type == protocol::PacketType::EndToEndAck || dtnService_ == nullptr || !dtnService_->enqueue(packet))
                 publishDrop_(event::Type::PacketDropped, packet);
             return false;
         case forwarding::ForwardDecision::Drop:

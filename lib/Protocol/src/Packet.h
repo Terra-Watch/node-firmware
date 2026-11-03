@@ -18,6 +18,7 @@ namespace terrawatch::protocol
         Acknowledgement = 3,
         HeartbeatAck = 4,
         RouteAdvertisement = 5,
+        EndToEndAck = 6, // gateway to the field node that wrote the data: it arrived. Payload: the 16-bit sequence number it acknowledges.
     };
 
     struct Packet

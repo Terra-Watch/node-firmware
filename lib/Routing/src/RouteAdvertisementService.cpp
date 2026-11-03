@@ -24,7 +24,7 @@ namespace terrawatch::routing
         for (std::size_t index = 0; index < constants::kRouteTableCapacity; ++index)
         {
             RouteEntry route;
-            if (routeTable_.getValidAt(index, nowMs, route))
+            if (routeTable_.getValidAt(index, nowMs, route) && !route.learned)
                 (void)advertiseRoute(route.destinationId, nowMs);
         }
     }
@@ -46,8 +46,16 @@ namespace terrawatch::routing
         }
 
         neighbor::LinkMetric localMetric;
-        if (!neighborManager_.getLinkMetric(packet.previousHopId, nowMs, neighborMetricStaleMs_, localMetric) ||
-            localMetric.state != neighbor::MetricState::Valid || !std::isfinite(localMetric.etxCost))
+        const bool measured = neighborManager_.getLinkMetric(packet.previousHopId, nowMs, neighborMetricStaleMs_, localMetric) &&
+                              localMetric.state == neighbor::MetricState::Valid && std::isfinite(localMetric.etxCost);
+        if (!measured && packet.previousHopId == constants::kGatewayNodeId && destinationId == constants::kGatewayNodeId)
+        {
+            // The gateway sends no heartbeats, so it never becomes a measured neighbour. Take its advertisement at link cost 1 (best case).
+            localMetric = {};
+            localMetric.state = neighbor::MetricState::Valid;
+            localMetric.etxCost = 1.0F;
+        }
+        else if (!measured)
         {
             if (eventBus_ != nullptr) eventBus_->publish({event::Type::RouteAdvertisementRejected, packet});
             return false;
@@ -72,6 +80,13 @@ namespace terrawatch::routing
             if (!wasUsable) eventBus_->publish({event::Type::RouteRecovered, packet});
         }
         return updated;
+    }
+
+    bool RouteAdvertisementService::learnReverseRoute(const protocol::Packet &packet, std::uint32_t nowMs)
+    {
+        // hopCount counts the hops already travelled, so the way back to the source is one hop longer.
+        return packet.type == protocol::PacketType::Data && packet.sourceId != localNodeId_ &&
+               routeTable_.updateReverseRoute(packet.sourceId, packet.previousHopId, static_cast<std::uint8_t>(packet.hopCount + 1U), nowMs);
     }
 
     bool RouteAdvertisementService::advertiseRoute(std::uint8_t destinationId, std::uint32_t nowMs)

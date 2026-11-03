@@ -17,6 +17,11 @@ namespace terrawatch::routing
             event.packet.nextHopId == 0U)
             return;
 
+        if (routeTable_.promoteBackup(event.packet.destinationId, event.packet.nextHopId))
+        {
+            if (eventBus_ != nullptr) eventBus_->publish({event::Type::RouteFailedOver, event.packet});
+            return;
+        }
         if (routeTable_.invalidateRoute(event.packet.destinationId, event.packet.nextHopId) && eventBus_ != nullptr)
         {
             eventBus_->publish({event::Type::RouteInvalidated, event.packet});

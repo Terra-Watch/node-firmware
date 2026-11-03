@@ -10,4 +10,5 @@ namespace terrawatch::services
     bool ReliableLinkService::processReceivedData(const protocol::Packet &packet) { return ackManager_.processReceivedData(packet); }
     void ReliableLinkService::onTransmissionFailed(const protocol::Packet &packet) { ackManager_.onTransmissionFailed(packet); }
     bool ReliableLinkService::readyForTestPacket() const { return ackManager_.pendingCount() == 0U; }
+    bool ReliableLinkService::isDuplicate(std::uint8_t sourceId, std::uint16_t sequenceNumber) { return ackManager_.isDuplicateAndRemember(sourceId, sequenceNumber); }
 } // namespace terrawatch::services

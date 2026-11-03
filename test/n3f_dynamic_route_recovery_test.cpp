@@ -45,8 +45,7 @@ int main() {
     Clock clock;
     routing::RouteTable routes(0x01U, 1000U);
     assert(routes.updateRoute(0xFEU, 0x02U, 100U, 3U, 1U, clock.now));
-    // One primary route is supported; a second candidate for the same
-    // destination is not retained by RouteTable.
+    // One primary route is used; a second, dearer candidate for the same destination is kept only as the backup parent.
     assert(!routes.updateRoute(0xFEU, 0x04U, 200U, 3U, 1U, clock.now));
 
     forwarding::DynamicForwardingStrategy strategy(0x01U, routes, clock);
@@ -67,9 +66,13 @@ int main() {
     routing::RouteEntry route;
     assert(routes.lookup(0xFEU, clock.now, route)); // route remains present
 
-    // Retry exhaustion is represented by AcknowledgementFailed and invalidates
-    // only the route using the failed next hop.
+    // Retry exhaustion is represented by AcknowledgementFailed. With a backup parent the route fails over to it ...
     bus.publish({event::Type::AcknowledgementFailed, packet});
+    assert(routes.lookup(0xFEU, clock.now, route) && route.nextHopId == 0x04U);
+    assert(listener.invalidated == 0 && listener.unavailable == 0);
+    // ... and a failure of the backup, with nothing left, invalidates only the route using that failed next hop.
+    protocol::Packet viaBackup = packet; viaBackup.nextHopId = 0x04U;
+    bus.publish({event::Type::AcknowledgementFailed, viaBackup});
     assert(!routes.lookup(0xFEU, clock.now, route));
     assert(listener.invalidated == 1 && listener.unavailable == 1);
     assert(strategy.decide(packet, nextHop) == forwarding::ForwardDecision::RouteNotFound);

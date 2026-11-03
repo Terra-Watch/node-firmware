@@ -27,5 +27,7 @@ namespace terrawatch::radio
         virtual int rssi() const = 0;
         virtual float snr() const = 0;
         virtual bool cad() = 0;
+        // Listen before talk: true while the modem sees a LoRa signal (preamble, sync or a packet in progress). Radios that cannot tell say false.
+        virtual bool channelBusy() { return false; }
     };
 } // namespace terrawatch::radio

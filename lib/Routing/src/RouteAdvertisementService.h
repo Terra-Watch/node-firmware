@@ -25,6 +25,7 @@ namespace terrawatch::routing
         bool begin(event::EventBus &eventBus);
         void update();
         bool processReceived(const protocol::Packet &packet, std::uint32_t nowMs);
+        bool learnReverseRoute(const protocol::Packet &packet, std::uint32_t nowMs);
         bool advertiseRoute(std::uint8_t destinationId, std::uint32_t nowMs);
         void onEvent(const event::Event &event) override;
 

@@ -17,6 +17,7 @@ namespace terrawatch::lora
         int rssi() const override;
         float snr() const override;
         bool cad() override;
+        bool channelBusy() override;
     private:
         const config::RadioConfig &config_;
         hal::ISpiBus &spiBus_;

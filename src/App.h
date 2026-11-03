@@ -53,6 +53,10 @@ namespace terrawatch
         std::uint16_t testRemainingCount_ = 0U;
         std::size_t testPayloadSize_ = 0U;
         std::uint8_t testPayload_[constants::kMaxPayloadSize]{};
+        std::uint32_t txNotBeforeMs_ = 0U;
+        std::uint8_t lbtAttempts_ = 0U;
+        bool txJitterArmed_ = false;
+        std::uint32_t lbtBusyCount_ = 0U;
         bool initialized_ = false;
     };
 } // namespace terrawatch

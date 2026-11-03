@@ -1,13 +1,9 @@
 #include "LoRaDriver.h"
-#ifdef TW_RF_DIAGNOSTIC
 #include <Arduino.h>
 #include <SPI.h>
-#define private public   // diagnostic build only: read the modem interrupt flags directly
-#endif
+#define private public   // the library keeps readRegister() private; listen-before-talk and the diagnostic build read the modem status directly
 #include <LoRa.h>
-#ifdef TW_RF_DIAGNOSTIC
 #undef private
-#endif
 
 namespace terrawatch::lora
 {
@@ -99,4 +95,12 @@ namespace terrawatch::lora
     int LoRaDriver::rssi() const { return lastRssi_; }
     float LoRaDriver::snr() const { return lastSnr_; }
     bool LoRaDriver::cad() { return false; }
+
+    bool LoRaDriver::channelBusy()
+    {
+        // RegModemStat (0x18) in continuous receive: bit0 signal detected, bit1 signal synchronized, bit2 RX ongoing, bit3 header valid.
+        // Bits 0 and 2 are set by noise and by plain listening (measured: they made every send look busy), so only a locked-on signal counts.
+        constexpr std::uint8_t kModemStat = 0x18U, kBusyMask = 0x0AU;
+        return initialized_ && (LoRa.readRegister(kModemStat) & kBusyMask) != 0U;
+    }
 } // namespace terrawatch::lora

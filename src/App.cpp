@@ -95,6 +95,15 @@ namespace terrawatch
 #if TW_HEARTBEAT
         heartbeatService_.update();
 #endif
+        {
+            protocol::Packet again;
+            if (reliableLinkService_.nextEndToEndRetry(millis(), again) && packetQueue_.enqueue(again))
+            {
+                char msg[64];
+                snprintf(msg, sizeof(msg), "[E2E RETRY] seq=%u not confirmed by the gateway, sending again", again.sequenceNumber);
+                LOG_WARN(logger_, msg);
+            }
+        }
         if (telemetryService_ != nullptr) telemetryService_->update();
 #if TW_HEARTBEAT
         heartbeatAckManager_.update();
@@ -109,6 +118,29 @@ namespace terrawatch
     {
         const protocol::Packet *packet = packetQueue_.peek();
         if (packet == nullptr) return;
+
+        // Do not start the first attempt at once: nodes that heard the same packet would answer together. Then listen before talking.
+        const std::uint32_t nowMs = millis();
+        if (!txJitterArmed_)
+        {
+            txJitterArmed_ = true; lbtAttempts_ = 0U;
+            txNotBeforeMs_ = nowMs + static_cast<std::uint32_t>(random(0, static_cast<long>(constants::kTxJitterMaxMs) + 1L));
+        }
+        if (static_cast<std::int32_t>(nowMs - txNotBeforeMs_) < 0) return;
+        if (lbtAttempts_ < constants::kLbtMaxAttempts && radio_.channelBusy())
+        {
+            const std::uint32_t window = constants::kLbtBackoffBaseMs << lbtAttempts_;
+            ++lbtAttempts_; ++lbtBusyCount_;
+            txNotBeforeMs_ = nowMs + static_cast<std::uint32_t>(random(1, static_cast<long>(window) + 1L));
+            return;
+        }
+        if (lbtAttempts_ > 0U)
+        {
+            char msg[64];
+            snprintf(msg, sizeof(msg), "[LBT] channel busy %u time(s) before this send, total %lu", lbtAttempts_, static_cast<unsigned long>(lbtBusyCount_));
+            LOG_INFO(logger_, msg);
+        }
+        txJitterArmed_ = false;
 
         bool isHeartbeat = (packet->type == protocol::PacketType::Heartbeat);
         std::array<std::uint8_t, constants::kMaxPacketSize> buffer{};
@@ -177,6 +209,11 @@ namespace terrawatch
 
         protocol::Packet sentPacket;
         (void)packetQueue_.dequeue(sentPacket);
+        // Only alerts are kept for an end-to-end resend. A periodic reading is replaced by the next one, and resending those loads the channel enough
+        // to lose more than it saves (simulations/multihop).
+        if (sentPacket.type == protocol::PacketType::Data && sentPacket.sourceId == node_.id() && sentPacket.destinationId == constants::kGatewayNodeId &&
+            sentPacket.payloadSize > 0U && sentPacket.payload[0] == 0x41U)
+            reliableLinkService_.trackEndToEnd(sentPacket, millis());
         if (sentPacket.type == protocol::PacketType::Heartbeat && sentPacket.payloadSize >= 4)
         {
             std::uint32_t pktId = static_cast<std::uint32_t>(sentPacket.payload[0]) |
@@ -218,8 +255,26 @@ namespace terrawatch
             return;
         }
 
+        if (packet.type == protocol::PacketType::EndToEndAck)
+        {
+            // Two relays that both hear a receipt must not pass it back and forth: forward each one once.
+            if (reliableLinkService_.isDuplicate(packet.sourceId, packet.sequenceNumber)) return;
+            if (packet.destinationId == node_.id())
+            {
+                const std::uint16_t acknowledged = static_cast<std::uint16_t>(packet.payload[0]) | (static_cast<std::uint16_t>(packet.payload[1]) << 8U);
+                std::uint8_t retries = 0U;
+                char msg[96];
+                if (reliableLinkService_.confirmEndToEnd(acknowledged, retries))
+                    snprintf(msg, sizeof(msg), "[E2E ACK] seq=%u reached the gateway after %u retr%s", acknowledged, retries, retries == 1U ? "y" : "ies");
+                else
+                    snprintf(msg, sizeof(msg), "[E2E ACK] seq=%u (already confirmed or not ours)", acknowledged);
+                LOG_INFO(logger_, msg);
+                return;
+            }
+        }
         if (packet.type == protocol::PacketType::Data)
         {
+            (void)routeAdvertisementService_.learnReverseRoute(packet, millis());
             if (!reliableLinkService_.processReceivedData(packet)) return;
         }
         if (forwardingService_.processReceived(packet))
@@ -294,6 +349,13 @@ namespace terrawatch
                   (static_cast<std::uint16_t>(event.packet.payload[1]) << 8U) : 0U;
             snprintf(msg, sizeof(msg), "ACK_RX seq=%u source=0x%02X", sequence, event.packet.sourceId);
             LOG_INFO(logger_, msg);
+            // The gateway acknowledged the packet itself (no relay in between): that is also the end-to-end receipt.
+            std::uint8_t retries = 0U;
+            if (event.packet.sourceId == constants::kGatewayNodeId && reliableLinkService_.confirmEndToEnd(sequence, retries))
+            {
+                snprintf(msg, sizeof(msg), "[E2E ACK] seq=%u reached the gateway directly (%u retries)", sequence, retries);
+                LOG_INFO(logger_, msg);
+            }
             break;
         }
         case event::Type::AcknowledgementFailed:

@@ -24,6 +24,12 @@ namespace terrawatch::routing
         std::uint32_t lastUpdatedMs = 0;
         std::uint16_t routeVersion = 0;
         bool valid = false;
+        bool learned = false; // reverse route learned from data heard passing by (towards a field node); never advertised
+        // Second-best parent for the same destination (a different neighbour, same route version). Zero next hop = none.
+        std::uint8_t backupNextHopId = 0;
+        std::uint16_t backupMetric = 0;
+        std::uint8_t backupHopCount = 0;
+        std::uint32_t backupUpdatedMs = 0;
     };
 
     class RouteTable
@@ -37,6 +43,10 @@ namespace terrawatch::routing
         bool updateRoute(std::uint8_t destinationId, std::uint8_t nextHopId,
                          const neighbor::LinkMetric &linkMetric, std::uint8_t hopCount,
                          std::uint16_t routeVersion, std::uint32_t nowMs);
+        // Route to a field node, learned from a data packet that came from it through previousHop. An advertised route always wins.
+        bool updateReverseRoute(std::uint8_t destinationId, std::uint8_t previousHopId, std::uint8_t hopCount, std::uint32_t nowMs);
+        // The primary parent failed: switch to the backup parent. False when there is none (the caller then invalidates the route).
+        bool promoteBackup(std::uint8_t destinationId, std::uint8_t failedNextHopId);
         bool lookup(std::uint8_t destinationId, std::uint32_t nowMs, RouteEntry &outRoute) const;
         bool getValidAt(std::size_t index, std::uint32_t nowMs, RouteEntry &outRoute) const;
         bool find(std::uint8_t destinationId, RouteEntry &outRoute) const;
@@ -50,6 +60,7 @@ namespace terrawatch::routing
 
     private:
         static bool newerVersion_(std::uint16_t candidate, std::uint16_t current);
+        static void keepAsBackup_(RouteEntry &primary, const RouteEntry &candidate);
         static bool betterRoute_(const RouteEntry &candidate, const RouteEntry &current);
         bool isUsable_(const RouteEntry &route, std::uint32_t nowMs) const;
         std::size_t findIndex_(std::uint8_t destinationId) const;

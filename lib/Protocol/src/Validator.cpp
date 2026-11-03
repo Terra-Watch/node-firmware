@@ -22,6 +22,8 @@ namespace terrawatch::protocol
             return packet.payloadSize == constants::kAcknowledgementPayloadSize;
         case PacketType::RouteAdvertisement:
             return packet.destinationId == 0xFFU && packet.payloadSize == constants::kRouteAdvertisementPayloadSize;
+        case PacketType::EndToEndAck:
+            return packet.payloadSize == 2U && packet.destinationId != 0xFFU;
         case PacketType::Unknown:
         default:
             return false;

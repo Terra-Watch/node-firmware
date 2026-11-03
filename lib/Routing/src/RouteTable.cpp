@@ -19,13 +19,28 @@ namespace terrawatch::routing
         if (existingIndex < routes_.size())
         {
             RouteEntry &existing = routes_[existingIndex];
-            if (existing.valid && existing.routeVersion != routeVersion &&
+            if (existing.valid && !existing.learned && existing.routeVersion != routeVersion &&
                 !newerVersion_(routeVersion, existing.routeVersion)) return false;
-            if (existing.valid && existing.routeVersion == routeVersion &&
-                !betterRoute_(candidate, existing) &&
-                (candidate.metric != existing.metric || candidate.hopCount != existing.hopCount ||
-                 candidate.nextHopId != existing.nextHopId)) return false;
-            existing = candidate;
+            if (existing.valid && !existing.learned && existing.routeVersion == routeVersion)
+            {
+                const bool better = betterRoute_(candidate, existing);
+                if (candidate.nextHopId != existing.nextHopId)
+                {
+                    if (!better) { keepAsBackup_(existing, candidate); return false; }
+                    RouteEntry replaced = candidate; // the old primary becomes the backup parent
+                    replaced.backupNextHopId = existing.nextHopId; replaced.backupMetric = existing.metric;
+                    replaced.backupHopCount = existing.hopCount; replaced.backupUpdatedMs = existing.lastUpdatedMs;
+                    existing = replaced;
+                    return true;
+                }
+                if (!better && (candidate.metric != existing.metric || candidate.hopCount != existing.hopCount)) return false;
+                const RouteEntry kept = existing; // refresh in place, the backup survives
+                existing = candidate;
+                existing.backupNextHopId = kept.backupNextHopId; existing.backupMetric = kept.backupMetric;
+                existing.backupHopCount = kept.backupHopCount; existing.backupUpdatedMs = kept.backupUpdatedMs;
+                return true;
+            }
+            existing = candidate; // a newer version, a reverse route, or a slot that was invalidated: start clean
             return true;
         }
 
@@ -53,6 +68,44 @@ namespace terrawatch::routing
         if (scaled > 65535.0F) return false;
         return updateRoute(destinationId, nextHopId, static_cast<std::uint16_t>(scaled + 0.5F),
                            hopCount, routeVersion, nowMs);
+    }
+
+    void RouteTable::keepAsBackup_(RouteEntry &primary, const RouteEntry &candidate)
+    {
+        const bool sameParent = primary.backupNextHopId == candidate.nextHopId;
+        if (primary.backupNextHopId != 0U && !sameParent && primary.backupMetric <= candidate.metric) return;
+        primary.backupNextHopId = candidate.nextHopId; primary.backupMetric = candidate.metric;
+        primary.backupHopCount = candidate.hopCount; primary.backupUpdatedMs = candidate.lastUpdatedMs;
+    }
+
+    bool RouteTable::updateReverseRoute(std::uint8_t destinationId, std::uint8_t previousHopId, std::uint8_t hopCount, std::uint32_t nowMs)
+    {
+        if (destinationId == 0U || destinationId == localNodeId_ || destinationId == 0xFFU || destinationId == 0xFEU ||
+            previousHopId == 0U || previousHopId == localNodeId_ || hopCount == 0U) return false;
+        RouteEntry candidate{destinationId, previousHopId, static_cast<std::uint16_t>(hopCount * constants::kRouteMetricScale), hopCount, nowMs, 0U, true};
+        candidate.learned = true;
+        const std::size_t existingIndex = findIndex_(destinationId);
+        if (existingIndex < routes_.size())
+        {
+            if (isUsable_(routes_[existingIndex], nowMs) && !routes_[existingIndex].learned) return false;
+            routes_[existingIndex] = candidate;
+            return true;
+        }
+        for (RouteEntry &slot : routes_)
+            if (!isUsable_(slot, nowMs)) { slot = candidate; return true; }
+        return false;
+    }
+
+    bool RouteTable::promoteBackup(std::uint8_t destinationId, std::uint8_t failedNextHopId)
+    {
+        const std::size_t index = findIndex_(destinationId);
+        if (index >= routes_.size()) return false;
+        RouteEntry &route = routes_[index];
+        if (!route.valid || route.learned || route.nextHopId != failedNextHopId || route.backupNextHopId == 0U) return false;
+        route.nextHopId = route.backupNextHopId; route.metric = route.backupMetric;
+        route.hopCount = route.backupHopCount; route.lastUpdatedMs = route.backupUpdatedMs;
+        route.backupNextHopId = 0U; route.backupMetric = 0U; route.backupHopCount = 0U; route.backupUpdatedMs = 0U;
+        return true;
     }
 
     bool RouteTable::lookup(std::uint8_t destinationId, std::uint32_t nowMs, RouteEntry &outRoute) const
