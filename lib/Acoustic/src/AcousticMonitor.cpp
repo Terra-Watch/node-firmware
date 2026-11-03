@@ -82,6 +82,7 @@ namespace terrawatch::acoustic
             uint32_t lastDebugMs = 0, cooldownEndMs = 0;
             bool reported = false;
             double dcSum = 0.0;
+            float peakDb = -99.0f, peakRms = 0.0f;           // loudest block since the last status line: a transient is gone before a once-a-second sample would see it
             uint32_t dcBlocks = 0;
             // The ADC DMA delivers a start-up transient; ignore the first 0.5 s so it cannot pollute the warm-up.
             int settleLeft = 500 * MAX4466_SAMPLE_RATE / 1000 / MAX4466_BLOCK_SIZE;
@@ -99,6 +100,7 @@ namespace terrawatch::acoustic
                 if (settleLeft > 0) { --settleLeft; continue; }
                 const uint32_t now = millis();
                 const auto edge = detector.update(st.rms);
+                if (detector.warmedUp() && detector.lastDeltaDb() > peakDb) { peakDb = detector.lastDeltaDb(); peakRms = st.rms; }
                 if (!reported)
                 {
                     dcSum += st.mean;
@@ -117,8 +119,9 @@ namespace terrawatch::acoustic
                 if (now - lastDebugMs >= ACOUSTIC_DEBUG_INTERVAL_MS)
                 {
                     lastDebugMs = now;
-                    Serial.printf("[ACOUSTIC] RMS=%.1f floor=%.1f dB=%+.1f%s\n", static_cast<double>(st.rms), static_cast<double>(detector.noiseFloor()),
-                                  static_cast<double>(detector.lastDeltaDb()), detector.warmedUp() ? "" : " (warming up)");
+                    Serial.printf("[ACOUSTIC] RMS=%.1f floor=%.1f dB=%+.1f peak=%+.1f dB (RMS %.0f)%s\n", static_cast<double>(st.rms), static_cast<double>(detector.noiseFloor()),
+                                  static_cast<double>(detector.lastDeltaDb()), static_cast<double>(peakDb), static_cast<double>(peakRms), detector.warmedUp() ? "" : " (warming up)");
+                    peakDb = -99.0f;
                 }
 #endif
                 if (edge == EnergyDetector::Edge::Rising && static_cast<int32_t>(now - cooldownEndMs) >= 0)

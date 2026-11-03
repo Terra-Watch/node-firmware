@@ -36,6 +36,8 @@ namespace terrawatch::services
         hal::IClock &clock_;
         utils::Logger &logger_;
         std::uint32_t lastReadMs_ = 0;
+        std::uint32_t lastPositionMs_ = 0;
+        bool positionSent_ = false;
         bool initialized_ = false;
     };
 } // namespace terrawatch::services
