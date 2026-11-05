@@ -2,22 +2,28 @@
 
 ESP32-S3 + SX1278 (433 MHz) LoRa firmware for the fixed forest stations. See `../docs/13-lookout-stations.md` for what the stations are for and `../docs/14-field-firmware-plan.md` for the build plan.
 
-Roles: sensing station (PMS5003 + BME680, this folder), relay (`../relay-firmware`, LoRa only, no sensors), gateway (`../gateway-firmware`).
+Roles: sensing station (this folder), relay (`../relay-firmware`, LoRa only, no sensors, same libraries), gateway (`../gateway-firmware`).
 
-## What is here
-- Binary protocol v4: 11-byte header, payload up to 48 bytes, CRC-16 (`lib/Protocol`). No authentication yet (planned: truncated HMAC).
-- Heartbeats, neighbour table with RSSI/SNR window, ack and retry (3 tries), TTL and hop count.
-- Multi-hop: static routes, dynamic route learning and advertisement, failure recovery, store-and-forward (`lib/Routing`, `lib/Forwarding`, `lib/Services`).
-- Telemetry (`lib/Telemetry`): BME680 temperature and humidity every 15 s as a 15-byte DATA packet to the gateway (PM fields are 0xFFFF until the PMS5003 is added).
-- Sound module (`lib/Acoustic`, `lib/Sensors`): MAX4466 energy trigger plus INMP441 capture, logged only; switch off with `-D TW_ACOUSTIC=0`. No classifier yet.
-- USB serial is on the board's native USB port (build flags `ARDUINO_USB_MODE=1`, `ARDUINO_USB_CDC_ON_BOOT=1`).
+```
+station --LoRa--> [relay ...] --LoRa--> gateway --serial--> (bridge, later) --> backend
+```
+
+## What a station does
+- **Air quality and weather** (`lib/Telemetry`, `lib/Sensors`): BME680 temperature and humidity every 15 s as a 15-byte DATA packet to the gateway (tag `S`). PM2.5 and PM10 from a PMS5003 are filled in when the sensor is present; otherwise those fields are 0xFFFF.
+- **Position**: the station has no GPS. Its fixed position is set at install (`TW_STATION_LAT_E6`, `TW_STATION_LON_E6`, micro-degrees) and sent to the gateway at start and every 10 minutes (tag `P`).
+- **Sound** (`lib/Acoustic`, `lib/Sensors`): a MAX4466 energy trigger starts an INMP441 capture. An int8 classifier (`mn10_as`, TFLite Micro with ESP-NN, from `../acoustic-ml`) labels 1 s of 16 kHz audio as chainsaw, blast, fire, wood, wind or background. One classification takes about 1.85 s on the S3. Alert logic (`AlertLogic`) raises only chainsaw (at least 2 of the last 3 windows within 60 s) and blast (one window); fire, wood and wind are logged, not alerted. An alert is a 4-byte DATA packet (tag `A`, kind, confidence in percent). Thresholds are starting points, not calibrated in the field. The model needs the `node-acoustic` build (PSRAM, 6 MB app partition, model embedded from `model/`); other builds run the trigger only (`-D TW_ACOUSTIC=0` switches sound off).
+- **Radio link**: binary protocol v5 (`lib/Protocol`): 12-byte header (the next hop is in the header), payload up to 48 bytes, CRC-16. No authentication yet (planned: truncated HMAC). Heartbeats, neighbour table with RSSI/SNR window, hop-by-hop ack with 3 tries, TTL and hop count.
+- **Multi-hop** (`lib/Routing`, `lib/Forwarding`, `lib/Services`): static and learned routes, route advertisements, failure recovery, store-and-forward, listen-before-talk with a random delay, a backup parent that takes over on retry, and an end-to-end receipt from the gateway for alerts (the origin resends an alert until the receipt arrives). Telemetry is not resent; the next reading replaces it. `../simulations/multihop` compares these steps on a simulated network.
+- **Status LED** (`TW_LED_PIN`): blue air quality sent, red chainsaw, magenta blast, white position.
+- USB serial is on the board's native USB port; the `node-acoustic` build uses the UART USB port at 921600 baud (slower logging corrupts radio reception on these boards).
 
 ## Build and test
 ```
-pio run                                   # build for the S3 dev board
-bash test/run_protocol_v4_tests.sh        # host tests: one script per test in test/
+pio run                                # S3 dev board, no sound model
+pio run -e node-acoustic               # ESP32-S3 N16R8 with the sound classifier (set the ports in platformio.ini)
+bash test/run_protocol_v4_tests.sh     # host tests: one script per test in test/ (14 scripts)
 ```
-Known: `run_n1_tests.sh` and `run_n2c_failure_recovery_tests.sh` already failed before the TerraWatch clean-up (checked 2026-11-02); not yet investigated.
+Host tests (run 2026-11-05): 12 of 14 scripts pass. `run_n1_tests.sh` and `run_n2c_failure_recovery_tests.sh` abort and have not been investigated; they failed before the TerraWatch clean-up as well.
 
 ## Layout
-`src/` composition root and app loop; `lib/` one folder per module (HAL, LoRaDriver, Protocol, PacketFactory, PacketQueue, Neighbor, Routing, Forwarding, ReliableLink, Services, EventBus, Utils); `include/` config and constants; `test/` host tests. Design notes: `ARCHITECTURE.md`, `ARCHITECTURE_REVIEW.md`, `NETWORK_SERVICES_REVIEW.md`.
+`src/` composition root and app loop; `lib/` one folder per module (Acoustic, Sensors, Telemetry, HAL, LoRaDriver, Protocol, PacketFactory, PacketQueue, Neighbor, Routing, Forwarding, ReliableLink, Services, EventBus, Utils); `include/` config and constants; `model/` the int8 sound model; `test/` host tests. Design notes: `ARCHITECTURE.md`, `ARCHITECTURE_REVIEW.md`, `NETWORK_SERVICES_REVIEW.md`.
