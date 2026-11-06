@@ -18,6 +18,18 @@ int main()
         assert(l.update(saw, t += 5000).kind == AlertKind::None);
         assert(l.update(saw, t += 55000).kind == AlertKind::Chainsaw);            // 60 s after the first alert (at 11 s), two hits still within 60 s
     }
+    {   // fire: needs two windows above its threshold within 60 s, then stays quiet for 10 minutes; off when the threshold is above 1
+        const float fire[6] = {0.02f, 0.01f, 0.95f, 0.01f, 0.01f, 0.00f};
+        AlertLogic l(0.18f, 0.93f, 0.90f); std::uint32_t t = 1000;
+        assert(l.update(fire, t).kind == AlertKind::None);
+        const Alert a = l.update(fire, t += 4000); assert(a.kind == AlertKind::Fire && a.confidencePercent == 95);
+        assert(l.update(fire, t += 4000).kind == AlertKind::None);
+        assert(l.update(fire, t += 300000).kind == AlertKind::None);
+        assert(l.update(fire, t += 400000).kind == AlertKind::None);               // the first hit of a new pair
+        assert(l.update(fire, t += 4000).kind == AlertKind::Fire);
+        AlertLogic off(0.18f, 0.93f); std::uint32_t u = 0;
+        assert(off.update(fire, u).kind == AlertKind::None && off.update(fire, u += 3000).kind == AlertKind::None);
+    }
     {   // hits more than 60 s apart do not add up
         AlertLogic l(0.18f, 0.93f); std::uint32_t t = 0;
         assert(l.update(saw, t).kind == AlertKind::None);

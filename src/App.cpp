@@ -235,7 +235,7 @@ namespace terrawatch
         {
             const std::uint8_t kind = sentPacket.payload[0];
             if (kind == 0x53U) flashLed_(0, 0, 40, 300);                                                     // 'S' air-quality reading
-            else if (kind == 0x41U) { if (sentPacket.payloadSize > 2U && sentPacket.payload[2] == 2U) flashLed_(40, 0, 40, 1500); else flashLed_(60, 0, 0, 1500); } // 'A' alert
+            else if (kind == 0x41U) { const std::uint8_t k = sentPacket.payloadSize > 2U ? sentPacket.payload[2] : 0U; if (k == 2U) flashLed_(40, 0, 40, 1500); else if (k == 3U) flashLed_(60, 25, 0, 1500); else flashLed_(60, 0, 0, 1500); } // 'A' alert: magenta blast, orange fire, red chainsaw
             else if (kind == 0x50U) flashLed_(25, 25, 25, 300);                                              // 'P' position
         }
         // Only alerts are kept for an end-to-end resend. A periodic reading is replaced by the next one, and resending those loads the channel enough

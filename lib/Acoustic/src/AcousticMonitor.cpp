@@ -36,7 +36,7 @@ namespace terrawatch::acoustic
         extern "C" const uint8_t kAcousticModelStart[] asm("_binary_model_acoustic_mn10_int8_tflite_start");
         extern "C" const uint8_t kAcousticModelEnd[] asm("_binary_model_acoustic_mn10_int8_tflite_end");
         AcousticClassifier g_classifier;
-        AlertLogic g_alertLogic(ACOUSTIC_THRESHOLD_CHAINSAW, ACOUSTIC_THRESHOLD_BLAST);
+        AlertLogic g_alertLogic(ACOUSTIC_THRESHOLD_CHAINSAW, ACOUSTIC_THRESHOLD_BLAST, ACOUSTIC_THRESHOLD_FIRE);
         const char *const kClassNames[6] = {"chainsaw", "blast", "fire", "wood", "wind", "background"};
 
         void onClassified(const ClassifierResult &r)
@@ -46,7 +46,7 @@ namespace terrawatch::acoustic
                           static_cast<double>(r.probs[0]), static_cast<double>(r.probs[1]), static_cast<double>(r.probs[2]), static_cast<double>(r.probs[3]), static_cast<double>(r.probs[4]), static_cast<double>(r.probs[5]), static_cast<double>(r.frontendMs), static_cast<double>(r.modelMs));
             const Alert a = g_alertLogic.update(r.probs, millis());
             if (a.kind == AlertKind::None) return;
-            Serial.printf("[ACOUSTIC ALERT] %s %u%%\n", a.kind == AlertKind::Chainsaw ? "chainsaw" : "blast", static_cast<unsigned>(a.confidencePercent));
+            Serial.printf("[ACOUSTIC ALERT] %s %u%%\n", a.kind == AlertKind::Chainsaw ? "chainsaw" : a.kind == AlertKind::Fire ? "fire" : "blast", static_cast<unsigned>(a.confidencePercent));
             if (g_alertSink) g_alertSink(a);
         }
 #endif

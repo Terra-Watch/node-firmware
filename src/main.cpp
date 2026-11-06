@@ -110,7 +110,7 @@ void loop()
     if (g_alertPending)
     {
         g_alertPending = false;
-        // Alert payload v1: 'A', version 1, kind (1 chainsaw, 2 blast), confidence in percent. Sent to the gateway like a station reading.
+        // Alert payload v1: 'A', version 1, kind (1 chainsaw, 2 blast, 3 fire), confidence in percent. Sent to the gateway like a station reading.
         const std::uint8_t payload[4] = {0x41U, 1U, static_cast<std::uint8_t>(g_alert.kind), g_alert.confidencePercent};
         terrawatch::protocol::Packet packet;
         if (firmware().packetFactory.createData(0xFEU, payload, sizeof(payload), packet) && firmware().packetQueue.enqueue(packet))

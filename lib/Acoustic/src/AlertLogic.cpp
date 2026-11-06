@@ -25,6 +25,14 @@ namespace terrawatch::acoustic
             chainsawSent_ = true; lastChainsawMs_ = nowMs;
             return make(AlertKind::Chainsaw, probs[0]);
         }
+        // fire: the same idea with its own history and a longer pause between alerts
+        fireHit_[fireNext_] = probs[2] >= fireThreshold_; fireTimes_[fireNext_] = nowMs; fireNext_ = (fireNext_ + 1) % kHistory;
+        int fireHits = 0; for (int i = 0; i < kHistory; ++i) if (fireHit_[i] && !older(nowMs, fireTimes_[i], kFireWindowMs)) ++fireHits;
+        if (fireHits >= 2 && (!fireSent_ || older(nowMs, lastFireMs_, kFireHoldMs)))
+        {
+            fireSent_ = true; lastFireMs_ = nowMs;
+            return make(AlertKind::Fire, probs[2]);
+        }
         return {};
     }
 } // namespace terrawatch::acoustic
