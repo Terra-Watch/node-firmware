@@ -101,7 +101,7 @@ void loop() {
     logf("WARN: packetSize/read mismatch packetSize=%d bytesRead=%d", packetSize, count);
   }
   if (packetSize == 25) {
-    logLine("NOTE: length 25 matches expected BoatNode heartbeat size");
+    logLine("NOTE: length 25 matches expected node heartbeat size");
   } else if (packetSize == 21) {
     logLine("NOTE: length 21 matches expected Gateway heartbeat ACK size");
   } else {

@@ -64,7 +64,7 @@ int main() {
     assert(!protocol::Parser::parse(bytes.data(), size, parsed));
 
     bus.publish({event::Type::PacketSent, packet});
-    clock.now = 1000;
+    clock.now = 2500;
     ack.update();
     assert(queue.size() == 1 && listener.retries == 1);
     queue.clear();
@@ -109,7 +109,7 @@ int main() {
     assert(!ack.processReceivedData(incoming));
     assert(listener.duplicates == 1 && queue.size() == 2);
     queue.clear();
-    clock.now = 1000U + constants::kDuplicateExpiryMs;
+    clock.now = 2500U + constants::kDuplicateExpiryMs;
     assert(ack.processReceivedData(incoming));
     assert(!ack.processReceivedData(incoming));
     queue.clear();

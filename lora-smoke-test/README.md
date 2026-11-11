@@ -4,11 +4,11 @@ Minimal diagnostic firmware for verifying SX1278 LoRa transceiver connectivity a
 
 ## Overview
 
-This is a **test utility**, not a production component. It contains two standalone PlatformIO projects — a transmitter and a receiver — that send and receive simple plain-text LoRa packets. The purpose is to verify that the SX1278 hardware is correctly wired, SPI communication works, and basic RF transmission/reception functions before using the full Jalri protocol firmware.
+This is a **test utility**, not a production component. It contains two standalone PlatformIO projects — a transmitter and a receiver — that send and receive simple plain-text LoRa packets. The purpose is to verify that the SX1278 hardware is correctly wired, SPI communication works, and basic RF transmission/reception functions before using the full node protocol firmware.
 
-## Role in Jalri
+## Role in the project
 
-This test is a **supporting diagnostic tool**. It is not part of the Jalri production architecture and does not use the Jalri binary protocol. It exists to validate hardware setup independently of the application firmware.
+This test is a **supporting diagnostic tool**. It is not part of the production firmware architecture and does not use the node binary protocol. It exists to validate hardware setup independently of the application firmware.
 
 ```text
 [ Transmitter Board ] --LoRa 433MHz--> [ Receiver Board ]
@@ -34,11 +34,11 @@ Listens continuously for LoRa packets and logs diagnostic information.
 - Reads and logs the SX1278 `REG_VERSION` register at multiple stages
 - Receives packets and logs: packet size, RSSI (dBm), SNR (dB)
 - Outputs raw HEX bytes and ASCII representation
-- Notes if packet length matches expected BoatNode heartbeat (25 bytes) or Gateway ACK (21 bytes) sizes
+- Notes if packet length matches expected node heartbeat (25 bytes) or Gateway ACK (21 bytes) sizes
 
 ## Configuration
 
-Both projects use identical SPI pin mapping, matching the Jalri production firmware:
+Both projects use identical SPI pin mapping, matching the node production firmware:
 
 | Pin | GPIO | Function |
 |---|---|---|
@@ -105,7 +105,7 @@ ASCII:Hello 0
 
 ## Limitations
 
-- **Not production code** — uses plain-text packets, not the Jalri binary protocol
+- **Not production code** — uses plain-text packets, not the node binary protocol
 - **No git repository** — this is a local test utility, not tracked as a separate GitHub repository
 - **Two boards required** — transmitter and receiver must run on separate ESP32-S3 boards with SX1278 modules
 - **Hardware dependent** — results depend on physical wiring and RF environment

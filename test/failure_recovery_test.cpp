@@ -126,7 +126,7 @@ int main() {
     auto failedPacket = makeData(aFactory);
     failedPacket.nextHopId = 0x02U;
     aBus.publish({event::Type::PacketSent, failedPacket});
-    aClock.now += 1000U;
+    aClock.now += 2500U;
     aAck.update();
     for (std::uint8_t attempt = 0; attempt < 3U; ++attempt) {
         protocol::Packet retry;
