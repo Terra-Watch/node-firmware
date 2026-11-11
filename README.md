@@ -2,7 +2,7 @@
 
 ESP32-S3 + SX1278 (433 MHz) LoRa firmware for the fixed forest stations. See `../docs/13-lookout-stations.md` for what the stations are for and `../docs/14-field-firmware-plan.md` for the build plan.
 
-Roles: sensing station (this folder), relay (`../relay-firmware`, LoRa only, no sensors, same libraries), gateway (`../gateway-firmware`).
+Roles: sensing station (this folder), relay (`relay/`, LoRa only, no sensors, same libraries), gateway (`../gateway-firmware`).
 
 ```
 station --LoRa--> [relay ...] --LoRa--> gateway --serial--> (bridge, later) --> backend
