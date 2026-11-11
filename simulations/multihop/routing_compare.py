@@ -159,6 +159,109 @@ class DVFixSim(DVSim):
     fast_boot = True
 
 
+
+M.AIR["rreq"] = M.airtime(20); M.AIR["rrep"] = M.airtime(18)       # 12-byte header + 6 / 4 bytes of payload + 2 CRC
+
+
+class AODVSim(Counting):
+    """On-demand routing in the style of AODV / HWMP, which is what the LoRa mesh papers adapt (Lundell et al. 2018, and the AODV-like baseline of the PPO routing paper):
+    a node with no route to the gateway floods a route request, the gateway answers along the reverse path, routes are kept 30 minutes and refreshed by use, and a failed hop erases the
+    route and starts a new discovery. Hop count is the metric. Only the gateway answers (no intermediate replies). No end-to-end receipt."""
+    LIFETIME = 1800.0
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        self.route = [None] * (self.n + 1); self.rev = [dict() for _ in range(self.n + 1)]; self.rseen = [set() for _ in range(self.n + 1)]; self.rid = 0; self.disc = [None] * (self.n + 1)
+    def on_advert(self, node): return
+    def route_of(self, node):
+        r = self.route[node]
+        return r if r is not None and self.t - r["t"] <= self.LIFETIME else None
+    def choose_parent(self, node):
+        r = self.route_of(node); return (r["nh"] if r else None), None
+    def send_data(self, node, frame):
+        r = self.route_of(node)
+        if r:
+            r["t"] = self.t; f = dict(frame); f["to"] = r["nh"]; self.enqueue(node, f); return
+        self.held[node].append((self.t, frame)); self.start_discovery(node)
+    def start_discovery(self, node, attempt=0):
+        if self.disc[node] is not None and attempt == 0: return
+        self.disc[node] = attempt; self.rid += 1; rid = self.rid
+        self.rseen[node].add((node, rid))
+        self.enqueue(node, dict(kind="rreq", origin=node, rid=rid, hops=0), droppable=True)
+        self.at(self.t + 5.0 * (2 ** attempt), "disc_timeout", node, attempt)
+    def on_disc_timeout(self, node, attempt):
+        if node in self.dead or self.route_of(node) is not None or self.disc[node] != attempt: return
+        if attempt >= 3: self.disc[node] = None; return
+        self.start_discovery(node, attempt + 1)
+    def on_txend(self, node, frame, start):
+        kind = frame["kind"]
+        if kind == "rreq":
+            for b in self.nbr[node]:
+                if b not in self.dead and self.received(node, b, start, self.t): self.rx_rreq(node, b, frame)
+            return
+        if kind == "rrep":
+            dst = frame["to"]
+            if dst not in self.dead and self.received(node, dst, start, self.t): self.rx_rrep(node, dst, frame)
+            return
+        return super().on_txend(node, frame, start)
+    def rx_rreq(self, src, dst, frame):
+        key = (frame["origin"], frame["rid"])
+        if key in self.rseen[dst]: return
+        self.rseen[dst].add(key)
+        self.rev[dst][frame["origin"]] = (src, frame["hops"] + 1)
+        if dst == GATEWAY:
+            self.enqueue(GATEWAY, dict(kind="rrep", to=src, origin=frame["origin"], hops=0), droppable=True); return
+        self.enqueue(dst, dict(frame, hops=frame["hops"] + 1), droppable=True)
+    def rx_rrep(self, src, dst, frame):
+        self.route[dst] = dict(nh=src, hops=frame["hops"] + 1, t=self.t)
+        if dst == frame["origin"]:
+            self.disc[dst] = None; held, self.held[dst] = self.held[dst], []
+            for (t0, f) in held:
+                if self.t - t0 <= M.DTN_LIFETIME: self.send_data(dst, f)
+            return
+        nxt = self.rev[dst].get(frame["origin"])
+        if nxt: self.enqueue(dst, dict(frame, to=nxt[0], hops=frame["hops"] + 1), droppable=True)
+    def on_hop_timeout(self, key, attempt, frame):
+        node = key[0]
+        if self.pending.get(key) != attempt or node in self.dead: return
+        if attempt < M.HOP_RETRIES:
+            self.hop_retx += 1; self.enqueue(node, dict(frame)); return
+        del self.pending[key]; self.hop_fail += 1
+        if self.route[node] is not None and self.route[node]["nh"] == frame["to"]: self.route[node] = None
+        self.held[node].append((self.t, frame)); self.start_discovery(node)
+
+
+class RandomSim(Counting):
+    """The 'random routing' baseline of the PPO routing paper: each packet goes to a random neighbour that is closer to the gateway. The costs are those known at install (frozen,
+    free of any advert traffic, never repaired by an oracle); a node only learns locally that a neighbour failed."""
+    frozen = False
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k); self.frozen = True
+    def compute_tree(self, exclude=lambda a, b: False):
+        if not self.frozen: super().compute_tree(exclude)
+    def choose_parent(self, node):
+        bad = {k for k, until in self.known_dead[node].items() if until > self.t}
+        c = [j for j in self.nbr[node] if self.cost[j] < self.cost[node] and j not in bad]
+        return (self.rng.choice(c) if c else None), None
+
+
+class StaticHopSim(Counting):
+    """A tree fixed at install, built by hop count (the 'shortest path' baseline): the parent is the neighbour with the fewest hops to the gateway."""
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        hops = [math.inf] * (self.n + 1); hops[GATEWAY] = 0; frontier = [GATEWAY]
+        while frontier:
+            nxt = []
+            for u in frontier:
+                for v in self.nbr[u]:
+                    if hops[v] == math.inf: hops[v] = hops[u] + 1; nxt.append(v)
+            frontier = nxt
+        self.fixed = [None] * (self.n + 1)
+        for node in range(1, self.n + 1):
+            c = [j for j in self.nbr[node] if hops[j] < hops[node]]
+            self.fixed[node] = max(c, key=lambda j: self.rx[node][j]) if c else None
+    def choose_parent(self, node): return self.fixed[node], None
+
+
 class DVHopSim(DVFixSim):
     """Same as dv+fix but the route cost is the number of hops (every usable link costs 1), the usual alternative to ETX."""
     def etx(self, a, b): return 1.0
@@ -171,6 +274,9 @@ ALGOS = {
     "dv":      (DVSim,     M.CONFIGS["full"]),
     "dv+fix":  (DVFixSim,  M.CONFIGS["full"]),
     "dv+fix-hops": (DVHopSim, M.CONFIGS["full"]),
+    "aodv":    (AODVSim,   dict(lbt=True, e2e=False, backup=False, advert=1e9)),
+    "random":  (RandomSim, dict(lbt=True, e2e=False, backup=False, advert=1e9)),
+    "static-hops": (StaticHopSim, dict(lbt=True, e2e=False, backup=False, advert=1e9)),
     "dv-300":  (DVSim,     M.CONFIGS["full-300"]),
     "dv+fix-300": (DVFixSim, M.CONFIGS["full-300"]),
 }
