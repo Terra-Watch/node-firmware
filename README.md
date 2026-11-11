@@ -21,7 +21,7 @@ station --LoRa--> [relay ...] --LoRa--> gateway --serial--> (bridge, later) --> 
 ```
 pio run                                # S3 dev board, no sound model
 pio run -e node-acoustic               # ESP32-S3 N16R8 with the sound classifier (set the ports in platformio.ini)
-bash test/run_protocol_v4_tests.sh     # host tests: one script per test in test/ (14 scripts)
+bash test/run_protocol_tests.sh     # host tests: one script per test in test/ (14 scripts)
 ```
 Host tests (run 2026-11-05): 12 of 14 scripts pass. `run_n1_tests.sh` and `run_n2c_failure_recovery_tests.sh` abort and have not been investigated; they failed before the TerraWatch clean-up as well.
 

@@ -11,7 +11,7 @@ c++ -std=c++17 \
   -I"$ROOT_DIR/lib/Node/src" \
   -I"$ROOT_DIR/lib/PacketFactory/src" \
   -I"$ROOT_DIR/lib/Utils/src" \
-  "$ROOT_DIR/test/protocol_v4_test.cpp" \
+  "$ROOT_DIR/test/protocol_test.cpp" \
   "$ROOT_DIR/lib/Protocol/src/Packet.cpp" \
   "$ROOT_DIR/lib/Protocol/src/Parser.cpp" \
   "$ROOT_DIR/lib/Protocol/src/Serializer.cpp" \

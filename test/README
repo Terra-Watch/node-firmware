@@ -12,7 +12,7 @@ More information about PlatformIO Unit Testing:
 
 Host validation scripts:
 
-- `run_protocol_v4_tests.sh`
+- `run_protocol_tests.sh`
 - `run_n1_tests.sh`
 - `run_n2_static_forwarding_tests.sh`
 - `run_n2c_failure_recovery_tests.sh`
