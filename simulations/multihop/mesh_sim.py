@@ -21,7 +21,7 @@ CAD_THRESHOLD = -122.0            # weakest signal listen-before-talk notices
 CAPTURE_DB = 6.0
 EXTRA_LOSS = 20.0                 # foliage and terrain on top of free space; 433 MHz
 SHADOW_SIGMA, FADE_SIGMA = 4.0, 2.0
-SIZES = {"data": 28, "ack": 15, "advert": 19, "e2e": 15}
+SIZES = {"data": 29, "ack": 16, "advert": 20, "e2e": 16}      # protocol v5: 12-byte header + payload (15 telemetry, 2 ack, 6 advert, 2 receipt) + 2-byte CRC. Before 2026-11-11 these were 1 byte short (the v4 header of 11 bytes).
 
 def airtime(nbytes):
     tsym = 2 ** SF / BW

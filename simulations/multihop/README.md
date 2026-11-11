@@ -21,13 +21,13 @@ Reports every 10 min, no failure:
 
 | stations | baseline | +lbt | full | full-300 |
 |---|---|---|---|---|
-| 40 | 71.8 % | 99.4 % | 98.1 % | 99.0 % |
-| 80 | 41.4 % | 98.7 % | 98.3 % | 99.0 % |
+| 40 | 65.6 % | 98.6 % | 98.7 % | 98.9 % |
+| 80 | 36.0 % | 99.1 % | 97.4 % | 99.4 % |
 
-Alerts at 80 stations: 39.9 % baseline, 98.9 % +lbt, 99.4 % +e2e, 99.2 % full, 99.9 % full-300.
+Alerts at 80 stations: 34.6 % baseline, 99.3 % +lbt, 99.3 % +e2e, 99.1 % full, 99.9 % full-300.
 
-One relay (the one carrying the most stations) dies half way, reports every 10 min, 80 stations: baseline 22.3 %, +lbt 98.3 %, full 99.3 %.
-Hop retries per packet fall from 19.0 (baseline) to 0.98 (full), and the channel is busy 20 % of the time instead of 53 %.
+One relay (the one carrying the most stations) dies half way, reports every 10 min, 80 stations: baseline 19.8 %, +lbt 99.0 %, full 97.2 %.
+Hop retries per packet fall from 23.4 (baseline) to 1.1 (full), and the channel is busy 22 % of the time instead of 61 %.
 
 Reports every minute is too much for one gateway: with 40 stations only 66 % arrive even with listen-before-talk (baseline 5 %).
 Past roughly 20 stations at that rate the answer is a second gateway, not a better algorithm.

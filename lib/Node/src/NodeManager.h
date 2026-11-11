@@ -33,7 +33,7 @@ namespace terrawatch::node
         void setStatus(NodeStatus status);
 
     private:
-        const config::NodeConfig &config_;
+        config::NodeConfig config_;      // by value: a reference dangled when a caller passed a temporary (found by AddressSanitizer in next_hop and dynamic_forwarding tests)
         const DeviceRole role_;
         NodeStatus status_ = NodeStatus::Booting;
     };
