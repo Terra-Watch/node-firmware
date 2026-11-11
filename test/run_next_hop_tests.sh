@@ -7,9 +7,9 @@ c++ -std=c++17 \
   -I"$ROOT_DIR/include" -I"$ROOT_DIR/lib/Protocol/src" -I"$ROOT_DIR/lib/Forwarding/src" -I"$ROOT_DIR/lib/Routing/src" -I"$ROOT_DIR/lib/Services/src" \
   -I"$ROOT_DIR/lib/Node/src" -I"$ROOT_DIR/lib/Neighbor/src" -I"$ROOT_DIR/lib/PacketFactory/src" -I"$ROOT_DIR/lib/PacketQueue/src" \
   -I"$ROOT_DIR/lib/EventBus/src" -I"$ROOT_DIR/lib/HAL/src" \
-  "$ROOT_DIR/test/n3g_next_hop_test.cpp" "$ROOT_DIR/lib/Protocol/src/Packet.cpp" "$ROOT_DIR/lib/Forwarding/src/DynamicForwardingStrategy.cpp" \
+  "$ROOT_DIR/test/next_hop_test.cpp" "$ROOT_DIR/lib/Protocol/src/Packet.cpp" "$ROOT_DIR/lib/Forwarding/src/DynamicForwardingStrategy.cpp" \
   "$ROOT_DIR/lib/Routing/src/RouteTable.cpp" "$ROOT_DIR/lib/Routing/src/RouteAdvertisementService.cpp" "$ROOT_DIR/lib/Services/src/ForwardingService.cpp" \
   "$ROOT_DIR/lib/Neighbor/src/NeighborManager.cpp" "$ROOT_DIR/lib/PacketFactory/src/PacketFactory.cpp" "$ROOT_DIR/lib/Node/src/NodeManager.cpp" \
-  "$ROOT_DIR/lib/PacketQueue/src/PacketQueue.cpp" "$ROOT_DIR/lib/EventBus/src/EventBus.cpp" -o "$BUILD_DIR/n3g_next_hop_test"
-"$BUILD_DIR/n3g_next_hop_test"
+  "$ROOT_DIR/lib/PacketQueue/src/PacketQueue.cpp" "$ROOT_DIR/lib/EventBus/src/EventBus.cpp" -o "$BUILD_DIR/next_hop_test"
+"$BUILD_DIR/next_hop_test"
 echo "N3G next-hop tests: PASS"

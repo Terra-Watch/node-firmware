@@ -7,9 +7,9 @@ trap 'rm -rf "$BUILD_DIR"' EXIT
 
 c++ -std=c++17 \
   -I"$ROOT_DIR/include" -I"$ROOT_DIR/lib/Protocol/src" -I"$ROOT_DIR/lib/Neighbor/src" \
-  "$ROOT_DIR/test/n3b_metric_test.cpp" "$ROOT_DIR/lib/Protocol/src/Packet.cpp" \
+  "$ROOT_DIR/test/metric_test.cpp" "$ROOT_DIR/lib/Protocol/src/Packet.cpp" \
   "$ROOT_DIR/lib/Neighbor/src/NeighborManager.cpp" \
-  -o "$BUILD_DIR/n3b_metric_test"
+  -o "$BUILD_DIR/metric_test"
 
-"$BUILD_DIR/n3b_metric_test"
+"$BUILD_DIR/metric_test"
 echo "N3B metric tests: PASS"
