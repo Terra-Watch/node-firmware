@@ -29,6 +29,8 @@ namespace terrawatch::constants
     constexpr std::size_t kRouteAdvertisementPayloadSize = 6U;
     constexpr std::size_t kRouteAdvertisementDuplicateCapacity = 32U;
     constexpr std::uint32_t kRouteAdvertisementIntervalMs = 60000U;
+    constexpr std::uint8_t kAdvertBurstCount = 2U; // after the first advert of a route, two quick repeats before the normal interval
+    constexpr std::uint32_t kAdvertBurstGapsMs[kAdvertBurstCount] = {7000U, 15000U};
     constexpr std::uint32_t kTxJitterMaxMs = 60U;      // random wait before a packet's first attempt, so nodes that heard the same packet do not answer together
     constexpr std::uint32_t kLbtBackoffBaseMs = 40U;   // listen-before-talk: wait base * 2^attempt (random 0..that) when the channel is busy
     constexpr std::uint8_t kLbtMaxAttempts = 6U;       // then send anyway; a busy channel must not hold an alert back forever

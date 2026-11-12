@@ -113,7 +113,13 @@ int main() {
     assert(!aLearning.advertiseRoute(0xFEU, 61U));
     assert(aQueue.size() == 1U);
     aQueue.clear();
-    assert(aLearning.advertiseRoute(0xFEU, 15060U));
+    // The first two repeats come quickly (7 s, then 15 s), after that the normal interval applies.
+    assert(!aLearning.advertiseRoute(0xFEU, 7059U));
+    assert(aLearning.advertiseRoute(0xFEU, 7060U));
+    assert(!aLearning.advertiseRoute(0xFEU, 22059U));
+    assert(aLearning.advertiseRoute(0xFEU, 22060U));
+    assert(!aLearning.advertiseRoute(0xFEU, 22060U + 14999U));
+    assert(aLearning.advertiseRoute(0xFEU, 22060U + 15000U));
 
     // Loop-like advertisements cannot install self/broadcast routes or excessive hops.
     protocol::Packet loopAdvertisement;

@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
                 if (nw.seen[m.dst].count({m.src, m.ver})) { push(nw); continue; }      // duplicate of (source, version): suppressed
                 nw.seen[m.dst].insert({m.src, m.ver});
                 int link = t.cost[m.src][m.dst]; double total = link * static_cast<double>(tc::kRouteMetricScale) + m.metric;
-                if (m.src != 0 || true) nw.rt[m.dst].updateRoute(tc::kGatewayNodeId, wire(m.src), static_cast<std::uint16_t>(total + 0.5), static_cast<std::uint8_t>(m.hops + 1), m.ver, 0U);
+                if (m.src != 0 || true) nw.rt[m.dst].updateRoute(tc::kGatewayNodeId, wire(m.src), static_cast<std::uint16_t>(total + 0.5), static_cast<std::uint8_t>(m.hops + 1), m.ver, 0U, static_cast<std::uint16_t>(m.metric));
                 push(nw);
             }
         }

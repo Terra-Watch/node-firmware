@@ -8,13 +8,15 @@ namespace terrawatch::routing
         : localNodeId_(localNodeId), routeLifetimeMs_(routeLifetimeMs) {}
 
     bool RouteTable::updateRoute(std::uint8_t destinationId, std::uint8_t nextHopId, std::uint16_t metric,
-                                 std::uint8_t hopCount, std::uint16_t routeVersion, std::uint32_t nowMs)
+                                 std::uint8_t hopCount, std::uint16_t routeVersion, std::uint32_t nowMs,
+                                 std::uint16_t advertisedMetric)
     {
         if (destinationId == 0U || destinationId == localNodeId_ || destinationId == 0xFFU ||
             nextHopId == 0U || nextHopId == localNodeId_ || metric == 0U || hopCount == 0U)
             return false;
 
-        const RouteEntry candidate{destinationId, nextHopId, metric, hopCount, nowMs, routeVersion, true};
+        RouteEntry candidate{destinationId, nextHopId, metric, hopCount, nowMs, routeVersion, true};
+        candidate.advertisedMetric = advertisedMetric;
         const std::size_t existingIndex = findIndex_(destinationId);
         if (existingIndex < routes_.size())
         {
@@ -28,8 +30,12 @@ namespace terrawatch::routing
                 {
                     if (!better) { keepAsBackup_(existing, candidate); return false; }
                     RouteEntry replaced = candidate; // the old primary becomes the backup parent
-                    replaced.backupNextHopId = existing.nextHopId; replaced.backupMetric = existing.metric;
-                    replaced.backupHopCount = existing.hopCount; replaced.backupUpdatedMs = existing.lastUpdatedMs;
+                    if (feasibleBackup_(replaced.metric, existing.advertisedMetric))
+                    {
+                        replaced.backupNextHopId = existing.nextHopId; replaced.backupMetric = existing.metric;
+                        replaced.backupHopCount = existing.hopCount; replaced.backupUpdatedMs = existing.lastUpdatedMs;
+                        replaced.backupAdvertisedMetric = existing.advertisedMetric;
+                    }
                     existing = replaced;
                     return true;
                 }
@@ -38,6 +44,12 @@ namespace terrawatch::routing
                 existing = candidate;
                 existing.backupNextHopId = kept.backupNextHopId; existing.backupMetric = kept.backupMetric;
                 existing.backupHopCount = kept.backupHopCount; existing.backupUpdatedMs = kept.backupUpdatedMs;
+                existing.backupAdvertisedMetric = kept.backupAdvertisedMetric;
+                if (kept.backupNextHopId != 0U && !feasibleBackup_(existing.metric, kept.backupAdvertisedMetric))
+                { // our own cost rose past what the backup advertised: it may now route through us
+                    existing.backupNextHopId = 0U; existing.backupMetric = 0U; existing.backupHopCount = 0U;
+                    existing.backupUpdatedMs = 0U; existing.backupAdvertisedMetric = 0U;
+                }
                 return true;
             }
             existing = candidate; // a newer version, a reverse route, or a slot that was invalidated: start clean
@@ -72,10 +84,18 @@ namespace terrawatch::routing
 
     void RouteTable::keepAsBackup_(RouteEntry &primary, const RouteEntry &candidate)
     {
+        if (!feasibleBackup_(primary.metric, candidate.advertisedMetric)) return;
         const bool sameParent = primary.backupNextHopId == candidate.nextHopId;
         if (primary.backupNextHopId != 0U && !sameParent && primary.backupMetric <= candidate.metric) return;
         primary.backupNextHopId = candidate.nextHopId; primary.backupMetric = candidate.metric;
         primary.backupHopCount = candidate.hopCount; primary.backupUpdatedMs = candidate.lastUpdatedMs;
+        primary.backupAdvertisedMetric = candidate.advertisedMetric;
+    }
+
+    // A neighbour that advertises a cost below our own total cost cannot be routing through us (loop-free condition of DUAL / feasible successor).
+    bool RouteTable::feasibleBackup_(std::uint16_t ourTotalMetric, std::uint16_t neighbourAdvertisedMetric)
+    {
+        return neighbourAdvertisedMetric == 0U || neighbourAdvertisedMetric < ourTotalMetric;
     }
 
     bool RouteTable::updateReverseRoute(std::uint8_t destinationId, std::uint8_t previousHopId, std::uint8_t hopCount, std::uint32_t nowMs)
@@ -105,6 +125,7 @@ namespace terrawatch::routing
         route.nextHopId = route.backupNextHopId; route.metric = route.backupMetric;
         route.hopCount = route.backupHopCount; route.lastUpdatedMs = route.backupUpdatedMs;
         route.backupNextHopId = 0U; route.backupMetric = 0U; route.backupHopCount = 0U; route.backupUpdatedMs = 0U;
+        route.advertisedMetric = route.backupAdvertisedMetric; route.backupAdvertisedMetric = 0U;
         return true;
     }
 

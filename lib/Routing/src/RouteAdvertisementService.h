@@ -42,6 +42,7 @@ namespace terrawatch::routing
         {
             std::uint8_t destinationId = 0;
             std::uint32_t lastSentMs = 0;
+            std::uint8_t burstSent = 0;
             bool active = false;
         };
 

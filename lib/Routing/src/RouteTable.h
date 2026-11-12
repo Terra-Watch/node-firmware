@@ -30,6 +30,9 @@ namespace terrawatch::routing
         std::uint16_t backupMetric = 0;
         std::uint8_t backupHopCount = 0;
         std::uint32_t backupUpdatedMs = 0;
+        // What the next hop itself advertised (0 = not known). A backup is loop-free only if its advertised cost is below our primary's total cost.
+        std::uint16_t advertisedMetric = 0;
+        std::uint16_t backupAdvertisedMetric = 0;
     };
 
     class RouteTable
@@ -39,7 +42,8 @@ namespace terrawatch::routing
                             std::uint32_t routeLifetimeMs = constants::kDefaultRouteLifetimeMs);
 
         bool updateRoute(std::uint8_t destinationId, std::uint8_t nextHopId, std::uint16_t metric,
-                         std::uint8_t hopCount, std::uint16_t routeVersion, std::uint32_t nowMs);
+                         std::uint8_t hopCount, std::uint16_t routeVersion, std::uint32_t nowMs,
+                         std::uint16_t advertisedMetric = 0U);
         bool updateRoute(std::uint8_t destinationId, std::uint8_t nextHopId,
                          const neighbor::LinkMetric &linkMetric, std::uint8_t hopCount,
                          std::uint16_t routeVersion, std::uint32_t nowMs);
@@ -60,6 +64,7 @@ namespace terrawatch::routing
 
     private:
         static bool newerVersion_(std::uint16_t candidate, std::uint16_t current);
+        static bool feasibleBackup_(std::uint16_t ourTotalMetric, std::uint16_t neighbourAdvertisedMetric);
         static void keepAsBackup_(RouteEntry &primary, const RouteEntry &candidate);
         static bool betterRoute_(const RouteEntry &candidate, const RouteEntry &current);
         bool isUsable_(const RouteEntry &route, std::uint32_t nowMs) const;

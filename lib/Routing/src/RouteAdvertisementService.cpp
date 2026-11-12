@@ -73,7 +73,7 @@ namespace terrawatch::routing
         const bool wasUsable = routeTable_.lookup(destinationId, nowMs, previousRoute);
         const bool updated = routeTable_.updateRoute(
             destinationId, packet.previousHopId, static_cast<std::uint16_t>(totalCost + 0.5F),
-            static_cast<std::uint8_t>(advertisedHopCount + 1U), version, nowMs);
+            static_cast<std::uint8_t>(advertisedHopCount + 1U), version, nowMs, advertisedMetric);
         if (updated && eventBus_ != nullptr)
         {
             eventBus_->publish({event::Type::RouteAdvertisementReceived, packet});
@@ -97,7 +97,10 @@ namespace terrawatch::routing
         AdvertisementState *state = nullptr;
         for (auto &entry : advertisements_)
             if (entry.active && entry.destinationId == destinationId) { state = &entry; break; }
-        if (state != nullptr && (nowMs - state->lastSentMs) < advertisementIntervalMs_) return false;
+        // Repeat the first adverts quickly (about 7 s and 22 s after the first) so a neighbour that missed one does not wait a minute.
+        const std::uint32_t wait = (state != nullptr && state->burstSent >= 1U && state->burstSent <= constants::kAdvertBurstCount)
+                                       ? constants::kAdvertBurstGapsMs[state->burstSent - 1U] : advertisementIntervalMs_;
+        if (state != nullptr && (nowMs - state->lastSentMs) < wait) return false;
         if (state == nullptr)
             for (auto &entry : advertisements_)
                 if (!entry.active) { state = &entry; entry.active = true; entry.destinationId = destinationId; break; }
@@ -108,6 +111,7 @@ namespace terrawatch::routing
                                                      route.routeVersion, advertisement) ||
             !packetQueue_.enqueue(advertisement)) return false;
         state->lastSentMs = nowMs;
+        if (state->burstSent <= constants::kAdvertBurstCount) ++state->burstSent;
         return true;
     }
 
