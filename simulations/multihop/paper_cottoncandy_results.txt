@@ -1,0 +1,26 @@
+CottonCandy paper: delivery above 90 % for 100 nodes, grids of 0.5 km and 2 km. Ours, one report per node, 8 runs each:
+ spacing  window design    delivered lowest run tx/packet channel busy
+   0.5 km     60s dv+fix        98.8%      96.0%      22.8        13.4%
+   0.5 km     60s static        97.5%      95.0%       2.8         1.7%
+   0.5 km     60s flood         83.0%      77.0%      95.1        54.9%
+   0.5 km     60s random        94.4%      91.0%       6.0         3.5%
+   0.5 km    600s dv+fix        99.0%      92.0%      31.3        11.7%
+   0.5 km    600s static        99.2%      97.0%       2.5         1.0%
+   0.5 km    600s flood         97.8%      96.0%     100.0        43.5%
+   0.5 km    600s random        99.0%      96.0%       4.9         1.9%
+   0.5 km   3600s dv+fix        99.9%      99.0%      81.4        10.2%
+   0.5 km   3600s static        99.9%      99.0%       2.5         0.3%
+   0.5 km   3600s flood        100.0%     100.0%     100.0        14.8%
+   0.5 km   3600s random        99.8%      98.0%       4.9         0.6%
+   2.0 km     60s dv+fix        75.5%      65.0%      46.2        20.7%
+   2.0 km     60s static        88.8%      86.0%      17.5         9.4%
+   2.0 km     60s flood         83.2%      80.0%      76.2        44.1%
+   2.0 km     60s random        86.4%      70.0%      12.2         6.5%
+   2.0 km    600s dv+fix        99.4%      96.0%      42.4        15.9%
+   2.0 km    600s static        99.9%      99.0%      15.1         5.7%
+   2.0 km    600s flood         99.1%      97.0%      87.9        38.8%
+   2.0 km    600s random        99.1%      93.0%      10.2         4.0%
+   2.0 km   3600s dv+fix       100.0%     100.0%      92.3        11.6%
+   2.0 km   3600s static       100.0%     100.0%      15.0         1.9%
+   2.0 km   3600s flood         99.8%      99.0%      90.8        13.5%
+   2.0 km   3600s random       100.0%     100.0%      10.0         1.3%
