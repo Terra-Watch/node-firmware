@@ -16,6 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: make test
+  sanitizers:
+    name: host tests under sanitizers
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      # The test scripts call `c++`; a wrapper earlier in PATH adds AddressSanitizer and UndefinedBehaviorSanitizer to every build.
+      - run: |
+          mkdir -p "$RUNNER_TEMP/san"
+          printf '#!/bin/sh\nexec g++ -fsanitize=address,undefined -fno-sanitize-recover=undefined -g "$@"\n' > "$RUNNER_TEMP/san/c++"
+          chmod +x "$RUNNER_TEMP/san/c++"
+          PATH="$RUNNER_TEMP/san:$PATH" make test
   simulation:
     name: network simulation check
     runs-on: ubuntu-latest
